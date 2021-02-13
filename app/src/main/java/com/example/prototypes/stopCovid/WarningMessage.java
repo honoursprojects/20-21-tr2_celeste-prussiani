@@ -2,6 +2,7 @@ package com.example.prototypes.stopCovid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.bluetooth.BluetoothAdapter;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,7 +20,14 @@ public class WarningMessage extends AppCompatActivity {
         setContentView(R.layout.activity_warning_message);
     }
 
-    public void closeActivity(View view) {
+    //Turn on bluetooth on button click; close Warning Message activity when completed
+    public void turnOnBluetooth(View view) {
+        final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (btAdapter != null)
+        {
+            btAdapter.enable();
+        }
         WarningMessage.this.finish();
     }
+
 }

@@ -56,7 +56,7 @@
         android:layout_height="77dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/card"
-        android:onClick="closeActivity"
+        android:onClick="turnOnBluetooth"
         android:text="ACTIVATE CONTACT TRACING"
         android:textColor="@color/colorDangerDark"
         android:textSize="18sp"
