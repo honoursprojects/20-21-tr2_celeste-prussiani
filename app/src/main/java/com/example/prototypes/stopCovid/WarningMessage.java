@@ -30,4 +30,8 @@ public class WarningMessage extends AppCompatActivity {
         WarningMessage.this.finish();
     }
 
+    public void closeActivity(View view) {
+        WarningMessage.this.finish();
+    }
+
 }
