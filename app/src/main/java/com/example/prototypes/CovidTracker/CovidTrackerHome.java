@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.prototypes.R;
 
@@ -14,4 +15,5 @@ public class CovidTrackerHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_covid_tracker_home);
     }
+
 }
