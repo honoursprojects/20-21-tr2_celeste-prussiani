@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".stopCovid.StopCovid">
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top" />
+
+    <ScrollView
+        android:id="@+id/wrapperView"
+        android:layout_width="367dp"
+        android:layout_height="604dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/yellow_background_box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/innerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/caseCard"
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/card"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="@string/cases_no"
+                android:textColor="@color/textColour"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/graphCard"
+                android:layout_width="match_parent"
+                android:layout_height="297dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/card"
+                android:text="Graph" />
+
+            <Button
+                android:id="@+id/colourBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="changeColour"
+                android:text="Click me"
+                android:textIsSelectable="false" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/appLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="8dp"
+        android:text="StopCovid"
+        android:textColor="@color/textColour"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/wrapperView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.307" />
+
+    <!-- A CardView that contains a TextView -->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

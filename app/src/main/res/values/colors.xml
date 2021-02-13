@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- StopCovid -->
+    <color name="colorPrimary">#ffcb05</color>
+    <color name="colorDangerDark">#7E0000</color>
+    <color name="colorDanger">#e12c2c</color>
+    <color name="colorAccent">#00509d</color>
+    <color name="colourAccentDark">#11296b</color>
+    <color name="lightBackground">#ededed</color>
+    <color name="textColour">#393e41</color>
+    <color name="backgroundColor">#ffdb57</color>
+    <color name="lightBackgroundColor">#FFE99A</color>
+    <color name="shadowColor">#d8d8d8</color>
+    <color name="darkShadowColor">#7A7979</color>
+
+    <!-- CovidTracker -->
+    <color name="btnColor">#009688</color>
+    <color name="pinkHighlight">#D53068</color>
+</resources>
