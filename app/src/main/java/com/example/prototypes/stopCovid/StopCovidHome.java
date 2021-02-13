@@ -16,14 +16,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.prototypes.R;
+
+import static androidx.constraintlayout.widget.ConstraintProperties.WRAP_CONTENT;
 
 public class StopCovidHome extends AppCompatActivity {
     Intent intent;
@@ -41,9 +45,7 @@ public class StopCovidHome extends AppCompatActivity {
         createNotificationChannels();
         //Check user bluetooth settings
         checkBluetooth();
-
     }
-
 
     public void checkBluetooth() {
 
@@ -116,7 +118,21 @@ public class StopCovidHome extends AppCompatActivity {
                 //Set an Id for warning title so it can be deleted on Bluetooth activation
                 warning.setId(150);
                 warning.setText("WARNING");
+                warning.setBackgroundResource(R.drawable.button);
+                warning.setTextColor(Color.WHITE);
+                warning.setTypeface(Typeface.DEFAULT_BOLD);
+                warning.setGravity(Gravity.CENTER);
+                warning.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+                        if (btAdapter != null) {
+                            btAdapter.enable();
+                        }
+                    }
+                });
                 innerView.addView(warning, 0);
+
+                //Display bluetooth notification
                 showNotification();
                 break;
             case STATE_ON:
@@ -156,7 +172,6 @@ public class StopCovidHome extends AppCompatActivity {
         PendingIntent contentIntent = PendingIntent.getActivity(this,
                 0, activityIntent, 0);
 
-
         Notification warning = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
                 .setContentTitle("Contact tracing disabled")
@@ -169,7 +184,6 @@ public class StopCovidHome extends AppCompatActivity {
                 .setOngoing(true)
                 .setContentIntent(contentIntent)
                 .build();
-
 
         //Display notification
         notificationManager.notify(1, warning);
