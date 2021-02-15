@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -20,6 +21,8 @@ public class CovidTrackerChat extends AppCompatActivity {
     Doctor doctor;
     LinearLayout chatBox;
     EditText inputBox;
+    final int DOC = 1;
+    final int USER = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,27 +30,47 @@ public class CovidTrackerChat extends AppCompatActivity {
         chatBox = (LinearLayout) findViewById(R.id.innerView);
         inputBox = (EditText) findViewById(R.id.inputMessage);
         doctor = new Doctor();
-        generateBubble(doctor.greetUser());
+        generateBubble(doctor.greetUser(), DOC);
     }
 
-    public void askDoctor(View view) {
+    public void chatToDoctor(View view) {
+        //Get message from user
         String input = inputBox.getText().toString();
+        //Display user message in a chat bubble
+        generateBubble(input, USER);
+        //Get response from doctor library
         String output = doctor.thinkOfAnswer(input);
-        generateBubble(output);
+        //Display doctor message
+        generateBubble(output, DOC);
+        //Clear input box after message from user has been sent
+        inputBox.setText("");
     }
 
-    public void generateBubble(String output) {
+    public void generateBubble(String output, int user) {
         //Create and style text bubble
         TextView outputBox = new TextView(CovidTrackerChat.this);
         outputBox.setBackgroundResource(R.drawable.box_no_shadow);
         outputBox.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
-        outputBox.setBackgroundTintList(getResources().getColorStateList(R.color.pinkHighlight));
         outputBox.setTextColor(getResources().getColor(R.color.textColour));
+        outputBox.setTextSize(18);
+        outputBox.setGravity(Gravity.CENTER_VERTICAL);
         outputBox.setPadding(20, 20, 20, 20);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(10,10,10,10);
         outputBox.setLayoutParams(params);
         outputBox.setText(output);
+
+        //Display different colour and alignment depending on who sends the message
+        switch(user) {
+            case DOC:
+                outputBox.setBackgroundTintList(getResources().getColorStateList(R.color.pinkHighlight));
+                break;
+            case USER:
+                //Align bubble to the right
+                outputBox.setBackgroundTintList(getResources().getColorStateList(R.color.darkPinkHighlight));
+                params.gravity = Gravity.RIGHT;
+                break;
+        }
         chatBox.addView(outputBox);
     }
 
