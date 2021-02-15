@@ -67,7 +67,7 @@
         android:layout_marginRight="24dp"
         android:gravity="start|center_vertical"
         android:text="Protect yourself and your loved ones"
-        android:textColor="@color/pinkHighlight"
+        android:textColor="@color/darkPinkHighlight"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

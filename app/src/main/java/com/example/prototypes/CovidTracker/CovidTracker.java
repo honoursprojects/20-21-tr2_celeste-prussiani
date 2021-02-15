@@ -17,7 +17,7 @@ public class CovidTracker extends AppCompatActivity {
     }
 
     public void goHome(View view) {
-        intent = new Intent(this, CovidTrackerHome.class);
+        intent = new Intent(this, CovidTrackerChat.class);
         startActivity(intent);
     }
 }

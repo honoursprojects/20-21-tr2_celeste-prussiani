@@ -15,5 +15,6 @@
 
     <!-- CovidTracker -->
     <color name="btnColor">#009688</color>
-    <color name="pinkHighlight">#D53068</color>
+    <color name="darkPinkHighlight">#D53068</color>
+    <color name="pinkHighlight">#DCA4B7</color>
 </resources>
