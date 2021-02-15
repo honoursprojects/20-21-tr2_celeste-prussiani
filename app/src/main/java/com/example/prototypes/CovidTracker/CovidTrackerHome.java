@@ -27,16 +27,22 @@ public class CovidTrackerHome extends AppCompatActivity {
         chatBox = (LinearLayout) findViewById(R.id.innerView);
         inputBox = (EditText) findViewById(R.id.inputMessage);
         doctor = new Doctor();
+        generateBubble(doctor.greetUser());
     }
 
     public void askDoctor(View view) {
         String input = inputBox.getText().toString();
         String output = doctor.thinkOfAnswer(input);
+        generateBubble(output);
+
+    }
+
+    public void generateBubble(String output) {
         TextView outputBox = new TextView(CovidTrackerHome.this);
         outputBox.setBackgroundColor(getResources().getColor(R.color.pinkHighlight));
         outputBox.setText(output);
         chatBox.addView(outputBox);
-        System.out.println("btn clicked");
+
     }
 
 }

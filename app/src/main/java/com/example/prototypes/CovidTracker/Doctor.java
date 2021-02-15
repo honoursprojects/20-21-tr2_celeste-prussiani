@@ -4,13 +4,11 @@ import java.util.HashMap;
 
 public class Doctor {
 
-
     private HashMap<String, String> library;
 
     public Doctor() {
         library = new HashMap<String, String>();
         generateLibrary(library);
-
     }
 
     public void generateLibrary(HashMap<String, String> library) {
@@ -30,10 +28,15 @@ public class Doctor {
         library.put("meet", friends);
         library.put("friends", friends);
         library.put("gloves", gloves);
-        library.put("face masks", masks);
+        library.put("mask", masks);
+        library.put("masks", masks);
         library.put("ppe", masks);
         library.put("error", not_found);
         library.put("welcome", welcome);
+    }
+
+    public String greetUser() {
+        return library.get("welcome").toString();
     }
 
     public String thinkOfAnswer(String msg) {
@@ -45,7 +48,6 @@ public class Doctor {
                 result = library.get(w).toString();
             }
         }
-
         if(result.equals("")) {
             output = library.get("error");
         } else {
