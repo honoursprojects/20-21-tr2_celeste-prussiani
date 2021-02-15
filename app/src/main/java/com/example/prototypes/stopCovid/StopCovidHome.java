@@ -1,5 +1,6 @@
 package com.example.prototypes.stopCovid;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
@@ -16,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,8 +29,6 @@ import android.widget.TextView;
 
 import com.example.prototypes.R;
 
-import static androidx.constraintlayout.widget.ConstraintProperties.WRAP_CONTENT;
-
 public class StopCovidHome extends AppCompatActivity {
     Intent intent;
     final int STATE_ON = 12;
@@ -36,6 +36,7 @@ public class StopCovidHome extends AppCompatActivity {
     public static final String CHANNEL_ID = "warningChannel";
     private NotificationManagerCompat notificationManager;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,7 @@ public class StopCovidHome extends AppCompatActivity {
         checkBluetooth();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void checkBluetooth() {
 
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -95,6 +97,7 @@ public class StopCovidHome extends AppCompatActivity {
 
     //Handle view based on Bluetooth activation
     //Displays yellow view if bluetooth is active, red view if bluetooth is disabled
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceType")
     public void changeColour(int state) {
         ConstraintLayout background = (ConstraintLayout) findViewById(R.id.background);
@@ -113,15 +116,17 @@ public class StopCovidHome extends AppCompatActivity {
                 //Change logo colour to white
                 title.setTextColor(Color.WHITE);
 
-                //Add a new textView with a warning. needs to be changed to card
+                //Add a new textView with a warning. needs to be changed to box_shadow
                 TextView warning = new TextView(StopCovidHome.this);
                 //Set an Id for warning title so it can be deleted on Bluetooth activation
                 warning.setId(150);
                 warning.setText("WARNING");
-                warning.setBackgroundResource(R.drawable.button);
+                warning.setBackgroundResource(R.drawable.box_shadow);
                 warning.setTextColor(Color.WHITE);
                 warning.setTypeface(Typeface.DEFAULT_BOLD);
                 warning.setGravity(Gravity.CENTER);
+                warning.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+                warning.setBackgroundTintList(getResources().getColorStateList(R.color.colorDanger));
                 warning.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();

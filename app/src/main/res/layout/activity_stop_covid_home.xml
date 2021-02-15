@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="59dp"
                 android:layout_margin="15dp"
-                android:background="@drawable/card"
+                android:background="@drawable/box_shadow"
                 android:clickable="false"
                 android:gravity="center"
                 android:text="@string/cases_no"
@@ -53,15 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="297dp"
                 android:layout_margin="15dp"
-                android:background="@drawable/card"
+                android:background="@drawable/box_shadow"
                 android:text="Graph" />
-
-            <Button
-                android:id="@+id/colourBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Click me"
-                android:textIsSelectable="false" />
 
         </LinearLayout>
     </ScrollView>
