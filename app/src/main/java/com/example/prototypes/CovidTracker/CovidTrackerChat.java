@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,6 +45,8 @@ public class CovidTrackerChat extends AppCompatActivity {
         generateBubble(output, DOC);
         //Clear input box after message from user has been sent
         inputBox.setText("");
+        //Close keyboard
+        collapseKeyboard();
     }
 
     public void generateBubble(String output, int user) {
@@ -72,6 +75,11 @@ public class CovidTrackerChat extends AppCompatActivity {
                 break;
         }
         chatBox.addView(outputBox);
+    }
+
+    public void collapseKeyboard() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
 
 }

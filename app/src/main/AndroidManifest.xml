@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CovidTracker.CovidTrackerChat"></activity>
+        <activity android:name=".CovidTracker.CovidTrackerChat" android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".stopCovid.WarningMessage" />
         <activity android:name=".CovidTracker.CovidTracker" />
         <activity android:name=".stopCovid.StopCovidHome" />
