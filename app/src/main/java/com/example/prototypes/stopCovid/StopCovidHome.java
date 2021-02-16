@@ -253,6 +253,9 @@ public class StopCovidHome extends AppCompatActivity {
 
         XAxis xAxis = barchart.getXAxis();
         xAxis.setDrawGridLines(false);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        YAxis yAxisRight = barchart.getAxisRight();
+        yAxisRight.setEnabled(false);
         Legend legend = barchart.getLegend();
         legend.setForm(Legend.LegendForm.LINE);
         legend.setTextSize(11f);
