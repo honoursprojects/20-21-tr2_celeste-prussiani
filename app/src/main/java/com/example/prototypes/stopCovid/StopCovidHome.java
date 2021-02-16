@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -28,9 +29,20 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.prototypes.R;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+
+import java.util.ArrayList;
 
 public class StopCovidHome extends AppCompatActivity {
     Intent intent;
+    BarChart barchart;
     final int STATE_ON = 12;
     final int STATE_OFF = 10;
     public static final String CHANNEL_ID = "warningChannel";
@@ -46,6 +58,7 @@ public class StopCovidHome extends AppCompatActivity {
         createNotificationChannels();
         //Check user bluetooth settings
         checkBluetooth();
+        createChart();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -192,5 +205,63 @@ public class StopCovidHome extends AppCompatActivity {
 
         //Display notification
         notificationManager.notify(1, warning);
+    }
+
+    public void displayChart() {
+
+        barchart = findViewById(R.id.barChart_view);
+        ArrayList<Double> valueList = new ArrayList<Double>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        String title = "Cases";
+
+        //Input data
+        for(int i = 0; i < 6; i++) {
+            valueList.add(i*100.1);
+        }
+
+        //fit data into a bar
+        for(int i = 0; i<valueList.size(); i++) {
+            BarEntry barEntry = new BarEntry(i, valueList.get(i).floatValue());
+            entries.add(barEntry);
+        }
+
+        BarDataSet barDataSet = new BarDataSet(entries, title);
+
+        BarData data = new BarData(barDataSet);
+        barchart.setData(data);
+        barchart.invalidate();
+        styleChart(barDataSet);
+    }
+
+    public void styleChart(BarDataSet barDataSet) {
+        barDataSet.setColor(ContextCompat.getColor(this, R.color.colorDanger));
+        barDataSet.setFormSize(15);
+        barDataSet.setDrawValues(false);
+        barDataSet.setValueTextSize(12f);
+    }
+
+    public void createChart() {
+
+        barchart = findViewById(R.id.barChart_view);
+        barchart.setDrawGridBackground(false);
+        barchart.setDrawBarShadow(false);
+        barchart.setDrawBorders(false);
+
+        Description description = new Description();
+        description.setEnabled(false);
+        barchart.setDescription(description);
+
+        XAxis xAxis = barchart.getXAxis();
+        xAxis.setDrawGridLines(false);
+        Legend legend = barchart.getLegend();
+        legend.setForm(Legend.LegendForm.LINE);
+        legend.setTextSize(11f);
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        legend.setDrawInside(false);
+
+        displayChart();
+
     }
 }

@@ -50,13 +50,11 @@
                 android:textColor="@color/textColour"
                 android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/graphCard"
-                android:layout_width="match_parent"
-                android:layout_height="297dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/box_shadow"
-                android:text="Graph" />
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart_view"
+                android:layout_width="365dp"
+                android:layout_height="300dp" />
+
 
         </LinearLayout>
     </ScrollView>
