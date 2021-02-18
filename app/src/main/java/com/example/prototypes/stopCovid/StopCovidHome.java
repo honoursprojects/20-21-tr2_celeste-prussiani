@@ -103,11 +103,6 @@ public class StopCovidHome extends AppCompatActivity {
         this.registerReceiver(mReceiver, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
     }
 
-    @Override
-    public void onBackPressed() {
-        // Do Here what ever you want do on back press;
-    }
-
     //Handle view based on Bluetooth activation
     //Displays yellow view if bluetooth is active, red view if bluetooth is disabled
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -266,5 +261,12 @@ public class StopCovidHome extends AppCompatActivity {
 
         displayChart();
 
+    }
+
+
+    /** ROUTE TO DIFFERENT APP SECTION **/
+    public void openSymptomTracker(View view) {
+        intent = new Intent(this, SymptomTracker.class);
+        startActivity(intent);
     }
 }

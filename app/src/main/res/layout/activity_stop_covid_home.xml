@@ -58,6 +58,13 @@
                 android:background="@drawable/box_shadow"
                 android:padding="30dp" />
 
+            <Button
+                android:id="@+id/symptomTrackerBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="openSymptomTracker"
+                android:text="Symptom tracker" />
+
 
         </LinearLayout>
     </ScrollView>
