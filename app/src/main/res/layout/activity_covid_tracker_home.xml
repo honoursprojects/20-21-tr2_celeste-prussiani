@@ -21,6 +21,7 @@
             android:layout_height="44dp"
             android:layout_gravity="center|end"
             android:layout_marginRight="15dp"
+            android:onClick="openChat"
             app:srcCompat="@android:drawable/sym_action_chat" />
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
