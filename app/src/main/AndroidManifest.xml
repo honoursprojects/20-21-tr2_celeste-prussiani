@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize|adjustPan">
-        <activity android:name=".stopCovid.SymptomTracker"></activity>
+        <activity android:name=".CovidTracker.CovidTrackerHome"></activity>
+        <activity android:name=".stopCovid.SymptomTracker" />
         <activity
             android:name=".CovidTracker.CovidTrackerChat"
             android:windowSoftInputMode="adjustPan" />
