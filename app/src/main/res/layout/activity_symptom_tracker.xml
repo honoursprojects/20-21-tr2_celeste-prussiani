@@ -8,6 +8,26 @@
     android:background="@color/backgroundColor"
     tools:context=".stopCovid.SymptomTracker">
 
+    <TextView
+        android:id="@+id/appLogo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="8dp"
+        android:text="StopCovid"
+        android:textColor="@color/textColour"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/wrapperView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.837" />
+
     <ScrollView
         android:id="@+id/wrapperView"
         android:layout_width="366dp"
@@ -153,6 +173,12 @@
                         android:paddingBottom="5dp"
                         app:srcCompat="@android:drawable/btn_star_big_on" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/testView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
             </LinearLayout>
 
         </LinearLayout>
@@ -163,7 +189,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:onClick="goHome"
+        android:onClick="showText"
         android:text="home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
