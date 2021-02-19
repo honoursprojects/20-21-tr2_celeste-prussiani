@@ -4,13 +4,11 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
 
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -52,7 +50,6 @@ public class SymptomTracker extends AppCompatActivity {
     public void goHome(View view) {
         intent = new Intent(this, StopCovidHome.class);
         startActivity(intent);
-
     }
 
     public void saveSymptom(View view) {
@@ -118,5 +115,4 @@ public class SymptomTracker extends AppCompatActivity {
             }
         }
     }
-
 }
