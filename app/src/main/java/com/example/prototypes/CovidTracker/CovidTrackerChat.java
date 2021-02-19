@@ -3,6 +3,7 @@ package com.example.prototypes.CovidTracker;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Build;
@@ -16,8 +17,14 @@ import android.widget.TextView;
 
 import com.example.prototypes.R;
 
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class CovidTrackerChat extends AppCompatActivity {
+    private static final String FILE_NAME = "history.txt";
+
     Intent intent;
     Doctor doctor;
     LinearLayout chatBox;
