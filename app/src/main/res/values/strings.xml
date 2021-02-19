@@ -1,4 +1,19 @@
 <resources>
-    <string name="app_name">Prototypes</string>
+    <string name="covidTracker_app_name">CovidTracker</string>
+    <string name="stopCovid_app_name">StopCovid</string>
+    <string name="prototypes_introduction">Please choose one of the app views</string>
     <string name="cases_no">100000</string>
+    <string name="placeholder_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Integer a vestibulum quam. Vestibulum ullamcorper lorem sed volutpat sollicitudin.
+        Sed viverra, odio vitae consequat pulvinar, nisi tellus faucibus sapien, sed viverra sem erat a orci.
+        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
+        Nullam eleifend posuere est sit amet ultricies.</string>
+    <string name="covidTracker_intro">Protect yourself and your loved ones</string>
+    <string name="welcome">Welcome!</string>
+    <string name="continue_btn">Continue</string>
+    <string name="stopCovid_intro">Stop Covid-19. Now.</string>
+    <string name="warning">WARNING</string>
+    <!-- Symptom tracker -->
+    <string name="symptomTracker_intro">How are you feeling today?</string>
+    <string name="symptomTracker_subtitle">Select all the symptoms you feel</string>
 </resources>

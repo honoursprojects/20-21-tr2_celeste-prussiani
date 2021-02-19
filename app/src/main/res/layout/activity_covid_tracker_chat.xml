@@ -13,7 +13,7 @@
         android:background="@color/colourAccentDark"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
-        android:text="CovidTracker"
+        android:text="@string/covidTracker_app_name"
         android:textColor="#fff"
         android:textSize="18sp"
         android:textStyle="bold"

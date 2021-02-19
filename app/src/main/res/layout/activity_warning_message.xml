@@ -43,7 +43,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="44dp"
-        android:text="WARNING"
+        android:text="@string/warning"
         android:textColor="#fff"
         android:textSize="50sp"
         android:textStyle="bold"
