@@ -35,7 +35,7 @@
         android:id="@+id/inputWrapper"
         android:layout_width="386dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/box_no_shadow"
         android:backgroundTint="@color/darkPinkHighlight"
         android:backgroundTintMode="multiply"
@@ -43,7 +43,8 @@
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent" tools:targetApi="lollipop">
+        app:layout_constraintStart_toStartOf="parent"
+        tools:targetApi="lollipop">
 
         <EditText
             android:id="@+id/inputMessage"
@@ -52,14 +53,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:autoText="false"
+            android:autofillHints=""
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.545"
-            android:autofillHints="" />
+            app:layout_constraintVertical_bias="0.545" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -81,15 +82,15 @@
 
     <ScrollView
         android:id="@+id/chatBox"
-        android:layout_width="377dp"
-        android:layout_height="466dp"
+        android:layout_width="369dp"
+        android:layout_height="539dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/inputWrapper"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitle2"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:id="@+id/innerView"
