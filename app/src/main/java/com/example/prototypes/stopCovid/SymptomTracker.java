@@ -3,36 +3,48 @@ package com.example.prototypes.stopCovid;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class SymptomTracker extends AppCompatActivity {
     Intent intent;
     final static String FILE_NAME = "tracker.txt";
+    BroadcastReceiver mBroadcastReceiver;
     ArrayList<String> symptoms;
+    Boolean bluetooth;
+    MutableLiveData<String> listen;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_symptom_tracker);
-        ((Application) getApplicationContext()).checkBluetooth();
+       // int state, ConstraintLayout background, ScrollView wrapperView, LinearLayout innerView, TextView title, Context
+      //  context
+        ConstraintLayout background = (ConstraintLayout) findViewById(R.id.background);
+        ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
+        LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
+        TextView title = (TextView) findViewById(R.id.appLogo);
+        bluetooth = ((Application) getApplicationContext()).checkBluetooth(mBroadcastReceiver);
+
         symptoms = new ArrayList<String>();
         loadHistory();
     }
@@ -40,6 +52,7 @@ public class SymptomTracker extends AppCompatActivity {
     public void goHome(View view) {
         intent = new Intent(this, StopCovidHome.class);
         startActivity(intent);
+
     }
 
     public void saveSymptom(View view) {

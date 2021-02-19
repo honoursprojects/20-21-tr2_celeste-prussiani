@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.prototypes.Application;
 import com.example.prototypes.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
@@ -46,6 +47,7 @@ public class StopCovidHome extends AppCompatActivity {
     final int STATE_ON = 12;
     final int STATE_OFF = 10;
     public static final String CHANNEL_ID = "warningChannel";
+    BroadcastReceiver mBroadcastReceiver;
     private NotificationManagerCompat notificationManager;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -53,13 +55,19 @@ public class StopCovidHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stop_covid_home);
+        ConstraintLayout background = (ConstraintLayout) findViewById(R.id.background);
+        ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
+        LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
+        TextView title = (TextView) findViewById(R.id.appLogo);
         //Create notification channels
         notificationManager = NotificationManagerCompat.from(this);
         createNotificationChannels();
         //Check user bluetooth settings
         checkBluetooth();
+       // ((Application) getApplicationContext()).checkBluetooth(mBroadcastReceiver);
         createChart();
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void checkBluetooth() {
@@ -102,6 +110,7 @@ public class StopCovidHome extends AppCompatActivity {
 
         this.registerReceiver(mReceiver, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
     }
+
 
     //Handle view based on Bluetooth activation
     //Displays yellow view if bluetooth is active, red view if bluetooth is disabled
