@@ -13,6 +13,8 @@
     <string name="continue_btn">Continue</string>
     <string name="stopCovid_intro">Stop Covid-19. Now.</string>
     <string name="warning">WARNING</string>
+    <string name="contactTracing_btn">Activate contact tracing</string>
+    <string name="exit">X</string>
     <!-- Symptom tracker -->
     <string name="symptomTracker_intro">How are you feeling today?</string>
     <string name="symptomTracker_subtitle">Select all the symptoms you feel</string>
