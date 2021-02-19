@@ -30,8 +30,8 @@
 
     <ScrollView
         android:id="@+id/wrapperView"
-        android:layout_width="376dp"
-        android:layout_height="605dp"
+        android:layout_width="380dp"
+        android:layout_height="676dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="24dp"
@@ -59,7 +59,7 @@
             <LinearLayout
                 android:id="@+id/btnWrapper"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="622dp"
                 android:orientation="vertical"
                 tools:layout_editor_absoluteX="45dp"
                 tools:layout_editor_absoluteY="156dp">
@@ -335,7 +335,7 @@
                 <TextView
                     android:id="@+id/history"
                     android:layout_width="match_parent"
-                    android:layout_height="98dp" />
+                    android:layout_height="211dp" />
 
             </LinearLayout>
 
