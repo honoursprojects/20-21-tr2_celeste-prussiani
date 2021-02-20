@@ -9,7 +9,7 @@
     tools:context=".stopCovid.SymptomTracker">
 
     <TextView
-        android:id="@+id/appLogo2"
+        android:id="@+id/appLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
