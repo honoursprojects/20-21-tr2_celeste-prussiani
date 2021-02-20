@@ -60,13 +60,11 @@ public class CovidTrackerChat extends AppCompatActivity {
 
     public void generateBubble(String output, int user) {
         //Create and style text bubble
-        String id = "bubble";
         TextView outputBox = new TextView(CovidTrackerChat.this);
         outputBox.setBackgroundResource(R.drawable.box_no_shadow);
         outputBox.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
         outputBox.setTextColor(getResources().getColor(R.color.textColour));
         outputBox.setTextSize(18);
-        outputBox.setId(Integer.parseInt(id));
         outputBox.setGravity(Gravity.CENTER_VERTICAL);
         outputBox.setPadding(20, 20, 20, 20);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
