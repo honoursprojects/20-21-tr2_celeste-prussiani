@@ -245,7 +245,6 @@ public class StopCovidHome extends AppCompatActivity {
     }
 
     public void createChart() {
-
         barchart = findViewById(R.id.barChart_view);
         barchart.setDrawGridBackground(false);
         barchart.setDrawBarShadow(false);
@@ -271,7 +270,6 @@ public class StopCovidHome extends AppCompatActivity {
         displayChart();
 
     }
-
 
     /** ROUTE TO DIFFERENT APP SECTION **/
     public void openSymptomTracker(View view) {

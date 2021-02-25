@@ -19,12 +19,14 @@ import android.widget.Toast;
 import com.example.prototypes.R;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class CovidTrackerChat extends AppCompatActivity {
-    private static final String FILE_NAME = "history.txt";
+    private static final String FILE_NAME = "chat.txt";
 
     Intent intent;
     Doctor doctor;
@@ -40,18 +42,22 @@ public class CovidTrackerChat extends AppCompatActivity {
         chatBox = (LinearLayout) findViewById(R.id.innerView);
         inputBox = (EditText) findViewById(R.id.inputMessage);
         doctor = new Doctor();
+      //  generateChat();
         generateBubble(doctor.greetUser(), DOC);
     }
 
     public void chatToDoctor(View view) {
+        StringBuilder sb = new StringBuilder();
         //Get message from user
         String input = inputBox.getText().toString();
         //Display user message in a chat bubble
         generateBubble(input, USER);
+       // appendChat(input, USER);
         //Get response from doctor library
         String output = doctor.thinkOfAnswer(input);
         //Display doctor message
         generateBubble(output, DOC);
+      //  appendChat(output, DOC);
         //Clear input box after message from user has been sent
         inputBox.setText("");
         //Close keyboard
@@ -90,5 +96,61 @@ public class CovidTrackerChat extends AppCompatActivity {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
+/*
+    public void appendChat(String message, int user) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            FileOutputStream fos = openFileOutput(FILE_NAME, MODE_APPEND);
+            String text = "";
+            String newline = "\n";
+            String docSignature = "@doc";
+            String userSignature = "@user";
 
+            switch(user) {
+                case DOC:
+                    sb.append(text).append(newline).append(message).append(docSignature);
+                    fos.write(text.getBytes());
+                    break;
+                case USER:
+                    sb.append(text).append(newline).append(message).append(userSignature);
+                    fos.write(text.getBytes());
+                    break;
+            }
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<String> loadChatFile() {
+        ArrayList<String> sentMessages = new ArrayList<String>();
+        FileInputStream fis = null;
+        try {
+            fis = openFileInput(FILE_NAME);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
+
+            while((text = br.readLine()) != null) {
+                sb.append(text).append("\n");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sentMessages;
+    }
+
+    public void generateChat() {
+        ArrayList<String> messages = loadChatFile();
+        for(String m : messages) {
+            String[] split = m.split("@");
+            if(split[1].equals("doc")) {
+                generateBubble(split[0], DOC);
+            } else if(split[1].equals("user")) {
+                generateBubble(split[0], USER);
+            }
+        }
+    }
+*/
 }

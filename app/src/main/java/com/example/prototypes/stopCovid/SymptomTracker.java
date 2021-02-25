@@ -31,6 +31,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SymptomTracker extends AppCompatActivity {
@@ -42,6 +43,7 @@ public class SymptomTracker extends AppCompatActivity {
 
     final int STATE_ON = 12;
     final int STATE_OFF = 10;
+    ArrayList<String> reportedSymptoms;
     MutableLiveData<String> listen;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -54,6 +56,7 @@ public class SymptomTracker extends AppCompatActivity {
         ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
         LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
         TextView title = (TextView) findViewById(R.id.appLogo);
+
      //   bluetooth = ((Application) getApplicationContext()).checkBluetooth(mBroadcastReceiver);
 
         checkBluetooth();
@@ -76,12 +79,16 @@ public class SymptomTracker extends AppCompatActivity {
     }
 
     public void appendHistory(String symptom) {
+        ArrayList<String> reportedSymptoms = new ArrayList<String>();
+        reportedSymptoms = loadHistory();
 
         try {
            FileOutputStream fos = openFileOutput(FILE_NAME, MODE_APPEND);
            String newline = "\n";
-           fos.write(newline.getBytes());
-           fos.write(symptom.getBytes());
+           if(!reportedSymptoms.contains(symptom)) {
+               fos.write(newline.getBytes());
+               fos.write(symptom.getBytes());
+           }
            fos.close();
         } catch (Exception e) {
            e.printStackTrace();
@@ -102,7 +109,8 @@ public class SymptomTracker extends AppCompatActivity {
     }
 
 
-    public void loadHistory() {
+    public ArrayList<String> loadHistory() {
+        ArrayList<String> reportedSymptoms = new ArrayList<String>();
         TextView historyBox = (TextView) findViewById(R.id.history);
         FileInputStream fis = null;
         try {
@@ -114,6 +122,7 @@ public class SymptomTracker extends AppCompatActivity {
 
             while((text = br.readLine()) != null) {
                 sb.append(text).append("\n");
+                reportedSymptoms.add(text);
             }
             historyBox.setText(sb.toString());
 
@@ -128,6 +137,7 @@ public class SymptomTracker extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        return reportedSymptoms;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

@@ -1,6 +1,7 @@
 package com.example.prototypes;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -29,6 +30,8 @@ import androidx.core.app.NotificationManagerCompat;
 import com.example.prototypes.stopCovid.StopCovidHome;
 import com.example.prototypes.stopCovid.WarningMessage;
 
+import java.util.ArrayList;
+
 public class Application extends android.app.Application {
 
     final int STATE_OFF = 1;
@@ -36,7 +39,10 @@ public class Application extends android.app.Application {
     public static final String CHANNEL_ID = "warningChannel";
     private NotificationManagerCompat notificationManager;
     Intent intent;
+    private ArrayList<Activity> observers = new ArrayList<>();
 
+
+    /*
     public Boolean bluetooth = true;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -121,5 +127,5 @@ public class Application extends android.app.Application {
 
         //Display notification
         notificationManager.notify(1, warning);
-    }
+    }*/
 }
