@@ -30,6 +30,8 @@ import androidx.core.app.NotificationManagerCompat;
 import com.example.prototypes.stopCovid.StopCovidHome;
 import com.example.prototypes.stopCovid.WarningMessage;
 
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Application extends android.app.Application {

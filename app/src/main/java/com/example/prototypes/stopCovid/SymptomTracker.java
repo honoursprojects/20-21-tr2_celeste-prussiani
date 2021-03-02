@@ -14,6 +14,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -32,8 +34,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class SymptomTracker extends AppCompatActivity {
     Intent intent;
     final static String FILE_NAME = "tracker.txt";
@@ -45,6 +50,7 @@ public class SymptomTracker extends AppCompatActivity {
     final int STATE_OFF = 10;
     ArrayList<String> reportedSymptoms;
     MutableLiveData<String> listen;
+    @SuppressLint("NewApi")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +84,19 @@ public class SymptomTracker extends AppCompatActivity {
         }
     }
 
+    public void appendHistoryPreferences(String symptom) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime dateTime = LocalDateTime.now();
+        String date = dateTimeFormatter.format(dateTime);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(date, symptom);
+        editor.commit();
+        Toast.makeText(this, pref.getString(date, null) + "added", Toast.LENGTH_SHORT).show();
+    }
+
     public void appendHistory(String symptom) {
+
         ArrayList<String> reportedSymptoms = new ArrayList<String>();
         reportedSymptoms = loadHistory();
 
@@ -93,6 +111,7 @@ public class SymptomTracker extends AppCompatActivity {
         } catch (Exception e) {
            e.printStackTrace();
         }
+        appendHistoryPreferences(symptom);
         loadHistory();
     }
 
@@ -140,6 +159,7 @@ public class SymptomTracker extends AppCompatActivity {
         return reportedSymptoms;
     }
 
+    @SuppressLint("NewApi")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void checkBluetooth() {
 
@@ -186,7 +206,7 @@ public class SymptomTracker extends AppCompatActivity {
     //Handle view based on Bluetooth activation
     //Displays yellow view if bluetooth is active, red view if bluetooth is disabled
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @SuppressLint("ResourceType")
+    @SuppressLint({"ResourceType", "NewApi"})
     public void changeColour(int state) {
         ConstraintLayout background = (ConstraintLayout) findViewById(R.id.background);
         ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
