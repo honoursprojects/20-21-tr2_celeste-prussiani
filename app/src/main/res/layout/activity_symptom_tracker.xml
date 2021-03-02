@@ -332,19 +332,19 @@
                     android:layout_height="wrap_content"
                     android:text="Your history:" />
 
+                <Button
+                    android:id="@+id/saveBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="appendHistory"
+                    android:text="Save" />
+
                 <TextView
                     android:id="@+id/history"
                     android:layout_width="match_parent"
                     android:layout_height="211dp" />
 
             </LinearLayout>
-
-            <Button
-                android:id="@+id/clearHistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="clearHistory"
-                android:text="Clear" />
 
         </LinearLayout>
     </ScrollView>

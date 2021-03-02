@@ -67,7 +67,6 @@ public class SymptomTracker extends AppCompatActivity {
 
         checkBluetooth();
         symptoms = new ArrayList<String>();
-        loadHistory();
     }
 
     public void goHome(View view) {
@@ -80,83 +79,26 @@ public class SymptomTracker extends AppCompatActivity {
         System.out.println(symptom);
         if(!symptoms.contains(symptom)) {
             symptoms.add(symptom);
-            appendHistory(symptom);
         }
     }
 
-    public void appendHistoryPreferences(String symptom) {
+    public void appendHistory(View view) {
+
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime dateTime = LocalDateTime.now();
         String date = dateTimeFormatter.format(dateTime);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putString(date, symptom);
+        StringBuilder stringBuilder = new StringBuilder();
+        TextView box = findViewById(R.id.history);
+
+        String text = "";
+        for(String s : symptoms) {
+            editor.putString(date, s);
+            stringBuilder.append(text).append("\n").append(s);
+        }
         editor.commit();
-        Toast.makeText(this, pref.getString(date, null) + "added", Toast.LENGTH_SHORT).show();
-    }
-
-    public void appendHistory(String symptom) {
-
-        ArrayList<String> reportedSymptoms = new ArrayList<String>();
-        reportedSymptoms = loadHistory();
-
-        try {
-           FileOutputStream fos = openFileOutput(FILE_NAME, MODE_APPEND);
-           String newline = "\n";
-           if(!reportedSymptoms.contains(symptom)) {
-               fos.write(newline.getBytes());
-               fos.write(symptom.getBytes());
-           }
-           fos.close();
-        } catch (Exception e) {
-           e.printStackTrace();
-        }
-        appendHistoryPreferences(symptom);
-        loadHistory();
-    }
-
-    public void clearHistory(View view) {
-        try {
-            FileOutputStream fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
-            String empty = " ";
-            fos.write(empty.getBytes());
-            fos.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        loadHistory();
-    }
-
-
-    public ArrayList<String> loadHistory() {
-        ArrayList<String> reportedSymptoms = new ArrayList<String>();
-        TextView historyBox = (TextView) findViewById(R.id.history);
-        FileInputStream fis = null;
-        try {
-            fis = openFileInput(FILE_NAME);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String text;
-
-            while((text = br.readLine()) != null) {
-                sb.append(text).append("\n");
-                reportedSymptoms.add(text);
-            }
-            historyBox.setText(sb.toString());
-
-        } catch (Exception e){
-            e.printStackTrace();
-        } finally {
-            try {
-                if(fis != null) {
-                    fis.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return reportedSymptoms;
+        box.setText(stringBuilder.toString());
     }
 
     @SuppressLint("NewApi")
