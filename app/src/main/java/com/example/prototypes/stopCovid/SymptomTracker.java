@@ -47,10 +47,6 @@ public class SymptomTracker extends AppCompatActivity {
     final static String FILE_NAME = "tracker.txt";
     BroadcastReceiver mBroadcastReceiver;
     ArrayList<String> symptoms;
-    Boolean bluetooth;
-
-    final int STATE_ON = 12;
-    final int STATE_OFF = 10;
     ArrayList<String> reportedSymptoms;
     MutableLiveData<String> listen;
     @SuppressLint("NewApi")
@@ -68,16 +64,13 @@ public class SymptomTracker extends AppCompatActivity {
 
         symptoms = new ArrayList<String>();
         EventBus.getDefault().register(this);
+        Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
+        changeColour(bluetooth);
     }
 
     @Subscribe
     public void onMessageEvent(Boolean bluetooth) {
-        Toast.makeText(this, "CHANGED", Toast.LENGTH_SHORT).show();
-        if(bluetooth) {
-            changeColour(STATE_ON);
-        } else {
-            changeColour(STATE_OFF);
-        }
+        changeColour(bluetooth);
     }
 
     public void goHome(View view) {
@@ -126,7 +119,7 @@ public class SymptomTracker extends AppCompatActivity {
     //Displays yellow view if bluetooth is active, red view if bluetooth is disabled
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint({"ResourceType", "NewApi"})
-    public void changeColour(int state) {
+    public void changeColour(Boolean bluetooth) {
         ConstraintLayout background = (ConstraintLayout) findViewById(R.id.background);
         ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
         LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
@@ -137,31 +130,28 @@ public class SymptomTracker extends AppCompatActivity {
         TextView historyTitle = (TextView) findViewById(R.id.historyTitle);
 
 
-        switch(state) {
-            case STATE_OFF:
-                int darkRed = getResources().getColor(R.color.colorDangerDark);
-                //Change background to red
-                background.setBackgroundColor(darkRed);
-                wrapperView.setBackgroundColor(darkRed);
-                //Change logo colour to white
-                appLogo.setTextColor(Color.WHITE);
-                title.setTextColor(Color.WHITE);
-                subtitle.setTextColor(Color.WHITE);
-                history.setTextColor(Color.WHITE);
-                historyTitle.setTextColor(Color.WHITE);
-                break;
-            case STATE_ON:
-                int darkYellow = getResources().getColor(R.color.backgroundColor);
-                int lightYellow = getResources().getColor(R.color.lightBackgroundColor);
-                int textColour = getResources().getColor(R.color.textColour);
-                background.setBackgroundColor(darkYellow);
-                wrapperView.setBackgroundColor(lightYellow);
-                appLogo.setTextColor(textColour);
-                title.setTextColor(textColour);
-                subtitle.setTextColor(textColour);
-                history.setTextColor(textColour);
-                historyTitle.setTextColor(textColour);
-                break;
+        if(!bluetooth) {
+            int darkRed = getResources().getColor(R.color.colorDangerDark);
+            //Change background to red
+            background.setBackgroundColor(darkRed);
+            wrapperView.setBackgroundColor(darkRed);
+            //Change logo colour to white
+            appLogo.setTextColor(Color.WHITE);
+            title.setTextColor(Color.WHITE);
+            subtitle.setTextColor(Color.WHITE);
+            history.setTextColor(Color.WHITE);
+            historyTitle.setTextColor(Color.WHITE);
+        } else {
+            int darkYellow = getResources().getColor(R.color.backgroundColor);
+            int lightYellow = getResources().getColor(R.color.lightBackgroundColor);
+            int textColour = getResources().getColor(R.color.textColour);
+            background.setBackgroundColor(darkYellow);
+            wrapperView.setBackgroundColor(lightYellow);
+            appLogo.setTextColor(textColour);
+            title.setTextColor(textColour);
+            subtitle.setTextColor(textColour);
+            history.setTextColor(textColour);
+            historyTitle.setTextColor(textColour);
         }
     }
 }

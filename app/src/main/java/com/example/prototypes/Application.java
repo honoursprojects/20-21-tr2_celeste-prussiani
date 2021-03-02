@@ -56,6 +56,10 @@ public class Application extends android.app.Application {
         checkBluetooth();
     }
 
+    public Boolean getBluetoothState() {
+        return bluetooth;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public Boolean checkBluetooth() {
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();

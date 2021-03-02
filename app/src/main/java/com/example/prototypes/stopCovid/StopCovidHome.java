@@ -48,8 +48,6 @@ import java.util.ArrayList;
 public class StopCovidHome extends AppCompatActivity {
     Intent intent;
     BarChart barchart;
-    final int STATE_ON = 12;
-    final int STATE_OFF = 10;
     public static final String CHANNEL_ID = "warningChannel";
     BroadcastReceiver mBroadcastReceiver;
     private NotificationManagerCompat notificationManager;
@@ -68,19 +66,15 @@ public class StopCovidHome extends AppCompatActivity {
         createNotificationChannels();
         //Check user bluetooth settings
         EventBus.getDefault().register(this);
-       // ((Application) getApplicationContext()).checkBluetooth(mBroadcastReceiver);
+        Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
+        changeColour(bluetooth);
         createChart();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Subscribe
     public void onMessageEvent(Boolean bluetooth) {
-        Toast.makeText(this, "CHANGED", Toast.LENGTH_SHORT).show();
-        if(bluetooth) {
-            changeColour(STATE_ON);
-        } else {
-            changeColour(STATE_OFF);
-        }
+        changeColour(bluetooth);
     }
 
 
@@ -88,48 +82,46 @@ public class StopCovidHome extends AppCompatActivity {
     //Displays yellow view if bluetooth is active, red view if bluetooth is disabled
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceType")
-    public void changeColour(int state) {
+    public void changeColour(Boolean bluetooth) {
         ConstraintLayout background = (ConstraintLayout) findViewById(R.id.background);
         ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
         LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
         TextView title = (TextView) findViewById(R.id.appLogo);
 
-        switch(state) {
-            case STATE_OFF:
-                intent = new Intent(this, WarningMessage.class);
-                startActivity(intent);
-                int darkRed = getResources().getColor(R.color.colorDangerDark);
-                //Change background to red
-                background.setBackgroundColor(darkRed);
-                wrapperView.setBackgroundColor(darkRed);
-                //Change logo colour to white
-                title.setTextColor(Color.WHITE);
+        if(!bluetooth) {
+            intent = new Intent(this, WarningMessage.class);
+            startActivity(intent);
+            int darkRed = getResources().getColor(R.color.colorDangerDark);
+            //Change background to red
+            background.setBackgroundColor(darkRed);
+            wrapperView.setBackgroundColor(darkRed);
+            //Change logo colour to white
+            title.setTextColor(Color.WHITE);
 
-                //Add a new textView with a warning. needs to be changed to box_shadow
-                TextView warning = new TextView(StopCovidHome.this);
-                //Set an Id for warning title so it can be deleted on Bluetooth activation
-                warning.setId(150);
-                warning.setText("WARNING");
-                warning.setBackgroundResource(R.drawable.box_shadow);
-                warning.setTextColor(Color.WHITE);
-                warning.setTypeface(Typeface.DEFAULT_BOLD);
-                warning.setGravity(Gravity.CENTER);
-                warning.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
-                warning.setBackgroundTintList(getResources().getColorStateList(R.color.colorDanger));
-                warning.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-                        if (btAdapter != null) {
-                            btAdapter.enable();
-                        }
+            //Add a new textView with a warning. needs to be changed to box_shadow
+            TextView warning = new TextView(StopCovidHome.this);
+            //Set an Id for warning title so it can be deleted on Bluetooth activation
+            warning.setId(150);
+            warning.setText("WARNING");
+            warning.setBackgroundResource(R.drawable.box_shadow);
+            warning.setTextColor(Color.WHITE);
+            warning.setTypeface(Typeface.DEFAULT_BOLD);
+            warning.setGravity(Gravity.CENTER);
+            warning.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+            warning.setBackgroundTintList(getResources().getColorStateList(R.color.colorDanger));
+            warning.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+                    if (btAdapter != null) {
+                        btAdapter.enable();
                     }
-                });
-                innerView.addView(warning, 0);
+                }
+            });
+            innerView.addView(warning, 0);
 
-                //Display bluetooth notification
-                showNotification();
-                break;
-            case STATE_ON:
+            //Display bluetooth notification
+            showNotification();
+        } else {
                 int darkYellow = getResources().getColor(R.color.backgroundColor);
                 int lightYellow = getResources().getColor(R.color.lightBackgroundColor);
                 int textColour = getResources().getColor(R.color.textColour);
@@ -141,8 +133,6 @@ public class StopCovidHome extends AppCompatActivity {
                 }
                 //Delete persistent notification if bluetooth is activated
                 notificationManager.cancel(1);
-
-                break;
         }
     }
 
