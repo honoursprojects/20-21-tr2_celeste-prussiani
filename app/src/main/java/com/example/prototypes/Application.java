@@ -30,6 +30,8 @@ import androidx.core.app.NotificationManagerCompat;
 import com.example.prototypes.stopCovid.StopCovidHome;
 import com.example.prototypes.stopCovid.WarningMessage;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -42,13 +44,20 @@ public class Application extends android.app.Application {
     private NotificationManagerCompat notificationManager;
     Intent intent;
     private ArrayList<Activity> observers = new ArrayList<>();
+    BroadcastReceiver mReceiver;
 
-
-    /*
     public Boolean bluetooth = true;
 
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public Boolean checkBluetooth(BroadcastReceiver mReceiver) {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        checkBluetooth();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public Boolean checkBluetooth() {
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
         //Check if bluetooth is on on startup
         if (btAdapter == null) {
@@ -75,12 +84,14 @@ public class Application extends android.app.Application {
                     }
 
                     if (btAdapter.getState() == BluetoothAdapter.STATE_OFF) {
-                        displayToast("Bluetooth off");
+                      //  displayToast("Bluetooth off");
                         bluetooth = false;
+                        EventBus.getDefault().post(bluetooth);
                     }
                     if(btAdapter.getState() == BluetoothAdapter.STATE_ON) {
-                        displayToast("Bluetooth on");
+                      //  displayToast("Bluetooth on");
                         bluetooth = true;
+                        EventBus.getDefault().post(bluetooth);
                     }
 
                 }
@@ -93,7 +104,7 @@ public class Application extends android.app.Application {
     public void displayToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
+/*
     private void createNotificationChannels() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel warning = new NotificationChannel(

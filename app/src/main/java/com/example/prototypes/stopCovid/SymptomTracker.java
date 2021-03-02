@@ -27,6 +27,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
@@ -64,10 +66,18 @@ public class SymptomTracker extends AppCompatActivity {
         LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
         TextView title = (TextView) findViewById(R.id.appLogo);
 
-     //   bluetooth = ((Application) getApplicationContext()).checkBluetooth(mBroadcastReceiver);
-
-        checkBluetooth();
         symptoms = new ArrayList<String>();
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe
+    public void onMessageEvent(Boolean bluetooth) {
+        Toast.makeText(this, "CHANGED", Toast.LENGTH_SHORT).show();
+        if(bluetooth) {
+            changeColour(STATE_ON);
+        } else {
+            changeColour(STATE_OFF);
+        }
     }
 
     public void goHome(View view) {
@@ -110,48 +120,6 @@ public class SymptomTracker extends AppCompatActivity {
         editor.commit();
     }
 
-    @SuppressLint("NewApi")
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void checkBluetooth() {
-
-        final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-        //Check if bluetooth is on on startup
-        if (btAdapter == null) {
-            //bluetooth does notn exist
-        } else {
-            if (!btAdapter.isEnabled()) {
-                changeColour(STATE_OFF);
-            }
-        }
-
-        //Activate broadcast receiver; detect when bluetooth is switched off
-        final BroadcastReceiver mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-                String action = intent.getAction();
-
-                // It means the user has changed his bluetooth state.
-                if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
-
-                    if (btAdapter.getState() == BluetoothAdapter.STATE_TURNING_OFF) {
-                        // The user bluetooth is turning off yet, but it is not disabled yet.
-                        return;
-                    }
-
-                    if (btAdapter.getState() == BluetoothAdapter.STATE_OFF) {
-                        changeColour(STATE_OFF);
-                    }
-                    if(btAdapter.getState() == BluetoothAdapter.STATE_ON) {
-                        changeColour(STATE_ON);
-                    }
-
-                }
-            }
-        };
-
-        this.registerReceiver(mReceiver, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
-    }
 
     //Bluetooth
     //Handle view based on Bluetooth activation

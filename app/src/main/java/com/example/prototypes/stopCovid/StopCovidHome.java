@@ -27,6 +27,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
@@ -38,6 +39,9 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -63,52 +67,20 @@ public class StopCovidHome extends AppCompatActivity {
         notificationManager = NotificationManagerCompat.from(this);
         createNotificationChannels();
         //Check user bluetooth settings
-        checkBluetooth();
+        EventBus.getDefault().register(this);
        // ((Application) getApplicationContext()).checkBluetooth(mBroadcastReceiver);
         createChart();
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void checkBluetooth() {
-
-        final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-        //Check if bluetooth is on on startup
-        if (btAdapter == null) {
-            //bluetooth does notn exist
+    @Subscribe
+    public void onMessageEvent(Boolean bluetooth) {
+        Toast.makeText(this, "CHANGED", Toast.LENGTH_SHORT).show();
+        if(bluetooth) {
+            changeColour(STATE_ON);
         } else {
-            if (!btAdapter.isEnabled()) {
-                changeColour(STATE_OFF);
-            }
+            changeColour(STATE_OFF);
         }
-
-        //Activate broadcast receiver; detect when bluetooth is switched off
-        final BroadcastReceiver mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-                String action = intent.getAction();
-
-                // It means the user has changed his bluetooth state.
-                if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
-
-                    if (btAdapter.getState() == BluetoothAdapter.STATE_TURNING_OFF) {
-                        // The user bluetooth is turning off yet, but it is not disabled yet.
-                        return;
-                    }
-
-                    if (btAdapter.getState() == BluetoothAdapter.STATE_OFF) {
-                        changeColour(STATE_OFF);
-                    }
-                    if(btAdapter.getState() == BluetoothAdapter.STATE_ON) {
-                        changeColour(STATE_ON);
-                    }
-
-                }
-            }
-        };
-
-        this.registerReceiver(mReceiver, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
     }
 
 
