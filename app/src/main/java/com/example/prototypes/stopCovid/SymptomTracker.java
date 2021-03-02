@@ -37,6 +37,7 @@ import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Map;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class SymptomTracker extends AppCompatActivity {
@@ -99,6 +100,14 @@ public class SymptomTracker extends AppCompatActivity {
         }
         editor.commit();
         box.setText(stringBuilder.toString());
+    }
+
+    public void clearHistory(View view) {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        symptoms.clear();
+        editor.clear();
+        editor.commit();
     }
 
     @SuppressLint("NewApi")
