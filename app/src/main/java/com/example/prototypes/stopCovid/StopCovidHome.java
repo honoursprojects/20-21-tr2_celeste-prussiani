@@ -75,6 +75,8 @@ public class StopCovidHome extends AppCompatActivity {
     @Subscribe
     public void onMessageEvent(Boolean bluetooth) {
         changeColour(bluetooth);
+        intent = new Intent(this, WarningMessage.class);
+        startActivity(intent);
     }
 
 
@@ -89,8 +91,6 @@ public class StopCovidHome extends AppCompatActivity {
         TextView title = (TextView) findViewById(R.id.appLogo);
 
         if(!bluetooth) {
-            intent = new Intent(this, WarningMessage.class);
-            startActivity(intent);
             int darkRed = getResources().getColor(R.color.colorDangerDark);
             //Change background to red
             background.setBackgroundColor(darkRed);
