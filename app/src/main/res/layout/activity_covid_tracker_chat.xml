@@ -82,10 +82,13 @@
 
     <ScrollView
         android:id="@+id/chatBox"
-        android:layout_width="369dp"
-        android:layout_height="539dp"
+        android:layout_width="355dp"
+        android:layout_height="428dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:clipToPadding="false"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/inputWrapper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
