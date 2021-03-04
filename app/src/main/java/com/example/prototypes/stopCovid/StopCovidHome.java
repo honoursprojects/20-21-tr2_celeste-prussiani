@@ -45,8 +45,8 @@ import java.util.ArrayList;
 public class StopCovidHome extends AppCompatActivity {
     Intent intent;
     BarChart barchart;
+
     public static final String CHANNEL_ID = "warningChannel";
-    BroadcastReceiver mBroadcastReceiver;
     private NotificationManagerCompat notificationManager;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -54,28 +54,28 @@ public class StopCovidHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stop_covid_home);
-        ConstraintLayout background = (ConstraintLayout) findViewById(R.id.background);
-        ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
-        LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
-        TextView title = (TextView) findViewById(R.id.appLogo);
         //Create notification channels
         notificationManager = NotificationManagerCompat.from(this);
         createNotificationChannels();
+        //Check bluetooth state from application
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
+        //Change colour accordingly
         changeColour(bluetooth);
+        //Create a barchart
         createChart();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        //Check user bluetooth settings
+        //Subscribe to bluetooth listener in Application class
         EventBus.getDefault().register(this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Subscribe
     public void onMessageEvent(Boolean bluetooth) {
+        //Change colour when bluetooth changes
         changeColour(bluetooth);
     }
 

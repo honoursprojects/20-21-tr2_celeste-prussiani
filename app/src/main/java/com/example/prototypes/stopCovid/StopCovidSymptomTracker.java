@@ -55,12 +55,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_symptom_tracker);
-       // int state, ConstraintLayout background, ScrollView wrapperView, LinearLayout innerView, TextView title, Context
-      //  context
-        ConstraintLayout background = (ConstraintLayout) findViewById(R.id.background);
-        ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
-        LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
-        TextView title = (TextView) findViewById(R.id.appLogo);
+
         symptoms = new ArrayList<String>();
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
         changeColour(bluetooth);
@@ -147,22 +142,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         return symptom;
     }
 
-
-    //this method can probably be in application class.
-    //Change variable when symptoms are dangerous: can be used in both views in this way
-    //probably create a Message class to specify the type of warning and change screen
-    //accordingly
-   /* public Boolean checkSymptoms(ArrayList<String> newSymptoms) {
-        Boolean warning = true;
-        if(newSymptoms.contains("Cough") && newSymptoms.contains("Fever")
-                && newSymptoms.contains("Difficulty breathing")) {
-            warning = false;
-        } else {
-            warning = true;
-        }
-        return warning;
-    }*/
-
     //Bluetooth
     //Handle view based on Bluetooth activation
     //Displays yellow view if bluetooth is active, red view if bluetooth is disabled
@@ -186,6 +165,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             wrapperView.setBackgroundColor(darkRed);
             //Change logo colour to white
             appLogo.setTextColor(Color.WHITE);
+
             title.setTextColor(Color.WHITE);
             subtitle.setTextColor(Color.WHITE);
             history.setTextColor(Color.WHITE);
