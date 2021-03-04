@@ -108,7 +108,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         editor.commit();
         box.setText(stringBuilder.toString());
 
-        changeColour(checkSymptoms(symptoms));
+        ((Application) getApplicationContext()).checkSymptoms(symptoms);
     }
 
     public void clearHistory(View view) {
@@ -150,7 +150,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     //Change variable when symptoms are dangerous: can be used in both views in this way
     //probably create a Message class to specify the type of warning and change screen
     //accordingly
-    public Boolean checkSymptoms(ArrayList<String> newSymptoms) {
+   /* public Boolean checkSymptoms(ArrayList<String> newSymptoms) {
         Boolean warning = true;
         if(newSymptoms.contains("Cough") && newSymptoms.contains("Fever")
                 && newSymptoms.contains("Difficulty breathing")) {
@@ -159,7 +159,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             warning = true;
         }
         return warning;
-    }
+    }*/
 
     //Bluetooth
     //Handle view based on Bluetooth activation

@@ -1,5 +1,8 @@
 package com.example.prototypes;
 
+import android.content.SharedPreferences;
+import android.view.View;
+
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 

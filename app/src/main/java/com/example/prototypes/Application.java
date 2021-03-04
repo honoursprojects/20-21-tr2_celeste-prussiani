@@ -56,6 +56,18 @@ public class Application extends android.app.Application {
         checkBluetooth();
     }
 
+    public void checkSymptoms(ArrayList<String> newSymptoms) {
+        Boolean warning = true;
+        if(newSymptoms.contains("Cough") && newSymptoms.contains("Fever")
+                && newSymptoms.contains("Difficulty breathing")) {
+            warning = false;
+        } else {
+            warning = true;
+        }
+        EventBus.getDefault().post(warning);
+    }
+
+
     public Boolean getBluetoothState() {
         return bluetooth;
     }
