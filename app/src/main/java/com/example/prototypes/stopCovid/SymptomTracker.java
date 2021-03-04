@@ -61,11 +61,16 @@ public class SymptomTracker extends AppCompatActivity {
         ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
         LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
         TextView title = (TextView) findViewById(R.id.appLogo);
-
         symptoms = new ArrayList<String>();
-        EventBus.getDefault().register(this);
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
         changeColour(bluetooth);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //Check user bluetooth settings
+        EventBus.getDefault().register(this);
     }
 
     @Subscribe
@@ -82,12 +87,11 @@ public class SymptomTracker extends AppCompatActivity {
         String symptom = Integer.toString(view.getId());
         System.out.println(symptom);
         if(!symptoms.contains(symptom)) {
-            symptoms.add(symptom);
+            symptoms.add(printSymptom(symptom));
         }
     }
 
     public void appendHistory(View view) {
-
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime dateTime = LocalDateTime.now();
         String date = dateTimeFormatter.format(dateTime);
@@ -103,6 +107,8 @@ public class SymptomTracker extends AppCompatActivity {
         }
         editor.commit();
         box.setText(stringBuilder.toString());
+
+        changeColour(checkSymptoms(symptoms));
     }
 
     public void clearHistory(View view) {
@@ -113,6 +119,47 @@ public class SymptomTracker extends AppCompatActivity {
         editor.commit();
     }
 
+    public String printSymptom(String id) {
+        String symptom = "";
+        switch(id) {
+            case "2131230815":
+                symptom = "Cough";
+                break;
+            case "2131230816":
+                symptom = "Fever";
+                break;
+            case "2131230817":
+                symptom = "Loss of appetite";
+                break;
+            case "2131230818":
+                symptom = "Loss of smell";
+                break;
+            case "2131230819":
+                symptom = "Loss of taste";
+                break;
+            case "2131230820":
+                symptom = "Difficulty breathing";
+                break;
+        }
+
+        return symptom;
+    }
+
+
+    //this method can probably be in application class.
+    //Change variable when symptoms are dangerous: can be used in both views in this way
+    //probably create a Message class to specify the type of warning and change screen
+    //accordingly
+    public Boolean checkSymptoms(ArrayList<String> newSymptoms) {
+        Boolean warning = true;
+        if(newSymptoms.contains("Cough") && newSymptoms.contains("Fever")
+                && newSymptoms.contains("Difficulty breathing")) {
+            warning = false;
+        } else {
+            warning = true;
+        }
+        return warning;
+    }
 
     //Bluetooth
     //Handle view based on Bluetooth activation
@@ -153,5 +200,12 @@ public class SymptomTracker extends AppCompatActivity {
             history.setTextColor(textColour);
             historyTitle.setTextColor(textColour);
         }
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 }

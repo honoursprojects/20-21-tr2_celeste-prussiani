@@ -64,11 +64,16 @@ public class StopCovidHome extends AppCompatActivity {
         //Create notification channels
         notificationManager = NotificationManagerCompat.from(this);
         createNotificationChannels();
-        //Check user bluetooth settings
-        EventBus.getDefault().register(this);
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
         changeColour(bluetooth);
         createChart();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //Check user bluetooth settings
+        EventBus.getDefault().register(this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -237,5 +242,11 @@ public class StopCovidHome extends AppCompatActivity {
     public void openSymptomTracker(View view) {
         intent = new Intent(this, SymptomTracker.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 }
