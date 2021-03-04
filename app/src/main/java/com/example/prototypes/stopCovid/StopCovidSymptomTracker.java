@@ -202,7 +202,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onStop() {
         super.onStop();
