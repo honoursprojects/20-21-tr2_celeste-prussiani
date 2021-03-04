@@ -14,9 +14,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -27,7 +25,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
@@ -240,7 +237,7 @@ public class StopCovidHome extends AppCompatActivity {
 
     /** ROUTE TO DIFFERENT APP SECTION **/
     public void openSymptomTracker(View view) {
-        intent = new Intent(this, SymptomTracker.class);
+        intent = new Intent(this, StopCovidSymptomTracker.class);
         startActivity(intent);
     }
 

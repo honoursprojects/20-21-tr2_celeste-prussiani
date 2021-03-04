@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class SymptomTracker extends AppCompatActivity {
+public class StopCovidSymptomTracker extends AppCompatActivity {
     Intent intent;
     final static String FILE_NAME = "tracker.txt";
     BroadcastReceiver mBroadcastReceiver;
