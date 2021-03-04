@@ -75,6 +75,8 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
 
     @Subscribe
     public void onMessageEvent(Boolean bluetooth) {
+        intent = new Intent(this, WarningMessage.class);
+        startActivity(intent);
         changeColour(bluetooth);
     }
 

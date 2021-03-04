@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.example.prototypes.R;
 
+import org.greenrobot.eventbus.EventBus;
+
 public class CovidTracker extends AppCompatActivity {
     Intent intent;
     @Override
@@ -20,4 +22,6 @@ public class CovidTracker extends AppCompatActivity {
         intent = new Intent(this, CovidTrackerHome.class);
         startActivity(intent);
     }
+
+
 }

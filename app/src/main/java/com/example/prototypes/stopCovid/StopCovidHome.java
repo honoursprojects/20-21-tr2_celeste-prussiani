@@ -77,8 +77,6 @@ public class StopCovidHome extends AppCompatActivity {
     @Subscribe
     public void onMessageEvent(Boolean bluetooth) {
         changeColour(bluetooth);
-        intent = new Intent(this, WarningMessage.class);
-        startActivity(intent);
     }
 
 
