@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
+import com.example.prototypes.stopCovid.StopCovidSymptomTracker;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -41,10 +42,6 @@ public class CovidTrackerHome extends AppCompatActivity {
         EventBus.getDefault().register(this);
     }
 
-    public void openChat(View view) {
-        intent = new Intent(this, CovidTrackerChat.class);
-        startActivity(intent);
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void changeColour(Boolean bluetooth) {
@@ -78,6 +75,16 @@ public class CovidTrackerHome extends AppCompatActivity {
 
     }
 
+    public void openSymptomTracker(View view) {
+        intent = new Intent(this, CovidTrackerSymptomTracker.class);
+        startActivity(intent);
+    }
+
+
+    public void openChat(View view) {
+        intent = new Intent(this, CovidTrackerChat.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onStop() {
