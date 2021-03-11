@@ -11,12 +11,14 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.prototypes.R;
+import com.example.prototypes.stopCovid.StopCovidSymptomTracker;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -34,6 +36,7 @@ public class CovidTrackerChat extends AppCompatActivity {
     EditText inputBox;
     final int DOC = 1;
     final int USER = 2;
+    final String FLAG = "activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +55,39 @@ public class CovidTrackerChat extends AppCompatActivity {
         String input = inputBox.getText().toString();
         //Display user message in a chat bubble
         generateBubble(input, USER);
-       // appendChat(input, USER);
         //Get response from doctor library
         String output = doctor.thinkOfAnswer(input);
         //Display doctor message
         generateBubble(output, DOC);
-      //  appendChat(output, DOC);
+        if(output == FLAG) {
+            generateButton();
+        }
         //Clear input box after message from user has been sent
         inputBox.setText("");
         //Close keyboard
         collapseKeyboard();
+    }
+
+    public void generateButton() {
+        Button btn = new Button(CovidTrackerChat.this);
+        btn.setText("Open symptom tracker");
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSymptomTracker(v);
+            }
+        });
+        btn.setBackgroundResource(R.drawable.box_shadow);
+        btn.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+        btn.setTextColor(getResources().getColor(R.color.lightBackground));
+        btn.setBackgroundTintList(getResources().getColorStateList(R.color.btnColor));
+        btn.setTextSize(18);
+        btn.setGravity(Gravity.CENTER_VERTICAL);
+        btn.setPadding(20, 10, 20, 20);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(10,10,10,10);
+        btn.setLayoutParams(params);
+        chatBox.addView(btn);
     }
 
     public void generateBubble(String output, int user) {
@@ -95,6 +121,14 @@ public class CovidTrackerChat extends AppCompatActivity {
     public void collapseKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+    }
+
+    /**
+     * Allows navigation to SymptomTracker.
+     */
+    public void openSymptomTracker(View view) {
+        intent = new Intent(this, StopCovidSymptomTracker.class);
+        startActivity(intent);
     }
 /*
     public void appendChat(String message, int user) {

@@ -1,12 +1,22 @@
 package com.example.prototypes.CovidTracker;
 
+import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+
 import com.example.prototypes.R;
+import com.example.prototypes.stopCovid.StopCovidSymptomTracker;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class Doctor {
 
     private HashMap<String, String> library;
+    public Intent intent;
 
     public Doctor() {
         library = new HashMap<String, String>();
@@ -24,6 +34,7 @@ public class Doctor {
         String gloves = "Gloves are recommended, but did you know thorough hand washing is much better? If you need them, you can get some gloves from the store; for more information about PPE, go here:";
         String not_found = "Sorry, I'm afraid I' don't understand the question. Could you try and rephrase?";
         String cases = "There are currently " + R.string.cases_no + " cases in the UK. The current R number is";
+        String activity = "activity";
 
         library.put("regulations", regulations);
         library.put("rules", regulations);
@@ -38,6 +49,8 @@ public class Doctor {
         library.put("welcome", welcome);
         library.put("cases", cases);
         library.put("deaths", cases);
+        library.put("symptom", activity);
+        library.put("symptoms", activity);
     }
 
     public String greetUser() {
@@ -60,4 +73,6 @@ public class Doctor {
         }
         return output;
     }
+
+
 }
