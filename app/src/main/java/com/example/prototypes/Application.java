@@ -1,7 +1,5 @@
 package com.example.prototypes;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -12,28 +10,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.os.Build;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
-import com.example.prototypes.stopCovid.StopCovidHome;
 import com.example.prototypes.stopCovid.WarningMessage;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Application extends android.app.Application {
@@ -42,7 +27,6 @@ public class Application extends android.app.Application {
     public final int WARNING_CHANNEL_ID = 1;
     private NotificationManagerCompat notificationManager;
 
-    Intent intent;
     BroadcastReceiver mReceiver;
     public Boolean bluetooth = true;
 

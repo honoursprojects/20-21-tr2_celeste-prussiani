@@ -60,6 +60,13 @@
                 android:onClick="openCovidTracker"
                 android:text="@string/covidTracker_app_name" />
 
+            <Button
+                android:id="@+id/permissionsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="requestPermission"
+                android:text="Accept permissions" />
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
