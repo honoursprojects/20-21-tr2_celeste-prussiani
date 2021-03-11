@@ -38,14 +38,12 @@ import java.util.ArrayList;
 
 public class Application extends android.app.Application {
 
-    final int STATE_OFF = 1;
-    final int STATE_ON = 2;
-    public static final String CHANNEL_ID = "warningChannel";
+    public static final String WARNING_CHANNEL_NAME = "warningChannel";
+    public final int WARNING_CHANNEL_ID = 1;
     private NotificationManagerCompat notificationManager;
-    Intent intent;
-    private ArrayList<Activity> observers = new ArrayList<>();
-    BroadcastReceiver mReceiver;
 
+    Intent intent;
+    BroadcastReceiver mReceiver;
     public Boolean bluetooth = true;
 
 
@@ -54,6 +52,8 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         checkBluetooth();
+        notificationManager = NotificationManagerCompat.from(this);
+        createNotificationChannels();
     }
 
     public void checkSymptoms(ArrayList<String> newSymptoms) {
@@ -102,11 +102,13 @@ public class Application extends android.app.Application {
                     if (btAdapter.getState() == BluetoothAdapter.STATE_OFF) {
                       //  displayToast("Bluetooth off");
                         bluetooth = false;
+                        showNotification();
                         EventBus.getDefault().post(bluetooth);
                     }
                     if(btAdapter.getState() == BluetoothAdapter.STATE_ON) {
                       //  displayToast("Bluetooth on");
                         bluetooth = true;
+                        cancelNotification(1);
                         EventBus.getDefault().post(bluetooth);
                     }
 
@@ -120,11 +122,11 @@ public class Application extends android.app.Application {
     public void displayToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-/*
+
     private void createNotificationChannels() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel warning = new NotificationChannel(
-                    CHANNEL_ID,
+                    WARNING_CHANNEL_NAME,
                     "WarningNotification",
                     NotificationManager.IMPORTANCE_HIGH
             );
@@ -141,7 +143,7 @@ public class Application extends android.app.Application {
         PendingIntent contentIntent = PendingIntent.getActivity(this,
                 0, activityIntent, 0);
 
-        Notification warning = new NotificationCompat.Builder(this, CHANNEL_ID)
+        Notification warning = new NotificationCompat.Builder(this, WARNING_CHANNEL_NAME)
                 .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
                 .setContentTitle("Contact tracing disabled")
                 .setContentText(message)
@@ -155,6 +157,10 @@ public class Application extends android.app.Application {
                 .build();
 
         //Display notification
-        notificationManager.notify(1, warning);
-    }*/
+        notificationManager.notify(WARNING_CHANNEL_ID, warning);
+    }
+
+    public void cancelNotification(int id) {
+        notificationManager.cancel(id);
+    }
 }
