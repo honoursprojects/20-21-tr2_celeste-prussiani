@@ -5,6 +5,7 @@
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="@color/backgroundColor"
     tools:context=".stopCovid.StopCovid">
 
@@ -60,8 +61,10 @@
 
             <Button
                 android:id="@+id/symptomTrackerBtn"
-                android:layout_width="match_parent"
+                android:layout_width="356dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/box_shadow"
                 android:onClick="openSymptomTracker"
                 android:text="Symptom tracker" />
 

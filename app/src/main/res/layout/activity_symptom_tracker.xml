@@ -336,6 +336,7 @@
                     android:id="@+id/saveBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/box_shadow"
                     android:onClick="appendHistory"
                     android:text="Save" />
 
@@ -343,6 +344,7 @@
                     android:id="@+id/clearBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/box_shadow"
                     android:onClick="clearHistory"
                     android:text="Clear" />
 
