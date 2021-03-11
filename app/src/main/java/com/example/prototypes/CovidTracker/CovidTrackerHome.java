@@ -51,6 +51,7 @@ public class CovidTrackerHome extends AppCompatActivity {
 
         Button tracingBtn = findViewById(R.id.tracingBtn);
         if(!bluetooth) {
+            tracingBtn.setText("Bluetooth: OFF");
             tracingBtn.setBackgroundTintList(getResources().getColorStateList(R.color.colorDanger));
             tracingBtn.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
             tracingBtn.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +63,7 @@ public class CovidTrackerHome extends AppCompatActivity {
                 }
             });
         } else {
+            tracingBtn.setText("Bluetooth: ON");
             tracingBtn.setBackgroundTintList(getResources().getColorStateList(R.color.btnColor));
             tracingBtn.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
             tracingBtn.setOnClickListener(new View.OnClickListener() {
