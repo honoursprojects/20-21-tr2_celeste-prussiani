@@ -3,15 +3,9 @@ package com.example.prototypes.stopCovid;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.graphics.Color;
@@ -44,8 +38,6 @@ import java.util.ArrayList;
 public class StopCovidHome extends AppCompatActivity {
     Intent intent;
     BarChart barchart;
-
-    private NotificationManagerCompat notificationManager;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -84,9 +76,12 @@ public class StopCovidHome extends AppCompatActivity {
         ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
         LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
         TextView title = (TextView) findViewById(R.id.appLogo);
+        int darkRed = getResources().getColor(R.color.colorDangerDark);
+        int darkYellow = getResources().getColor(R.color.backgroundColor);
+        int lightYellow = getResources().getColor(R.color.lightBackgroundColor);
+        int textColour = getResources().getColor(R.color.textColour);
 
         if(!bluetooth) {
-            int darkRed = getResources().getColor(R.color.colorDangerDark);
             //Change background to red
             background.setBackgroundColor(darkRed);
             wrapperView.setBackgroundColor(darkRed);
@@ -115,9 +110,6 @@ public class StopCovidHome extends AppCompatActivity {
             innerView.addView(warning, 0);
 
         } else {
-                int darkYellow = getResources().getColor(R.color.backgroundColor);
-                int lightYellow = getResources().getColor(R.color.lightBackgroundColor);
-                int textColour = getResources().getColor(R.color.textColour);
                 background.setBackgroundColor(darkYellow);
                 wrapperView.setBackgroundColor(lightYellow);
                 title.setTextColor(textColour);
@@ -127,9 +119,11 @@ public class StopCovidHome extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * Displays a barchart created with MPAndroid Chart library.
+     */
     public void displayChart() {
-
+        //Get a barchart box
         barchart = findViewById(R.id.barChart_view);
         ArrayList<Double> valueList = new ArrayList<Double>();
         ArrayList<BarEntry> entries = new ArrayList<>();
@@ -154,28 +148,41 @@ public class StopCovidHome extends AppCompatActivity {
         styleChart(barDataSet);
     }
 
+    /**
+     * Styles a barchart created with MPAndroid Chart library.
+     */
     public void styleChart(BarDataSet barDataSet) {
+        //Change chart colour
         barDataSet.setColor(ContextCompat.getColor(this, R.color.colorDanger));
+        //Set size
         barDataSet.setFormSize(15);
+        //Set line appearance
         barDataSet.setDrawValues(false);
+        //Set text size
         barDataSet.setValueTextSize(12f);
     }
 
+    /**
+     * Creates a barchart with MPAndroid Chart library.
+     */
     public void createChart() {
+        //Find graph box
         barchart = findViewById(R.id.barChart_view);
+        //Style chart
         barchart.setDrawGridBackground(false);
         barchart.setDrawBarShadow(false);
         barchart.setDrawBorders(false);
-
+        //Hide description
         Description description = new Description();
         description.setEnabled(false);
         barchart.setDescription(description);
-
+        //Hide grid lines
         XAxis xAxis = barchart.getXAxis();
         xAxis.setDrawGridLines(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         YAxis yAxisRight = barchart.getAxisRight();
         yAxisRight.setEnabled(false);
+        //Styl legend
         Legend legend = barchart.getLegend();
         legend.setForm(Legend.LegendForm.LINE);
         legend.setTextSize(11f);
@@ -185,18 +192,25 @@ public class StopCovidHome extends AppCompatActivity {
         legend.setDrawInside(false);
 
         displayChart();
-
     }
 
     /** ROUTE TO DIFFERENT APP SECTION **/
+
+    /**
+     * Allows navigation to SymptomTracker.
+     */
     public void openSymptomTracker(View view) {
         intent = new Intent(this, StopCovidSymptomTracker.class);
         startActivity(intent);
     }
 
+    /**
+     * Handle activity close
+     */
     @Override
     protected void onStop() {
         super.onStop();
+        //Unsubscribe to bluetooth listener
         EventBus.getDefault().unregister(this);
     }
 }
