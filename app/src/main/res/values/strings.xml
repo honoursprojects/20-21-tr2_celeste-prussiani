@@ -11,10 +11,11 @@
     <string name="covidTracker_intro">Protect yourself and your loved ones</string>
     <string name="welcome">Welcome!</string>
     <string name="continue_btn">Continue</string>
-    <string name="stopCovid_intro">Stop Covid-19. Now.</string>
+    <string name="stopCovid_intro">Start now</string>
     <string name="warning">WARNING</string>
     <string name="contactTracing_btn">Activate contact tracing</string>
     <string name="exit">X</string>
+    <string name="bullets">- Lorem ipsum dolor sit amet \n \n - Lorem ipsum dolor sit amet \n \n - Lorem ipsum dolor sit amet</string>
     <!-- Symptom tracker -->
     <string name="symptomTracker_intro">How are you feeling today?</string>
     <string name="symptomTracker_subtitle">Select all the symptoms you feel</string>
