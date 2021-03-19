@@ -29,7 +29,9 @@ public class Application extends android.app.Application {
 
     BroadcastReceiver mReceiver;
     public Boolean bluetooth = true;
-
+    public Boolean symptoms = true;
+    public final String BLUETOOTH_WARNING = "bluetooth";
+    public final String SYMPTOMS_WARNING = "symptoms";
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -41,20 +43,21 @@ public class Application extends android.app.Application {
     }
 
     public void checkSymptoms(ArrayList<String> newSymptoms) {
-        Boolean warning;
         if(newSymptoms.contains("Cough") && newSymptoms.contains("Fever")
                 && newSymptoms.contains("Breathing") && newSymptoms.contains("Taste")) {
-            warning = true;
+            symptoms = false;
         } else {
-            warning = false;
+            symptoms = true;
         }
-        EventBus.getDefault().post(warning);
+        Warning post = new Warning(symptoms, SYMPTOMS_WARNING);
+        EventBus.getDefault().post(post);
     }
 
 
     public Boolean getBluetoothState() {
         return bluetooth;
     }
+    public Boolean getSymptomsState() {return symptoms;}
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public Boolean checkBluetooth() {
@@ -87,13 +90,15 @@ public class Application extends android.app.Application {
                       //  displayToast("Bluetooth off");
                         bluetooth = false;
                         showNotification();
-                        EventBus.getDefault().post(bluetooth);
+                        Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
+                        EventBus.getDefault().post(post);
                     }
                     if(btAdapter.getState() == BluetoothAdapter.STATE_ON) {
                       //  displayToast("Bluetooth on");
                         bluetooth = true;
                         cancelNotification(1);
-                        EventBus.getDefault().post(bluetooth);
+                        Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
+                        EventBus.getDefault().post(post);
                     }
 
                 }

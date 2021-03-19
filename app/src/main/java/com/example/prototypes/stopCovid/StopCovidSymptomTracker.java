@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
+import com.example.prototypes.Warning;
 import com.google.android.material.chip.Chip;
 
 import android.annotation.SuppressLint;
@@ -45,7 +46,9 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
 
         symptoms = new ArrayList<String>();
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
+        Boolean symptoms = ((Application) getApplicationContext()).getSymptomsState();
         changeColour(bluetooth);
+        changeColour(symptoms);
     }
 
     @Override
@@ -56,10 +59,10 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     }
 
     @Subscribe
-    public void onMessageEvent(Boolean bluetooth) {
+    public void onMessageEvent(Warning warning) {
         intent = new Intent(this, WarningMessage.class);
         startActivity(intent);
-        changeColour(bluetooth);
+        changeColour(warning.getWarning());
     }
 
     public void goHome(View view) {
