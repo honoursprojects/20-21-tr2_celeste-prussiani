@@ -52,6 +52,8 @@ public class StopCovidHome extends AppCompatActivity {
         Boolean state = true;
         if(!bluetooth || !symptoms) {
             state = false;
+            intent = new Intent(this, WarningMessage.class);
+            startActivity(intent);
         }
         changeColour(state);
         //Create a barchart
@@ -69,6 +71,10 @@ public class StopCovidHome extends AppCompatActivity {
     @Subscribe
     public void onMessageEvent(Boolean bluetooth) {
         //Change colour when bluetooth changes
+        if(!bluetooth){
+            intent = new Intent(this, WarningMessage.class);
+            startActivity(intent);
+        }
         changeColour(bluetooth);
     }
 
@@ -88,6 +94,7 @@ public class StopCovidHome extends AppCompatActivity {
         int textColour = getResources().getColor(R.color.textColour);
 
         if(!bluetooth) {
+
             //Change background to red
             background.setBackgroundColor(darkRed);
             wrapperView.setBackgroundColor(darkRed);

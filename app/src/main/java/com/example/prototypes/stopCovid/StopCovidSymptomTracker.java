@@ -64,8 +64,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
 
     @Subscribe
     public void onMessageEvent(Boolean flag) {
-        intent = new Intent(this, WarningMessage.class);
-        startActivity(intent);
         changeColour(flag);
     }
 
