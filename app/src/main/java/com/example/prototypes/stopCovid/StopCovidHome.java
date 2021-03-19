@@ -6,19 +6,24 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.prototypes.AlarmReceiver;
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
 import com.example.prototypes.Warning;
@@ -39,6 +44,7 @@ import java.util.ArrayList;
 public class StopCovidHome extends AppCompatActivity {
     Intent intent;
     BarChart barchart;
+    AlarmManager alarmManager;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -226,4 +232,5 @@ public class StopCovidHome extends AppCompatActivity {
         //Unsubscribe to bluetooth listener
         EventBus.getDefault().unregister(this);
     }
+
 }

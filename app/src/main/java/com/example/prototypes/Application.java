@@ -1,5 +1,6 @@
 package com.example.prototypes;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.SystemClock;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -20,6 +22,7 @@ import com.example.prototypes.stopCovid.WarningMessage;
 
 import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Application extends android.app.Application {
 
@@ -34,6 +37,7 @@ public class Application extends android.app.Application {
     public final String CONTACT_WARNING = "contact";
 
     private NotificationManagerCompat notificationManager;
+    private AlarmManager alarmManager;
     BroadcastReceiver mReceiver;
 
     public Boolean bluetooth = true;
@@ -48,6 +52,7 @@ public class Application extends android.app.Application {
         checkBluetooth();
         notificationManager = NotificationManagerCompat.from(this);
         createNotificationChannels();
+        fakeContactAlarm();
     }
     /** Getters **/
     public Boolean getBluetoothState() {return bluetooth;}
@@ -225,4 +230,19 @@ public class Application extends android.app.Application {
     public void cancelNotification(int id) {
         notificationManager.cancel(id);
     }
+
+    /**
+     * Create a fake notification at a random time
+     */
+    public void fakeContactAlarm() {
+        Random random = new Random();
+        int time = random.nextInt();
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() +
+                        time*1000, pendingIntent);
+    }
+
 }
