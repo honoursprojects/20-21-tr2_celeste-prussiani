@@ -93,6 +93,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             symptoms.add("Appetite");
         }
 
+        ((Application) getApplicationContext()).checkSymptoms(symptoms);
         appendHistory();
     }
 
@@ -116,13 +117,11 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
 
         String text = "";
         for(String s : symptoms) {
-            stringBuilder.append(text).append("+").append(s);
+            stringBuilder.append(text).append("/n").append(s);
         }
         editor.putString(date, text);
         editor.commit();
         box.setText(stringBuilder.toString());
-
-        ((Application) getApplicationContext()).checkSymptoms(symptoms);
     }
 
     public void clearHistory(View view) {
