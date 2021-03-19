@@ -46,8 +46,10 @@ public class StopCovidHome extends AppCompatActivity {
         setContentView(R.layout.activity_stop_covid_home);
         //Check bluetooth state from application
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
+        Boolean symptoms = ((Application) getApplicationContext()).getSymptomsState();
         //Change colour accordingly
         changeColour(bluetooth);
+        changeColour(symptoms);
         //Create a barchart
         createChart();
     }

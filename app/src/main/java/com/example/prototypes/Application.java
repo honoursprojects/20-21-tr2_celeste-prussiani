@@ -51,6 +51,7 @@ public class Application extends android.app.Application {
         }
         Warning post = new Warning(symptoms, SYMPTOMS_WARNING);
         EventBus.getDefault().post(post);
+        System.out.println("posted " + SYMPTOMS_WARNING);
     }
 
 
