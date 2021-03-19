@@ -52,7 +52,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             state = false;
         }
         changeColour(state);
-
     }
 
     @Override
@@ -99,15 +98,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         appendHistory();
     }
 
-    /*
-    public void saveSymptom(View view) {
-        String symptom = Integer.toString(view.getId());
-        System.out.println(symptom);
-        if(!symptoms.contains(symptom)) {
-            symptoms.add(printSymptom(symptom));
-        }
-    }
-*/
     public void appendHistory() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime dateTime = LocalDateTime.now();
@@ -119,7 +109,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
 
         String text = "";
         for(String s : symptoms) {
-            stringBuilder.append(text).append("/n").append(s);
+            stringBuilder.append(text).append("\n").append(s);
         }
         editor.putString(date, text);
         editor.commit();
@@ -133,33 +123,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         editor.clear();
         editor.commit();
     }
-/*
-    public String printSymptom(String id) {
-        String symptom = "";
-        switch(id) {
-            case "2131230815":
-                symptom = "Cough";
-                break;
-            case "2131230816":
-                symptom = "Fever";
-                break;
-            case "2131230817":
-                symptom = "Loss of appetite";
-                break;
-            case "2131230818":
-                symptom = "Loss of smell";
-                break;
-            case "2131230819":
-                symptom = "Loss of taste";
-                break;
-            case "2131230820":
-                symptom = "Difficulty breathing";
-                break;
-        }
-
-        return symptom;
-    }
-*/
 
     //Bluetooth
     //Handle view based on Bluetooth activation
