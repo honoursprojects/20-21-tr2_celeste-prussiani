@@ -13,7 +13,6 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.SystemClock;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -140,14 +139,6 @@ public class Application extends android.app.Application {
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(warning);
 
-            NotificationChannel contact = new NotificationChannel(
-                    CONTACT_CHANNEL_NAME,
-                    "ContactNotification",
-                    NotificationManager.IMPORTANCE_HIGH
-            );
-            contact.setDescription("Warning dangerous contact");
-            manager.createNotificationChannel(contact);
-
             NotificationChannel symptom = new NotificationChannel(
                     SYMPTOM_CHANNEL_NAME,
                     "SymptomNotification",
@@ -163,7 +154,6 @@ public class Application extends android.app.Application {
      */
     public void showNotification(String notificationType) {
         String bluetoothMessage = "Please activate bluetooth to activate contact tracing";
-        String contactMessage = "You have been in contact with someone with Covid. You must self isolate now";
         String symptomMessage = "You have reported dangerous symptoms. We advice self isolation";
 
         //Define which activity to open when tapping on notification
@@ -184,22 +174,10 @@ public class Application extends android.app.Application {
                 .setContentIntent(contentIntent)
                 .build();
 
-        Notification contact = new NotificationCompat.Builder(this, CONTACT_CHANNEL_NAME)
-                .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
-                .setContentTitle("Dangerous contact")
-                .setContentText(symptomMessage)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setColor(getResources().getColor(R.color.colorDanger))
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .setAutoCancel(false)
-                .setOngoing(true)
-                .setContentIntent(contentIntent)
-                .build();
-
         Notification symptoms = new NotificationCompat.Builder(this, SYMPTOM_CHANNEL_NAME)
                 .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
                 .setContentTitle("Dangerous symptoms")
-                .setContentText(contactMessage)
+                .setContentText(symptomMessage)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setColor(getResources().getColor(R.color.colorDanger))
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
@@ -212,9 +190,6 @@ public class Application extends android.app.Application {
         switch(notificationType) {
             case BLUETOOTH_WARNING:
                 notificationManager.notify(BLUETOOTH_CHANNEL_ID, warning);
-                break;
-            case CONTACT_WARNING:
-                notificationManager.notify(CONTACT_CHANNEL_ID, contact);
                 break;
             case SYMPTOMS_WARNING:
                 notificationManager.notify(SYMPTOM_CHANNEL_ID, symptoms);
