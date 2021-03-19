@@ -142,6 +142,14 @@ public class Application extends android.app.Application {
             );
             contact.setDescription("Warning dangerous contact");
             manager.createNotificationChannel(contact);
+
+            NotificationChannel symptom = new NotificationChannel(
+                    SYMPTOM_CHANNEL_NAME,
+                    "SymptomNotification",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            symptom.setDescription("Warning dangerous symptoms");
+            manager.createNotificationChannel(symptom);
         }
     }
 
