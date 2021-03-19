@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
+import com.google.android.material.chip.Chip;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -16,6 +17,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -65,6 +67,33 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void saveSymptoms(View view) {
+        CheckBox coughCheck = findViewById(R.id.coughCheck);
+        CheckBox feverCheck = findViewById(R.id.feverCheck);
+        CheckBox tasteCheck = findViewById(R.id.tasteCheck);
+        CheckBox breathingCheck = findViewById(R.id.breathingCheck);
+        CheckBox appetiteCheck = findViewById(R.id.appetiteCheck);
+
+        if(coughCheck.isChecked()) {
+            symptoms.add("Cough");
+        }
+        if(feverCheck.isChecked()) {
+            symptoms.add("Fever");
+        }
+        if(tasteCheck.isChecked()) {
+            symptoms.add("Taste");
+        }
+        if(breathingCheck.isChecked()) {
+            symptoms.add("Breathing");
+        }
+        if(appetiteCheck.isChecked()) {
+            symptoms.add("Appetite");
+        }
+
+        appendHistory();
+    }
+
+    /*
     public void saveSymptom(View view) {
         String symptom = Integer.toString(view.getId());
         System.out.println(symptom);
@@ -72,8 +101,8 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             symptoms.add(printSymptom(symptom));
         }
     }
-
-    public void appendHistory(View view) {
+*/
+    public void appendHistory() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime dateTime = LocalDateTime.now();
         String date = dateTimeFormatter.format(dateTime);
@@ -84,9 +113,9 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
 
         String text = "";
         for(String s : symptoms) {
-            editor.putString(date, s);
-            stringBuilder.append(text).append("\n").append(s);
+            stringBuilder.append(text).append("+").append(s);
         }
+        editor.putString(date, text);
         editor.commit();
         box.setText(stringBuilder.toString());
 
@@ -100,7 +129,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         editor.clear();
         editor.commit();
     }
-
+/*
     public String printSymptom(String id) {
         String symptom = "";
         switch(id) {
@@ -126,6 +155,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
 
         return symptom;
     }
+*/
 
     //Bluetooth
     //Handle view based on Bluetooth activation
@@ -137,10 +167,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
         LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
         TextView appLogo = (TextView) findViewById(R.id.appLogo);
-        TextView title = (TextView) findViewById(R.id.title);
-        TextView subtitle = (TextView) findViewById(R.id.subtitle);
-        TextView history = (TextView) findViewById(R.id.history);
-        TextView historyTitle = (TextView) findViewById(R.id.historyTitle);
 
 
         if(!bluetooth) {
@@ -150,11 +176,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             wrapperView.setBackgroundColor(darkRed);
             //Change logo colour to white
             appLogo.setTextColor(Color.WHITE);
-
-            title.setTextColor(Color.WHITE);
-            subtitle.setTextColor(Color.WHITE);
-            history.setTextColor(Color.WHITE);
-            historyTitle.setTextColor(Color.WHITE);
         } else {
             int darkYellow = getResources().getColor(R.color.backgroundColor);
             int lightYellow = getResources().getColor(R.color.lightBackgroundColor);
@@ -162,10 +183,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             background.setBackgroundColor(darkYellow);
             wrapperView.setBackgroundColor(lightYellow);
             appLogo.setTextColor(textColour);
-            title.setTextColor(textColour);
-            subtitle.setTextColor(textColour);
-            history.setTextColor(textColour);
-            historyTitle.setTextColor(textColour);
         }
     }
 

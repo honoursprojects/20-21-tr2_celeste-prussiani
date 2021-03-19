@@ -30,8 +30,8 @@
 
     <ScrollView
         android:id="@+id/wrapperView"
-        android:layout_width="380dp"
-        android:layout_height="676dp"
+        android:layout_width="388dp"
+        android:layout_height="635dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="24dp"
@@ -43,10 +43,10 @@
         android:backgroundTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.541">
+        app:layout_constraintVertical_bias="0.571">
 
         <LinearLayout
             android:id="@+id/innerView"
@@ -56,304 +56,56 @@
             tools:layout_editor_absoluteX="45dp"
             tools:layout_editor_absoluteY="156dp">
 
-            <LinearLayout
-                android:id="@+id/btnWrapper"
+            <TextView
+                android:id="@+id/symptomTitle"
                 android:layout_width="match_parent"
-                android:layout_height="622dp"
-                android:orientation="vertical"
-                tools:layout_editor_absoluteX="45dp"
-                tools:layout_editor_absoluteY="156dp">
+                android:layout_height="wrap_content"
+                android:text="Symptom tracker"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="10dp"
-                    android:text="@string/symptomTracker_intro"
-                    android:textColor="@color/textColour"
-                    android:textSize="20sp"
-                    tools:layout_editor_absoluteX="45dp"
-                    tools:layout_editor_absoluteY="156dp" />
+            <TextView
+                android:id="@+id/history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
 
-                <TextView
-                    android:id="@+id/subtitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="@string/symptomTracker_subtitle"
-                    tools:layout_editor_absoluteX="45dp"
-                    tools:layout_editor_absoluteY="193dp" />
+            <CheckBox
+                android:id="@+id/feverCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="High fever" />
 
-                <LinearLayout
-                    android:id="@+id/line1"
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="232dp">
+            <CheckBox
+                android:id="@+id/coughCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dry cough" />
 
-                    <LinearLayout
-                        android:id="@+id/btn1"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/box_shadow"
-                        android:onClick="saveSymptom"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.372"
-                        tools:layout_editor_absoluteX="61dp">
+            <CheckBox
+                android:id="@+id/tasteCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Loss of sense of taste or smell" />
 
-                        <ImageView
-                            android:id="@+id/icon1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
-                            tools:layout_editor_absoluteX="61dp" />
+            <CheckBox
+                android:id="@+id/appetiteCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Loss of appetite" />
 
-                        <TextView
-                            android:id="@+id/title1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Symptom 1"
-                            tools:layout_editor_absoluteX="61dp"
-                            tools:layout_editor_absoluteY="303dp" />
-                    </LinearLayout>
+            <CheckBox
+                android:id="@+id/breathingCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Difficulty breathing" />
 
-                    <LinearLayout
-                        android:id="@+id/btn2"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/box_shadow"
-                        android:onClick="saveSymptom"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.372"
-                        tools:layout_editor_absoluteX="175dp">
-
-                        <ImageView
-                            android:id="@+id/icon2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
-                            tools:layout_editor_absoluteX="175dp" />
-
-                        <TextView
-                            android:id="@+id/text2"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Symptom 2"
-                            tools:layout_editor_absoluteX="175dp"
-                            tools:layout_editor_absoluteY="303dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/btn3"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/box_shadow"
-                        android:onClick="saveSymptom"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.372"
-                        tools:layout_editor_absoluteX="289dp">
-
-                        <ImageView
-                            android:id="@+id/icon3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
-                            tools:layout_editor_absoluteX="289dp" />
-
-                        <TextView
-                            android:id="@+id/title3"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Symptom 3"
-                            tools:layout_editor_absoluteX="289dp"
-                            tools:layout_editor_absoluteY="303dp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/line2"
-                    android:layout_width="match_parent"
-                    android:layout_height="149dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="232dp">
-
-                    <LinearLayout
-                        android:id="@+id/btn4"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/box_shadow"
-                        android:onClick="saveSymptom"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.372"
-                        tools:layout_editor_absoluteX="61dp">
-
-                        <ImageView
-                            android:id="@+id/icon4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
-                            tools:layout_editor_absoluteX="61dp" />
-
-                        <TextView
-                            android:id="@+id/title4"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Symptom 4"
-                            tools:layout_editor_absoluteX="61dp"
-                            tools:layout_editor_absoluteY="303dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/btn5"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/box_shadow"
-                        android:onClick="saveSymptom"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.372"
-                        tools:layout_editor_absoluteX="175dp">
-
-                        <ImageView
-                            android:id="@+id/icon5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
-                            tools:layout_editor_absoluteX="175dp" />
-
-                        <TextView
-                            android:id="@+id/title5"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Symptom 5"
-                            tools:layout_editor_absoluteX="175dp"
-                            tools:layout_editor_absoluteY="303dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/btn6"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/box_shadow"
-                        android:onClick="saveSymptom"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.372"
-                        tools:layout_editor_absoluteX="289dp">
-
-                        <ImageView
-                            android:id="@+id/icon6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
-                            tools:layout_editor_absoluteX="289dp" />
-
-                        <TextView
-                            android:id="@+id/title6"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Symptom 6"
-                            tools:layout_editor_absoluteX="289dp"
-                            tools:layout_editor_absoluteY="303dp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/historyTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Your history:" />
-
-                <Button
-                    android:id="@+id/saveBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/box_shadow"
-                    android:onClick="appendHistory"
-                    android:text="Save" />
-
-                <Button
-                    android:id="@+id/clearBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/box_shadow"
-                    android:onClick="clearHistory"
-                    android:text="Clear" />
-
-                <TextView
-                    android:id="@+id/history"
-                    android:layout_width="match_parent"
-                    android:layout_height="211dp" />
-
-            </LinearLayout>
+            <Button
+                android:id="@+id/saveBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="saveSymptoms"
+                android:text="Save" />
 
         </LinearLayout>
     </ScrollView>

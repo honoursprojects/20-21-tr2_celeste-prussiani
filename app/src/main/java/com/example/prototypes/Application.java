@@ -41,12 +41,12 @@ public class Application extends android.app.Application {
     }
 
     public void checkSymptoms(ArrayList<String> newSymptoms) {
-        Boolean warning = true;
+        Boolean warning;
         if(newSymptoms.contains("Cough") && newSymptoms.contains("Fever")
-                && newSymptoms.contains("Difficulty breathing")) {
-            warning = false;
-        } else {
+                && newSymptoms.contains("Breathing") && newSymptoms.contains("Taste")) {
             warning = true;
+        } else {
+            warning = false;
         }
         EventBus.getDefault().post(warning);
     }
