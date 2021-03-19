@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
+import com.example.prototypes.Warning;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -48,8 +49,11 @@ public class StopCovidHome extends AppCompatActivity {
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
         Boolean symptoms = ((Application) getApplicationContext()).getSymptomsState();
         //Change colour accordingly
-        changeColour(bluetooth);
-        changeColour(symptoms);
+        Boolean state = true;
+        if(!bluetooth || !symptoms) {
+            state = false;
+        }
+        changeColour(state);
         //Create a barchart
         createChart();
     }

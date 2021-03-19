@@ -64,8 +64,7 @@ public class Application extends android.app.Application {
             symptoms = true;
         }
         Warning post = new Warning(symptoms, SYMPTOMS_WARNING);
-        EventBus.getDefault().post(post);
-        System.out.println("posted " + SYMPTOMS_WARNING);
+        EventBus.getDefault().post(symptoms);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -98,16 +97,19 @@ public class Application extends android.app.Application {
                     if (btAdapter.getState() == BluetoothAdapter.STATE_OFF) {
                       //  displayToast("Bluetooth off");
                         bluetooth = false;
+                        System.out.println("BLUETOOTH OFF");
                         showNotification(BLUETOOTH_WARNING);
-                        Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
-                        EventBus.getDefault().post(post);
+                       // Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
+                        EventBus.getDefault().post(bluetooth);
                     }
                     if(btAdapter.getState() == BluetoothAdapter.STATE_ON) {
                       //  displayToast("Bluetooth on");
                         bluetooth = true;
                         cancelNotification(BLUETOOTH_CHANNEL_ID);
-                        Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
-                        EventBus.getDefault().post(post);
+                      //  Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
+                        EventBus.getDefault().post(bluetooth);
+
+                        System.out.println("BLUETOOTH ON");
                     }
 
                 }

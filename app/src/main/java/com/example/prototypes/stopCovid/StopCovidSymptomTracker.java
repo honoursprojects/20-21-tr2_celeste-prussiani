@@ -47,8 +47,12 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         symptoms = new ArrayList<String>();
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
         Boolean symptoms = ((Application) getApplicationContext()).getSymptomsState();
-        changeColour(bluetooth);
-        changeColour(symptoms);
+        Boolean state = true;
+        if(!bluetooth || !symptoms) {
+            state = false;
+        }
+        changeColour(state);
+
     }
 
     @Override
@@ -59,10 +63,10 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     }
 
     @Subscribe
-    public void onMessageEvent(Warning warning) {
+    public void onMessageEvent(Boolean flag) {
         intent = new Intent(this, WarningMessage.class);
         startActivity(intent);
-        changeColour(warning.getWarning());
+        changeColour(flag);
     }
 
     public void goHome(View view) {
