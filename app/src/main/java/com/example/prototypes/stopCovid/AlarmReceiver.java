@@ -1,4 +1,4 @@
-package com.example.prototypes;
+package com.example.prototypes.stopCovid;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -14,6 +14,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.prototypes.R;
 import com.example.prototypes.stopCovid.WarningMessage;
 
 public class AlarmReceiver extends BroadcastReceiver {

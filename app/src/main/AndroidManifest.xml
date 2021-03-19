@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize|adjustPan">
-        <receiver android:process=":remote" android:name="AlarmReceiver"></receiver>
+        <receiver android:process=":remote" android:name=".stopCovid.AlarmReceiver"></receiver>
         <activity android:name=".CovidTracker.CovidTrackerReport"></activity>
         <activity android:name=".CovidTracker.CovidTrackerSymptomTracker" />
         <activity android:name=".stopCovid.StopCovidReport" />

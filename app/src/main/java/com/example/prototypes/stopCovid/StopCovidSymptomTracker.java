@@ -5,23 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.prototypes.AlarmReceiver;
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
-import com.example.prototypes.Warning;
-import com.google.android.material.chip.Chip;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;

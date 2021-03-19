@@ -17,6 +17,8 @@ import android.os.SystemClock;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import com.example.prototypes.stopCovid.AlarmReceiver;
 import com.example.prototypes.stopCovid.WarningMessage;
 
 import org.greenrobot.eventbus.EventBus;
