@@ -27,7 +27,10 @@
         android:id="@+id/startBtn"
         android:layout_width="124dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginRight="144dp"
         android:background="@drawable/box_shadow"
         android:backgroundTint="@color/btnColor"
         android:backgroundTintMode="multiply"
@@ -38,8 +41,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" tools:targetApi="lollipop" />
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:id="@+id/homeText1"
@@ -47,15 +52,15 @@
         android:layout_height="142dp"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="20dp"
         android:gravity="center|start"
         android:text="@string/placeholder_text"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/startBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appIntro1" />
 
     <TextView
         android:id="@+id/appIntro1"
@@ -74,5 +79,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitle" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="370dp"
+        android:layout_height="277dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_wella"
+        tools:layout_editor_absoluteY="588dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
