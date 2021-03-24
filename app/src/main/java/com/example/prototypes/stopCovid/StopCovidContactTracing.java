@@ -6,11 +6,13 @@ import android.os.Bundle;
 
 import com.example.prototypes.R;
 
-public class StopCovidReport extends AppCompatActivity {
+public class StopCovidContactTracing extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stop_covid_report);
     }
+
+    //change bluetooth on click of contact tracing btn
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".stopCovid.StopCovidReport">
+    tools:context=".stopCovid.StopCovidContactTracing">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/background"
@@ -43,24 +43,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.google.android.material.chip.ChipGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:chipSpacing="8dp">
+                <TextView
+                    android:id="@+id/contactTracingStatus"
+                    android:layout_width="318dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/box_shadow"
+                    android:backgroundTint="@color/btnColor"
+                    android:backgroundTintMode="multiply"
+                    android:gravity="center"
+                    android:text="Contact tracing: ACTIVE" />
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/consent1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="I am not reporting false information" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/consent2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="I have had a Covid-19 test done" />
-
-                </com.google.android.material.chip.ChipGroup>
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="318dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:text="WARNING: contact tracing must be on at all times to prevent contagion."
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/report_btn"

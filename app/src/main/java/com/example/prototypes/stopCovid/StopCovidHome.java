@@ -218,6 +218,11 @@ public class StopCovidHome extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openContactTracing(View view) {
+        intent = new Intent(this, StopCovidContactTracing.class);
+        startActivity(intent);
+    }
+
     /**
      * Handle activity close
      */
@@ -227,5 +232,4 @@ public class StopCovidHome extends AppCompatActivity {
         //Unsubscribe to bluetooth listener
         EventBus.getDefault().unregister(this);
     }
-
 }

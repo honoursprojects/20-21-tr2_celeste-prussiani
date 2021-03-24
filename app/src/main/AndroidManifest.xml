@@ -18,7 +18,7 @@
         <receiver android:process=":remote" android:name=".stopCovid.AlarmReceiver"></receiver>
         <activity android:name=".CovidTracker.CovidTrackerReport"></activity>
         <activity android:name=".CovidTracker.CovidTrackerSymptomTracker" />
-        <activity android:name=".stopCovid.StopCovidReport" />
+        <activity android:name=".stopCovid.StopCovidContactTracing" />
         <activity android:name=".CovidTracker.CovidTrackerHome" />
         <activity android:name=".stopCovid.StopCovidSymptomTracker" />
         <activity
