@@ -72,6 +72,7 @@
                     android:backgroundTint="@color/colorDanger"
                     android:backgroundTintMode="multiply"
                     android:gravity="center"
+                    android:onClick="reportTest"
                     android:text="report"
                     android:textColor="#fff" />
 

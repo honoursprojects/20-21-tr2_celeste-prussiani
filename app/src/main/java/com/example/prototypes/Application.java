@@ -73,6 +73,12 @@ public class Application extends android.app.Application {
         EventBus.getDefault().post(symptoms);
     }
 
+    public void checkTest(Boolean test) {
+        if(!test) {
+            EventBus.getDefault().post(test);
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public Boolean checkBluetooth() {
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
