@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
-
     <application
         android:name=".Application"
         android:allowBackup="true"
@@ -15,8 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize|adjustPan">
-        <receiver android:process=":remote" android:name=".stopCovid.AlarmReceiver"></receiver>
-        <activity android:name=".CovidTracker.CovidTrackerReport"></activity>
+        <activity android:name=".CovidTracker.CovidTrackerStore"></activity>
+
+        <receiver
+            android:name=".stopCovid.AlarmReceiver"
+            android:process=":remote" />
+
+        <activity android:name=".CovidTracker.CovidTrackerReport" />
         <activity android:name=".CovidTracker.CovidTrackerSymptomTracker" />
         <activity android:name=".stopCovid.StopCovidContactTracing" />
         <activity android:name=".CovidTracker.CovidTrackerHome" />
