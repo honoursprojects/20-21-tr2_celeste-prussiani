@@ -2,7 +2,7 @@
     <string name="covidTracker_app_name">CovidTracker</string>
     <string name="stopCovid_app_name">StopCovid</string>
     <string name="prototypes_introduction">Please choose one of the app views</string>
-    <string name="cases_no">100000</string>
+    <string name="cases_no">100000 \n cases in your area. \n Danger: red</string>
     <string name="placeholder_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Integer a vestibulum quam. Vestibulum ullamcorper lorem sed volutpat sollicitudin.
         Sed viverra, odio vitae consequat pulvinar, nisi tellus faucibus sapien, sed viverra sem erat a orci.
