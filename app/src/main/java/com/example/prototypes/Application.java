@@ -75,14 +75,16 @@ public class Application extends android.app.Application {
             symptoms = true;
         }
         Warning post = new Warning(symptoms, SYMPTOMS_WARNING);
-        EventBus.getDefault().post(symptoms);
+        EventBus.getDefault().post(post);
+
     }
 
     public void checkTest(Boolean test) {
         if(!test) {
 
             showNotification(TEST_WARNING);
-            EventBus.getDefault().post(test);
+            Warning post = new Warning(test, TEST_WARNING);
+            EventBus.getDefault().post(post);
         }
     }
 
@@ -118,15 +120,15 @@ public class Application extends android.app.Application {
                         bluetooth = false;
                         System.out.println("BLUETOOTH OFF");
                         showNotification(BLUETOOTH_WARNING);
-                       // Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
-                        EventBus.getDefault().post(bluetooth);
+                        Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
+                        EventBus.getDefault().post(post);
                     }
                     if(btAdapter.getState() == BluetoothAdapter.STATE_ON) {
                       //  displayToast("Bluetooth on");
                         bluetooth = true;
                         cancelNotification(BLUETOOTH_CHANNEL_ID);
-                      //  Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
-                        EventBus.getDefault().post(bluetooth);
+                        Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
+                        EventBus.getDefault().post(post);
 
                         System.out.println("BLUETOOTH ON");
                     }

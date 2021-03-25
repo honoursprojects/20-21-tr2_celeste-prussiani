@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
+import com.example.prototypes.Warning;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -70,13 +71,14 @@ public class StopCovidHome extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Subscribe
-    public void onMessageEvent(Boolean bluetooth) {
+    public void onMessageEvent(Warning warning) {
+        boolean flag = warning.getWarning();
         //Change colour when bluetooth changes
-        if(!bluetooth){
+        if(!flag){
             intent = new Intent(this, WarningMessage.class);
             startActivity(intent);
         }
-        changeColour(bluetooth);
+        changeColour(flag);
     }
 
 

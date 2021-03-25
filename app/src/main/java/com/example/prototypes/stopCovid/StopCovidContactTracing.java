@@ -13,6 +13,7 @@ import android.widget.ScrollView;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
+import com.example.prototypes.Warning;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -34,13 +35,14 @@ public class StopCovidContactTracing extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Subscribe
-    public void onMessageEvent(Boolean bluetooth) {
+    public void onMessageEvent(Warning warning) {
+        boolean flag = warning.getWarning();
         //Change colour when bluetooth changes
-        if(!bluetooth){
+        if(!flag){
             intent = new Intent(this, WarningMessage.class);
             startActivity(intent);
         }
-        changeColour(bluetooth);
+        changeColour(flag);
     }
 
     public void changeColour(Boolean flag) {

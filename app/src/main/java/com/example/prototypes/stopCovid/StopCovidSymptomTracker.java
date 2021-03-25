@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
+import com.example.prototypes.Warning;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
@@ -62,7 +63,8 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     }
 
     @Subscribe
-    public void onMessageEvent(Boolean flag) {
+    public void onMessageEvent(Warning warning) {
+        boolean flag = warning.getWarning();
         changeColour(flag);
     }
 
