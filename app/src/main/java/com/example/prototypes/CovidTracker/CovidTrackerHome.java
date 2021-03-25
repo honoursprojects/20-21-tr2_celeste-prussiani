@@ -17,6 +17,7 @@ import com.example.prototypes.Application;
 import com.example.prototypes.DoctorFragment;
 import com.example.prototypes.R;
 import com.example.prototypes.SectionStatePagerAdapter;
+import com.example.prototypes.Warning;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -39,8 +40,10 @@ public class CovidTrackerHome extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Subscribe
-    public void onMessageEvent(Boolean bluetooth) {
-        changeColour(bluetooth);
+    public void onMessageEvent(Warning warning) {
+        if (warning.getMessage() == "bluetooth") {
+            changeColour(warning.getWarning());
+        }
     }
 
     @Override
