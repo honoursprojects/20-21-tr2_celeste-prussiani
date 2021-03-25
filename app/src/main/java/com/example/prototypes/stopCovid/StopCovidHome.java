@@ -219,11 +219,13 @@ public class StopCovidHome extends AppCompatActivity {
     public void openSymptomTracker(View view) {
         intent = new Intent(this, StopCovidSymptomTracker.class);
         startActivity(intent);
+        finish();
     }
 
     public void openContactTracing(View view) {
         intent = new Intent(this, StopCovidContactTracing.class);
         startActivity(intent);
+        finish();
     }
 
     /**

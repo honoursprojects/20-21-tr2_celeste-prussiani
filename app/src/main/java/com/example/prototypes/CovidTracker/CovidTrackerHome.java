@@ -17,7 +17,6 @@ import com.example.prototypes.Application;
 import com.example.prototypes.DoctorFragment;
 import com.example.prototypes.R;
 import com.example.prototypes.SectionStatePagerAdapter;
-import com.example.prototypes.stopCovid.StopCovidSymptomTracker;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

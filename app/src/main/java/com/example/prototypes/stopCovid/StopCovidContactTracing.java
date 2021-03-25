@@ -70,6 +70,13 @@ public class StopCovidContactTracing extends AppCompatActivity {
         ((Application) getApplicationContext()).checkTest(test);
     }
 
+    @Override
+    public void onBackPressed() {
+        intent = new Intent(this, StopCovidHome.class);
+        startActivity(intent);
+        finish();
+    }
+
     /**
      * Handle activity close
      */

@@ -156,6 +156,12 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        intent = new Intent(this, StopCovidHome.class);
+        startActivity(intent);
+        finish();
+    }
+    @Override
     protected void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
