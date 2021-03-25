@@ -76,6 +76,7 @@ public class StopCovidHome extends AppCompatActivity {
         //Change colour when bluetooth changes
         if(!flag){
             intent = new Intent(this, WarningMessage.class);
+            intent.putExtra("reason", warning.getMessage());
             startActivity(intent);
         }
         changeColour(flag);

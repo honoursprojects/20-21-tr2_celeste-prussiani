@@ -102,6 +102,7 @@ public class CovidTrackerHome extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     @Override
     protected void onStop() {
         super.onStop();
