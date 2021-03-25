@@ -25,17 +25,22 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static androidx.core.app.NotificationCompat.*;
+
 public class Application extends android.app.Application {
 
     public static final String BLUETOOTH_CHANNEL_NAME = "warningChannel";
     public final int BLUETOOTH_CHANNEL_ID = 1;
     public static final String CONTACT_CHANNEL_NAME = "contactChannel";
     public final int CONTACT_CHANNEL_ID = 2;
+    public static final String TEST_CHANNEL_NAME = "testChannel";
+    public final int TEST_CHANNEL_ID = 3;
     public static final String SYMPTOM_CHANNEL_NAME = "symptomChannel";
-    public final int SYMPTOM_CHANNEL_ID = 3;
+    public final int SYMPTOM_CHANNEL_ID = 4;
     public final String BLUETOOTH_WARNING = "bluetooth";
     public final String SYMPTOMS_WARNING = "symptoms";
     public final String CONTACT_WARNING = "contact";
+    public final String TEST_WARNING = "test";
 
     private NotificationManagerCompat notificationManager;
     private AlarmManager alarmManager;
@@ -66,6 +71,8 @@ public class Application extends android.app.Application {
         if(newSymptoms.contains("Cough") && newSymptoms.contains("Fever")
                 && newSymptoms.contains("Breathing") && newSymptoms.contains("Taste")) {
             symptoms = false;
+
+            showNotification(SYMPTOMS_WARNING);
         } else {
             symptoms = true;
         }
@@ -75,6 +82,8 @@ public class Application extends android.app.Application {
 
     public void checkTest(Boolean test) {
         if(!test) {
+
+            showNotification(TEST_WARNING);
             EventBus.getDefault().post(test);
         }
     }
@@ -162,47 +171,75 @@ public class Application extends android.app.Application {
      */
     public void showNotification(String notificationType) {
         String bluetoothMessage = "Please activate bluetooth to activate contact tracing";
+        String contactMessage = "Dangerous contact.";
         String symptomMessage = "You have reported dangerous symptoms. We advice self isolation";
+        String testMessage = "You have reported a positive test. We advice sel isolation";
 
         //Define which activity to open when tapping on notification
         Intent activityIntent = new Intent(this, WarningMessage.class); //probably post a message to warning activity here
         PendingIntent contentIntent = PendingIntent.getActivity(this,
                 0, activityIntent, 0);
 
-        Notification warning = new NotificationCompat.Builder(this, BLUETOOTH_CHANNEL_NAME)
-                .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
-                .setContentTitle("Contact tracing disabled")
-                .setContentText(bluetoothMessage)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setColor(Color.WHITE)
-                .setColor(getResources().getColor(R.color.colorDanger))
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .setAutoCancel(false)
-                .setOngoing(true)
-                .setContentIntent(contentIntent)
-                .build();
-
-        Notification symptoms = new NotificationCompat.Builder(this, SYMPTOM_CHANNEL_NAME)
-                .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
-                .setContentTitle("Dangerous symptoms")
-                .setContentText(symptomMessage)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setColor(getResources().getColor(R.color.colorDanger))
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .setAutoCancel(false)
-                .setOngoing(true)
-                .setContentIntent(contentIntent)
-                .build();
-
-        //Display notification
         switch(notificationType) {
             case BLUETOOTH_WARNING:
-                notificationManager.notify(BLUETOOTH_CHANNEL_ID, warning);
+                Notification bluetooth = new Builder(this, BLUETOOTH_CHANNEL_NAME)
+                        .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
+                        .setContentTitle("Contact tracing disabled")
+                        .setContentText(bluetoothMessage)
+                        .setPriority(PRIORITY_HIGH)
+                        .setColor(getResources().getColor(R.color.colorDanger))
+                        .setCategory(CATEGORY_MESSAGE)
+                        .setAutoCancel(false)
+                        .setOngoing(true)
+                        .setContentIntent(contentIntent)
+                        .build();
+
+                notificationManager.notify(BLUETOOTH_CHANNEL_ID, bluetooth);
+                break;
+            case CONTACT_WARNING:
+                Notification contact = new Builder(this, CONTACT_CHANNEL_NAME)
+                        .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
+                        .setContentTitle("Dangerous contact")
+                        .setContentText(contactMessage)
+                        .setPriority(PRIORITY_HIGH)
+                        .setColor(getResources().getColor(R.color.colorDanger))
+                        .setCategory(CATEGORY_MESSAGE)
+                        .setAutoCancel(false)
+                        .setOngoing(true)
+                        .setContentIntent(contentIntent)
+                        .build();
+
+                contact.defaults = 0;
+                notificationManager.notify(CONTACT_CHANNEL_ID, contact);
+                break;
+            case TEST_WARNING:
+                Notification test = new Builder(this, SYMPTOM_CHANNEL_NAME)
+                        .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
+                        .setContentTitle("Positive test reported")
+                        .setContentText(testMessage)
+                        .setPriority(PRIORITY_HIGH)
+                        .setColor(getResources().getColor(R.color.colorDanger))
+                        .setCategory(CATEGORY_MESSAGE)
+                        .setAutoCancel(false)
+                        .setOngoing(true)
+                        .setContentIntent(contentIntent)
+                        .build();
+                notificationManager.notify(TEST_CHANNEL_ID, test);
                 break;
             case SYMPTOMS_WARNING:
+                Notification symptoms = new Builder(this, SYMPTOM_CHANNEL_NAME)
+                    .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
+                    .setContentTitle("Dangerous symptoms")
+                    .setContentText(symptomMessage)
+                    .setPriority(PRIORITY_HIGH)
+                    .setColor(getResources().getColor(R.color.colorDanger))
+                    .setCategory(CATEGORY_MESSAGE)
+                    .setAutoCancel(false)
+                    .setOngoing(true)
+                    .setContentIntent(contentIntent)
+                    .build();
                 notificationManager.notify(SYMPTOM_CHANNEL_ID, symptoms);
                 break;
-
         }
     }
 
