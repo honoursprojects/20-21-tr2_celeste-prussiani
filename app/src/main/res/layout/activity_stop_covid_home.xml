@@ -9,12 +9,6 @@
     android:background="@color/backgroundColor"
     tools:context=".stopCovid.StopCovid">
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top" />
-
     <ScrollView
         android:id="@+id/wrapperView"
         android:layout_width="381dp"
@@ -37,17 +31,53 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/caseCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+            <LinearLayout
+                android:id="@+id/casesView"
+                android:layout_width="340dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/box_shadow"
-                android:clickable="false"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/warningIcon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/ic_dialog_alert"
+                    app:tint="@color/colorDanger" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/cases_no"
+                    android:textColor="@color/textColour"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/box_shadow"
                 android:gravity="center"
-                android:text="@string/cases_no"
-                android:textColor="@color/textColour"
-                android:textSize="24sp" />
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:text="Contact tracing: \n active"
+                android:textAllCaps="true"
+                android:textSize="20sp" />
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barChart_view"
@@ -85,7 +115,7 @@
         android:id="@+id/bottomNav"
         android:layout_width="408dp"
         android:layout_height="46dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/backgroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,11 +138,12 @@
 
             <ImageView
                 android:id="@+id/contactTracingIcon"
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="openContactTracing"
-                app:srcCompat="@android:drawable/btn_star_big_on" />
+                app:srcCompat="@drawable/ic_covid"
+                app:tint="@color/textColour" />
 
             <ImageView
                 android:id="@+id/qrIcon"
@@ -122,6 +153,17 @@
                 app:srcCompat="@android:drawable/btn_star_big_on" />
         </LinearLayout>
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/appLogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_covid" />
 
     <!-- A CardView that contains a TextView -->
 
