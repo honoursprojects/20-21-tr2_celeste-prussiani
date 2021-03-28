@@ -19,4 +19,5 @@
     <!-- Symptom tracker -->
     <string name="symptomTracker_intro">How are you feeling today?</string>
     <string name="symptomTracker_subtitle">Select all the symptoms you feel</string>
+    <string name="symptomTracker_stopCovid_subtitle">Symptom Tracker is a tool to monitor your wellbeing and detect signs of Coronavirus prematurely. Use this every day for best results.</string>
 </resources>
