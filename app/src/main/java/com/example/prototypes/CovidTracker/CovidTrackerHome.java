@@ -3,7 +3,6 @@ package com.example.prototypes.CovidTracker;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
