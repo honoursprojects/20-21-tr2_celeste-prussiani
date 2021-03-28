@@ -12,7 +12,7 @@
         android:layout_height="615dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="30dp"
@@ -36,7 +36,7 @@
             <LinearLayout
                 android:id="@+id/btnWrapper"
                 android:layout_width="match_parent"
-                android:layout_height="622dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 tools:layout_editor_absoluteX="45dp"
                 tools:layout_editor_absoluteY="156dp">
@@ -107,7 +107,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Symptom 1"
+                            android:text="Fever"
                             tools:layout_editor_absoluteX="61dp"
                             tools:layout_editor_absoluteY="303dp" />
                     </LinearLayout>
@@ -143,7 +143,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Symptom 2"
+                            android:text="Cough"
                             tools:layout_editor_absoluteX="175dp"
                             tools:layout_editor_absoluteY="303dp" />
                     </LinearLayout>
@@ -179,7 +179,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Symptom 3"
+                            android:text="Loss of taste or smell"
                             tools:layout_editor_absoluteX="289dp"
                             tools:layout_editor_absoluteY="303dp" />
                     </LinearLayout>
@@ -226,7 +226,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Symptom 4"
+                            android:text="Fatigue"
                             tools:layout_editor_absoluteX="61dp"
                             tools:layout_editor_absoluteY="303dp" />
                     </LinearLayout>
@@ -262,7 +262,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Symptom 5"
+                            android:text="Heavy chest"
                             tools:layout_editor_absoluteX="175dp"
                             tools:layout_editor_absoluteY="303dp" />
                     </LinearLayout>
@@ -298,38 +298,60 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Symptom 6"
+                            android:text="Loss of appetite"
                             tools:layout_editor_absoluteX="289dp"
                             tools:layout_editor_absoluteY="303dp" />
                     </LinearLayout>
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/historyTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Your history:" />
-
-                <TextView
-                    android:id="@+id/history"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-
                 <Button
                     android:id="@+id/saveBtn"
-                    android:layout_width="match_parent"
+                    android:layout_width="340dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/box_shadow"
+                    android:backgroundTint="@color/btnColor"
+                    android:backgroundTintMode="multiply"
                     android:onClick="appendHistory"
-                    android:text="Save" />
+                    android:text="Save"
+                    android:textAllCaps="false"
+                    android:textColor="#fff" />
 
                 <Button
                     android:id="@+id/clearBtn"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box_shadow"
+                    android:backgroundTint="@color/btnColor"
+                    android:backgroundTintMode="multiply"
+                    android:text="Clear"
+                    android:textAllCaps="false"
+                    android:textColor="#fff" />
+
+                <TextView
+                    android:id="@+id/feelingLow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/box_shadow"
-                    android:text="Clear" />
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Feeling low? We are here to listen."
+                    android:textColor="@color/darkPinkHighlight"
+                    android:textSize="18sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/advice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Tap the chat icon to talk to your virtual doctor." />
 
             </LinearLayout>
 

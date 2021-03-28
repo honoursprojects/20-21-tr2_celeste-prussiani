@@ -20,6 +20,6 @@
     <string name="warningUpload">- Information reported here must be truthful and up-to-date. Reporting false test results will cause fines. \n \n - Individuals you have been in contact with, however brief, must be notified for their safety \n \n - You must self-isolate for at least 10 days after a positive Covid test. Leaving home when positive to Coronavirus will cause fines.</string>
     <!-- Symptom tracker -->
     <string name="symptomTracker_intro">How are you feeling today?</string>
-    <string name="symptomTracker_subtitle">Select all the symptoms you feel</string>
+    <string name="symptomTracker_subtitle">Select all the symptoms you feel to keep track of your health.</string>
     <string name="symptomTracker_stopCovid_subtitle">Symptom Tracker is a tool to monitor your wellbeing and detect signs of Coronavirus prematurely. Use this every day for best results.</string>
 </resources>

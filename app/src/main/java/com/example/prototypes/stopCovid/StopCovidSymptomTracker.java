@@ -123,7 +123,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         StringBuilder stringBuilder = new StringBuilder();
-        TextView box = findViewById(R.id.history);
+        //TextView box = findViewById(R.id.history);
 
         String text = "";
         for(String s : symptoms) {
@@ -131,7 +131,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         }
         editor.putString(date, text);
         editor.commit();
-        box.setText(stringBuilder.toString());
+     //   box.setText(stringBuilder.toString());
     }
 
     public void clearHistory(View view) {
