@@ -77,6 +77,9 @@ public class StopCovidContactTracing extends AppCompatActivity {
         finish();
     }
 
+    public void goBack(View view) {
+        finish();
+    }
     /**
      * Handle activity close
      */

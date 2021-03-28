@@ -13,6 +13,17 @@
         android:background="@color/backgroundColor"
         tools:context=".stopCovid.StopCovid">
 
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toEndOf="@+id/appLogo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_covid" />
+
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"
             android:layout_width="wrap_content"
@@ -22,7 +33,7 @@
         <ScrollView
             android:id="@+id/wrapperView"
             android:layout_width="380dp"
-            android:layout_height="676dp"
+            android:layout_height="607"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="40dp"
@@ -30,7 +41,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/box_no_shadow"
-            android:backgroundTint="@color/lightBackgroundColor"
+            android:backgroundTint="#fff"
             android:backgroundTintMode="multiply"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,30 +49,44 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:id="@+id/innerView"
+                android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="15dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/contactTracingStatus"
-                    android:layout_width="318dp"
+                    android:id="@+id/reportTitle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/box_shadow"
-                    android:backgroundTint="@color/btnColor"
-                    android:backgroundTintMode="multiply"
-                    android:gravity="center"
-                    android:text="Contact tracing: ACTIVE" />
+                    android:text="Symptom tracker"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="318dp"
+                    android:id="@+id/reportSubtitle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="16dp"
-                    android:text="WARNING: contact tracing must be on at all times to prevent contagion."
+                    android:layout_marginBottom="16dp"
+                    android:text="You can report a positive Covid test here."
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/warningTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="WARNING"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/warningMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/warningUpload"
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/report_btn"
@@ -98,6 +123,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.837" />
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:onClick="goBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wrapperView"
+            app:srcCompat="@drawable/abc_vector_test" />
 
         <!-- A CardView that contains a TextView -->
 

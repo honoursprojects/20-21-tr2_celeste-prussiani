@@ -16,6 +16,7 @@
     <string name="contactTracing_btn">Activate contact tracing</string>
     <string name="exit">X</string>
     <string name="bullets">- Lorem ipsum dolor sit amet \n \n - Lorem ipsum dolor sit amet \n \n - Lorem ipsum dolor sit amet</string>
+    <string name="warningUpload">- Information reported here must be truthful and up-to-date. Reporting false test results will cause fines. \n \n - Individuals you have been in contact with, however brief, must be notified for their safety \n \n - You must self-isolate for at least 10 days after a positive Covid test. Leaving home when positive to Coronavirus will cause fines.</string>
     <!-- Symptom tracker -->
     <string name="symptomTracker_intro">How are you feeling today?</string>
     <string name="symptomTracker_subtitle">Select all the symptoms you feel</string>
