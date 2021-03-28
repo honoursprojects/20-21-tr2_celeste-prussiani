@@ -80,7 +80,7 @@
     <TextView
         android:id="@+id/warningMessage"
         android:layout_width="340dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="TextView"
         android:textColor="#fff"
