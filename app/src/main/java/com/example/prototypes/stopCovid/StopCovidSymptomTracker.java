@@ -65,6 +65,10 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     @Subscribe
     public void onMessageEvent(Warning warning) {
         boolean flag = warning.getWarning();
+        if(!flag) {
+            intent = new Intent(this, WarningMessage.class);
+            startActivity(intent);
+        }
         changeColour(flag);
     }
 
@@ -97,7 +101,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         }
 
         ((Application) getApplicationContext()).checkSymptoms(symptoms);
-        appendHistory();
+      //  appendHistory();
     }
 
     public void appendHistory() {

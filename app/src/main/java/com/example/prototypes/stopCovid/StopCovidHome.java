@@ -72,11 +72,12 @@ public class StopCovidHome extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Subscribe
     public void onMessageEvent(Warning warning) {
+
         boolean flag = warning.getWarning();
+        String msg = warning.getMessage();
         //Change colour when bluetooth changes
-        if(!flag){
+        if(msg.equals("bluetooth")) {
             intent = new Intent(this, WarningMessage.class);
-            intent.putExtra("reason", warning.getMessage());
             startActivity(intent);
         }
         changeColour(flag);

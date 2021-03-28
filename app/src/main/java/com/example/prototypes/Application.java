@@ -23,6 +23,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static androidx.core.app.NotificationCompat.*;
 
 public class Application extends android.app.Application {
@@ -39,7 +40,6 @@ public class Application extends android.app.Application {
     public final String SYMPTOMS_WARNING = "symptoms";
     public final String CONTACT_WARNING = "contact";
     public final String TEST_WARNING = "test";
-
     private NotificationManagerCompat notificationManager;
     private AlarmManager alarmManager;
     BroadcastReceiver mReceiver;
@@ -48,6 +48,7 @@ public class Application extends android.app.Application {
     public Boolean symptoms = true;
     public Boolean contact = true;
     public Boolean test = true;
+    public String reason = null;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -64,6 +65,9 @@ public class Application extends android.app.Application {
     public Boolean getContactState() {return contact;}
     public Boolean getTestState() {return test;}
 
+    public String getReason() {
+        return this.reason;
+    }
     /** Checkers **/
     public void checkSymptoms(ArrayList<String> newSymptoms) {
         if(newSymptoms.contains("Cough") && newSymptoms.contains("Fever")
@@ -74,15 +78,16 @@ public class Application extends android.app.Application {
         } else {
             symptoms = true;
         }
+        this.reason = SYMPTOMS_WARNING;
         Warning post = new Warning(symptoms, SYMPTOMS_WARNING);
         EventBus.getDefault().post(post);
-
     }
 
     public void checkTest(Boolean test) {
         if(!test) {
-
             showNotification(TEST_WARNING);
+
+            this.reason = TEST_WARNING;
             Warning post = new Warning(test, TEST_WARNING);
             EventBus.getDefault().post(post);
         }
@@ -98,6 +103,7 @@ public class Application extends android.app.Application {
             if (!btAdapter.isEnabled()) {
                 bluetooth = false;
             }
+
         }
 
         //Activate broadcast receiver; detect when bluetooth is switched off
@@ -120,6 +126,8 @@ public class Application extends android.app.Application {
                         bluetooth = false;
                         System.out.println("BLUETOOTH OFF");
                         showNotification(BLUETOOTH_WARNING);
+
+                        reason = BLUETOOTH_WARNING;
                         Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
                         EventBus.getDefault().post(post);
                     }
