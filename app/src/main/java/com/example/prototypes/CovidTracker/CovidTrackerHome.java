@@ -24,8 +24,6 @@ import org.greenrobot.eventbus.Subscribe;
 
 public class CovidTrackerHome extends AppCompatActivity {
     Intent intent;
-    private SectionStatePagerAdapter sectionStatePagerAdapter;
-    private ViewPager viewPager;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +31,6 @@ public class CovidTrackerHome extends AppCompatActivity {
         setContentView(R.layout.activity_covid_tracker_home);
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
         changeColour(bluetooth);
-        viewPager = findViewById(R.id.fragmentContainer);
-        setupViewPager(viewPager);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -108,11 +104,5 @@ public class CovidTrackerHome extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        SectionStatePagerAdapter adapter = new SectionStatePagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new DoctorFragment(), "DoctorFragment");
-        viewPager.setAdapter(adapter);
     }
 }
