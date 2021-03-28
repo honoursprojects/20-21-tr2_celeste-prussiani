@@ -31,12 +31,14 @@
         android:id="@+id/appIcon2"
         android:layout_width="23dp"
         android:layout_height="23dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/wrapperView"
+        app:layout_constraintStart_toEndOf="@+id/appLogo"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_covid"
-        tools:layout_editor_absoluteX="255dp" />
+        app:srcCompat="@drawable/ic_covid" />
 
     <Button
         android:id="@+id/startButton"
