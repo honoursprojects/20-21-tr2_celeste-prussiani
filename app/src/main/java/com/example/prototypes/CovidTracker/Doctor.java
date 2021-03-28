@@ -34,7 +34,8 @@ public class Doctor {
         String gloves = "Gloves are recommended, but did you know thorough hand washing is much better? If you need them, you can get some gloves from the store; for more information about PPE, go here:";
         String not_found = "Sorry, I'm afraid I' don't understand the question. Could you try and rephrase?";
         String cases = "There are currently " + R.string.cases_no + " cases in the UK. The current R number is";
-        String activity = "activity";
+        String symptomTracker = "symptom";
+        String store = "store";
 
         library.put("regulations", regulations);
         library.put("rules", regulations);
@@ -49,8 +50,11 @@ public class Doctor {
         library.put("welcome", welcome);
         library.put("cases", cases);
         library.put("deaths", cases);
-        library.put("symptom", activity);
-        library.put("symptoms", activity);
+        library.put("symptom", symptomTracker);
+        library.put("symptoms", symptomTracker);
+        library.put("store", store);
+        library.put("buy", store);
+        library.put("unwell", symptomTracker);
     }
 
     public String greetUser() {
@@ -62,6 +66,10 @@ public class Doctor {
         String output = "";
         String[] words = msg.split(" ");
         for(String w : words) {
+            if(w.equals("buy")) {
+                result = library.get(w).toString();
+                break;
+            }
             if(library.containsKey(w)) {
                 result = library.get(w).toString();
             }

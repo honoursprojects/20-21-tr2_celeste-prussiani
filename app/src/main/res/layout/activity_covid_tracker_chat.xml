@@ -88,7 +88,7 @@
         android:layout_marginBottom="20dp"
         android:clipToPadding="false"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/inputWrapper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

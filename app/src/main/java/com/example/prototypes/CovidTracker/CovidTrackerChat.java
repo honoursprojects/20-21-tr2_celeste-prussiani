@@ -36,7 +36,8 @@ public class CovidTrackerChat extends AppCompatActivity {
     EditText inputBox;
     final int DOC = 1;
     final int USER = 2;
-    final String FLAG = "activity";
+    final String SYMPTOM_FLAG = "symptom";
+    final String STORE_FLAG = "store";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,26 +58,29 @@ public class CovidTrackerChat extends AppCompatActivity {
         generateBubble(input, USER);
         //Get response from doctor library
         String output = doctor.thinkOfAnswer(input);
-        //Display doctor message
-        generateBubble(output, DOC);
-        if(output == FLAG) {
-            generateButton();
+
+        if(output.equals(SYMPTOM_FLAG)) {
+            output = "Keeping track of your health is a great way to keep yourself safe and prevent the spread. Here is where to find the symptom tracker:";
+            generateBubble(output, DOC);
+            generateButton(output);
+        } else if (output.equals(STORE_FLAG)) {
+            output = "We have collected the best medically certified PPE in our store. Here's where to find it:";
+            generateBubble(output, DOC);
+            generateButton(output);
+        } else {
+            //Display doctor message
+            generateBubble(output, DOC);
         }
+
         //Clear input box after message from user has been sent
         inputBox.setText("");
         //Close keyboard
         collapseKeyboard();
     }
 
-    public void generateButton() {
+    public void generateButton(String activity) {
+
         Button btn = new Button(CovidTrackerChat.this);
-        btn.setText("Open symptom tracker");
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSymptomTracker(v);
-            }
-        });
         btn.setBackgroundResource(R.drawable.box_shadow);
         btn.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
         btn.setTextColor(getResources().getColor(R.color.lightBackground));
@@ -87,6 +91,26 @@ public class CovidTrackerChat extends AppCompatActivity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(10,10,10,10);
         btn.setLayoutParams(params);
+
+
+        if(activity.equals(SYMPTOM_FLAG)) {
+            btn.setText("symptom tracker");
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openSymptomTracker(v);
+                }
+            });
+        } else {
+            btn.setText("PPE store");
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openStore(v);
+                }
+            });
+        }
+
         chatBox.addView(btn);
     }
 
@@ -100,7 +124,7 @@ public class CovidTrackerChat extends AppCompatActivity {
         outputBox.setGravity(Gravity.CENTER_VERTICAL);
         outputBox.setPadding(20, 20, 20, 20);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(10,10,10,10);
+        params.setMargins(10,10,10, 0);
         outputBox.setLayoutParams(params);
         outputBox.setText(output);
 
@@ -127,7 +151,12 @@ public class CovidTrackerChat extends AppCompatActivity {
      * Allows navigation to SymptomTracker.
      */
     public void openSymptomTracker(View view) {
-        intent = new Intent(this, StopCovidSymptomTracker.class);
+        intent = new Intent(this, CovidTrackerSymptomTracker.class);
+        startActivity(intent);
+    }
+
+    public void openStore(View view) {
+        intent = new Intent(this, CovidTrackerStore.class);
         startActivity(intent);
     }
 /*

@@ -21,10 +21,10 @@ import java.util.ArrayList;
 
 public class CovidTrackerSymptomTracker extends AppCompatActivity {
     Intent intent;
-    ArrayList<String> symptoms;
+    ArrayList<Integer> symptoms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        symptoms = new ArrayList<String>();
+        symptoms = new ArrayList<Integer>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_covid_tracker_symptom_tracker);
     }
@@ -40,32 +40,31 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
         layout.setBackgroundTintList(getResources().getColorStateList(R.color.darkPinkHighlight));
         layout.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
         String symptom = Integer.toString(view.getId());
-        System.out.println(symptom);
         if(!symptoms.contains(symptom)) {
             symptoms.add(printSymptom(symptom));
         }
     }
 
-    public String printSymptom(String id) {
-        String symptom = "";
+    public Integer printSymptom(String id) {
+        int symptom = 0;
         switch(id) {
             case "2131230820":
-                symptom = "Cough";
+                symptom = 1;
                 break;
             case "2131230821":
-                symptom = "Fever";
+                symptom = 2;
                 break;
             case "2131230822":
-                symptom = "Loss of appetite";
+                symptom = 3;
                 break;
             case "2131230823":
-                symptom = "Loss of smell";
+                symptom = 4;
                 break;
             case "2131230824":
-                symptom = "Loss of taste";
+                symptom = 5;
                 break;
             case "2131230825":
-                symptom = "Difficulty breathing";
+                symptom = 6;
                 break;
         }
         return symptom;
@@ -86,10 +85,9 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         StringBuilder stringBuilder = new StringBuilder();
-       // TextView box = findViewById(R.id.history);
         String text = "";
-        for(String s : symptoms) {
-            stringBuilder.append(text).append("\n").append(s);
+        for(int s : symptoms) {
+            stringBuilder.append(text).append(s).toString();
         }
         editor.putString(date, text);
         editor.commit();
@@ -102,7 +100,5 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
         s5.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));
         s6.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));
     }
-
-
 
 }
