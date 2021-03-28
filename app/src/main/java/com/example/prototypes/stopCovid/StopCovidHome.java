@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -16,6 +17,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -31,6 +34,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -89,51 +93,56 @@ public class StopCovidHome extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceType")
     public void changeColour(Boolean bluetooth) {
-        ConstraintLayout background = (ConstraintLayout) findViewById(R.id.background);
-        ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
-        LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
-        TextView title = (TextView) findViewById(R.id.appLogo);
+        String reason = ((Application) getApplicationContext()).getReason();
+        ConstraintLayout background = findViewById(R.id.background);
+        ScrollView wrapperView = findViewById(R.id.wrapperView);
+        LinearLayout contactTracingView = findViewById(R.id.contactTracingView);
+        TextView contactTracingMsg = findViewById(R.id.contactTracingMsg);
+        TextView title = findViewById(R.id.appLogo);
+        ImageView appIcon = findViewById(R.id.appIcon);
+        ImageView statusIcon = findViewById(R.id.contactTracingStatusIcon);
+        ImageView contactTracingIcon = findViewById(R.id.contactTracingIcon);
+        BottomNavigationView navBar = findViewById(R.id.bottomNav);
         int darkRed = getResources().getColor(R.color.colorDangerDark);
         int darkYellow = getResources().getColor(R.color.backgroundColor);
         int lightYellow = getResources().getColor(R.color.lightBackgroundColor);
         int textColour = getResources().getColor(R.color.textColour);
 
         if(!bluetooth) {
-
             //Change background to red
             background.setBackgroundColor(darkRed);
             wrapperView.setBackgroundColor(darkRed);
             //Change logo colour to white
             title.setTextColor(Color.WHITE);
-
-            //Add a new textView with a warning. needs to be changed to box_shadow
-            TextView warning = new TextView(StopCovidHome.this);
-            //Set an Id for warning title so it can be deleted on Bluetooth activation
-            warning.setId(150);
-            warning.setText("WARNING");
-            warning.setBackgroundResource(R.drawable.box_shadow);
-            warning.setTextColor(Color.WHITE);
-            warning.setTypeface(Typeface.DEFAULT_BOLD);
-            warning.setGravity(Gravity.CENTER);
-            warning.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
-            warning.setBackgroundTintList(getResources().getColorStateList(R.color.colorDanger));
-            warning.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-                    if (btAdapter != null) {
-                        btAdapter.enable();
+            appIcon.setBackgroundTintList(getResources().getColorStateList(R.color.lightBackground));
+            contactTracingIcon.setBackgroundTintList(getResources().getColorStateList(R.color.lightBackground));
+            navBar.setBackgroundColor(darkRed);
+            if(reason.equals("bluetooth")) {
+            //    statusIcon.setBackgroundResource(android.R.drawable.ic_notification_overlay);
+                contactTracingMsg.setTextColor(Color.WHITE);
+                contactTracingMsg.setText("Contact Tracing: NOT ACTIVE");
+                contactTracingView.setBackgroundTintList(getResources().getColorStateList(R.color.colorDanger));
+                contactTracingView.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+                        if (btAdapter != null) {
+                            btAdapter.enable();
+                        }
                     }
-                }
-            });
-            innerView.addView(warning, 0);
+                });
 
+            }
         } else {
-                background.setBackgroundColor(darkYellow);
-                wrapperView.setBackgroundColor(lightYellow);
-                title.setTextColor(textColour);
-                if(innerView.getChildAt(0).getId() == 150) {
-                    innerView.getChildAt(0).setVisibility(View.GONE);
-                }
+            background.setBackgroundColor(darkYellow);
+            wrapperView.setBackgroundColor(lightYellow);
+            title.setTextColor(textColour);
+            appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+            contactTracingIcon.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+           // statusIcon.setBackgroundResource(android.R.drawable.presence_online);
+            contactTracingMsg.setTextColor(textColour);
+            contactTracingMsg.setText("Contact tracing: active");
+            contactTracingView.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));
+            navBar.setBackgroundColor(darkYellow);
         }
     }
 

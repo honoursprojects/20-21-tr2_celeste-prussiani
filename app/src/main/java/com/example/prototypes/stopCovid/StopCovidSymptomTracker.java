@@ -8,17 +8,22 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
 import com.example.prototypes.Warning;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -38,13 +43,25 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     ArrayList<String> symptoms;
     ArrayList<String> reportedSymptoms;
     MutableLiveData<String> listen;
+
+    CheckBox coughCheck;
+    CheckBox feverCheck;
+    CheckBox tasteCheck;
+    CheckBox breathingCheck;
+    CheckBox appetiteCheck;
+    CheckBox noCheck;
     @SuppressLint("NewApi")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_symptom_tracker);
-
+        coughCheck = findViewById(R.id.coughCheck);
+        feverCheck = findViewById(R.id.feverCheck);
+        tasteCheck = findViewById(R.id.tasteCheck);
+        breathingCheck = findViewById(R.id.breathingCheck);
+        appetiteCheck = findViewById(R.id.appetiteCheck);
+        noCheck = findViewById(R.id.noCheck);
         symptoms = new ArrayList<String>();
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
         Boolean symptoms = ((Application) getApplicationContext()).getSymptomsState();
@@ -58,6 +75,8 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+
         //Check user bluetooth settings
         EventBus.getDefault().register(this);
     }
@@ -78,11 +97,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     }
 
     public void saveSymptoms(View view) {
-        CheckBox coughCheck = findViewById(R.id.coughCheck);
-        CheckBox feverCheck = findViewById(R.id.feverCheck);
-        CheckBox tasteCheck = findViewById(R.id.tasteCheck);
-        CheckBox breathingCheck = findViewById(R.id.breathingCheck);
-        CheckBox appetiteCheck = findViewById(R.id.appetiteCheck);
 
         if(coughCheck.isChecked()) {
             symptoms.add("Cough");
@@ -136,26 +150,43 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint({"ResourceType", "NewApi"})
     public void changeColour(Boolean bluetooth) {
-        ConstraintLayout background = (ConstraintLayout) findViewById(R.id.background);
-        ScrollView wrapperView = (ScrollView) findViewById(R.id.wrapperView);
-        LinearLayout innerView = (LinearLayout) findViewById(R.id.innerView);
-        TextView appLogo = (TextView) findViewById(R.id.appLogo);
-
+        ConstraintLayout background = findViewById(R.id.background);
+        ScrollView wrapperView = findViewById(R.id.wrapperView);
+        TextView appLogo = findViewById(R.id.appLogo);
+        TextView title = findViewById(R.id.symptomTitle);
+        TextView subtitle = findViewById(R.id.symptomSubtitle);
+        Button saveBtn = findViewById(R.id.saveBtn);
+        ImageView appIcon = findViewById(R.id.appIcon);
+        BottomNavigationView navBar = findViewById(R.id.bottomNav);
+        int darkRed = getResources().getColor(R.color.colorDangerDark);
+        int darkYellow = getResources().getColor(R.color.backgroundColor);
+        int lightYellow = getResources().getColor(R.color.lightBackgroundColor);
+        int textColour = getResources().getColor(R.color.textColour);
 
         if(!bluetooth) {
-            int darkRed = getResources().getColor(R.color.colorDangerDark);
             //Change background to red
             background.setBackgroundColor(darkRed);
             wrapperView.setBackgroundColor(darkRed);
             //Change logo colour to white
             appLogo.setTextColor(Color.WHITE);
+            appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+            title.setTextColor(Color.WHITE);
+            subtitle.setTextColor(Color.WHITE);
+            //Change colour of btn
+            saveBtn.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+            saveBtn.setTextColor(darkRed);
+            navBar.setBackgroundColor(darkRed);
         } else {
-            int darkYellow = getResources().getColor(R.color.backgroundColor);
-            int lightYellow = getResources().getColor(R.color.lightBackgroundColor);
-            int textColour = getResources().getColor(R.color.textColour);
             background.setBackgroundColor(darkYellow);
             wrapperView.setBackgroundColor(lightYellow);
-            appLogo.setTextColor(textColour);
+            appLogo.setTextColor(Color.BLACK);
+            appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+            title.setTextColor(textColour);
+
+            saveBtn.setBackgroundTintList(getResources().getColorStateList(R.color.colorDanger));
+            saveBtn.setTextColor(Color.WHITE);
+
+            navBar.setBackgroundColor(darkYellow);
         }
     }
 

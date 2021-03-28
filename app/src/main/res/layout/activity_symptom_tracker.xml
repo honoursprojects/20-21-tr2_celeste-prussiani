@@ -9,12 +9,13 @@
     tools:context=".stopCovid.StopCovidSymptomTracker">
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/appIcon"
         android:layout_width="23dp"
         android:layout_height="23dp"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/wrapperView"
         app:layout_constraintStart_toEndOf="@+id/appLogo"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_covid" />
@@ -47,7 +48,7 @@
                 android:layout_weight="1"
                 android:onClick="openContactTracing"
                 app:srcCompat="@drawable/ic_covid"
-                app:tint="@color/textColour" />
+                app:tint="#000" />
 
         </LinearLayout>
     </com.google.android.material.bottomnavigation.BottomNavigationView>
@@ -111,60 +112,82 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/subtitle"
+                android:id="@+id/symptomSubtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:text="@string/symptomTracker_stopCovid_subtitle" />
+                android:text="@string/symptomTracker_stopCovid_subtitle"
+                android:textSize="18sp" />
 
-            <CheckBox
-                android:id="@+id/feverCheck"
+            <LinearLayout
+                android:id="@+id/checkContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Fever" />
-
-            <CheckBox
-                android:id="@+id/coughCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Dry cough" />
-
-            <CheckBox
-                android:id="@+id/tasteCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Loss of sense of taste or smell" />
-
-            <CheckBox
-                android:id="@+id/appetiteCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Loss of appetite" />
-
-            <CheckBox
-                android:id="@+id/breathingCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Difficulty breathing" />
-
-            <CheckBox
-                android:id="@+id/noCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="None" />
-
-            <Button
-                android:id="@+id/saveBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_height="match_parent"
                 android:background="@drawable/box_shadow"
-                android:backgroundTint="@color/colorDanger"
-                android:backgroundTintMode="multiply"
-                android:onClick="saveSymptoms"
-                android:text="Log"
-                android:textColor="#fff" />
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <CheckBox
+                    android:id="@+id/noCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorDanger"
+                    android:text="None"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/appetiteCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorDanger"
+                    android:text="Loss of appetite"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/tasteCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorDanger"
+                    android:text="Loss of sense of taste or smell"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/coughCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorDanger"
+                    android:text="Dry cough"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/breathingCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorDanger"
+                    android:text="Difficulty breathing"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/feverCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorDanger"
+                    android:text="Fever"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/saveBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/box_shadow"
+                    android:backgroundTint="@color/colorDanger"
+                    android:backgroundTintMode="multiply"
+                    android:onClick="saveSymptoms"
+                    android:text="Log"
+                    android:textColor="#fff" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -187,13 +187,13 @@
                 android:layout_weight="1"
                 android:onClick="openContactTracing"
                 app:srcCompat="@drawable/ic_covid"
-                app:tint="@color/textColour" />
+                app:tint="#000" />
 
         </LinearLayout>
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/appIcon"
         android:layout_width="23dp"
         android:layout_height="23dp"
         android:layout_marginStart="8dp"

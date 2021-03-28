@@ -14,12 +14,13 @@
         tools:context=".stopCovid.StopCovid">
 
         <ImageView
-            android:id="@+id/imageView11"
+            android:id="@+id/appIcon"
             android:layout_width="23dp"
             android:layout_height="23dp"
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/wrapperView"
             app:layout_constraintStart_toEndOf="@+id/appLogo"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_covid" />
@@ -41,7 +42,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/box_no_shadow"
-            android:backgroundTint="#fff"
+            android:backgroundTint="@color/lightBackgroundColor"
             android:backgroundTintMode="multiply"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,34 +73,46 @@
                     android:text="You can report a positive Covid test here."
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/warningTitle"
+                <LinearLayout
+                    android:id="@+id/textContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="WARNING"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/warningMsg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="20dp"
-                    android:text="@string/warningUpload"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/report_btn"
-                    android:layout_width="318dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:background="@drawable/box_shadow"
-                    android:backgroundTint="@color/colorDanger"
-                    android:backgroundTintMode="multiply"
-                    android:gravity="center"
-                    android:onClick="reportTest"
-                    android:text="report"
-                    android:textColor="#fff" />
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/warningTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="WARNING"
+                        android:textColor="#000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/warningMsg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/warningUpload"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/reportBtn"
+                        android:layout_width="318dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/box_shadow"
+                        android:backgroundTint="@color/colorDanger"
+                        android:backgroundTintMode="multiply"
+                        android:gravity="center"
+                        android:onClick="reportTest"
+                        android:text="report"
+                        android:textColor="#fff" />
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
