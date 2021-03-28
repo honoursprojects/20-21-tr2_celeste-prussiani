@@ -8,7 +8,7 @@
     tools:context=".stopCovid.StopCovid">
 
     <TextView
-        android:id="@+id/appLogo2"
+        android:id="@+id/appLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -18,7 +18,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginBottom="8dp"
         android:text="@string/stopCovid_app_name"
-        android:textColor="@color/textColour"
+        android:textColor="#000"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/wrapperView"
@@ -27,13 +27,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.837" />
 
+    <ImageView
+        android:id="@+id/appIcon2"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/wrapperView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_covid"
+        tools:layout_editor_absoluteX="255dp" />
+
     <Button
         android:id="@+id/startButton"
         android:layout_width="180dp"
         android:layout_height="56dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="40dp"
@@ -44,7 +55,7 @@
         android:onClick="goHome"
         android:paddingLeft="20px"
         android:paddingRight="20px"
-        android:text="@string/stopCovid_intro"
+        android:text="@string/stopCovid_btn"
         android:textColor="@color/lightBackground"
         android:textIsSelectable="false"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,10 +73,10 @@
         android:id="@+id/imageView5"
         android:layout_width="190dp"
         android:layout_height="418dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="156dp"
         android:contentDescription="intro_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.837"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_bambina_morta"
@@ -73,28 +84,31 @@
 
     <TextView
         android:id="@+id/bulletPoints"
-        android:layout_width="303dp"
-        android:layout_height="139dp"
+        android:layout_width="306dp"
+        android:layout_height="160dp"
         android:layout_marginStart="49dp"
         android:layout_marginLeft="49dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="144dp"
         android:layout_marginEnd="49dp"
         android:layout_marginRight="49dp"
-        android:gravity="center"
         android:text="@string/bullets"
+        android:textColor="@color/textColour"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/introText" />
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="229dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="88dp"
-        android:text="Stop Covid. Now."
+        android:layout_width="287dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="72dp"
+        android:gravity="center"
+        android:text="Stop Covid-19. Now."
         android:textColor="@color/textColour"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -103,14 +117,12 @@
 
     <TextView
         android:id="@+id/introText"
-        android:layout_width="130dp"
-        android:layout_height="172dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/placeholder_text"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="319dp"
+        android:layout_height="157dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/stopCovid_intro"
+        android:textColor="@color/textColour"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 

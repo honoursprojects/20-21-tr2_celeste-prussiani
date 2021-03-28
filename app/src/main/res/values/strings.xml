@@ -11,11 +11,12 @@
     <string name="covidTracker_intro">Protect yourself and your loved ones</string>
     <string name="welcome">Welcome!</string>
     <string name="continue_btn">Continue</string>
-    <string name="stopCovid_intro">Start now</string>
+    <string name="stopCovid_btn">Start now</string>
     <string name="warning">WARNING</string>
     <string name="contactTracing_btn">Activate contact tracing</string>
     <string name="exit">X</string>
-    <string name="bullets">- Lorem ipsum dolor sit amet \n \n - Lorem ipsum dolor sit amet \n \n - Lorem ipsum dolor sit amet</string>
+    <string name="bullets">- Track your contacts and keep safe \n \n - Stay updated with daily figures and data \n \n - Track your symptoms and book tests</string>
+    <string name="stopCovid_intro">Contact tracing is fundamental to stop the spread and end the pandemic. With StopCovid you can take responsibility of your safety and of the containment of Coronavirus. </string>
     <string name="warningUpload">- Information reported here must be truthful and up-to-date. Reporting false test results will cause fines. \n \n - Individuals you have been in contact with, however brief, must be notified for their safety \n \n - You must self-isolate for at least 10 days after a positive Covid test. Leaving home when positive to Coronavirus will cause fines.</string>
     <!-- Symptom tracker -->
     <string name="symptomTracker_intro">How are you feeling today?</string>
