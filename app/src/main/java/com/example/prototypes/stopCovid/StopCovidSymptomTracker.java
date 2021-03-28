@@ -65,8 +65,9 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         symptoms = new ArrayList<String>();
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
         Boolean symptoms = ((Application) getApplicationContext()).getSymptomsState();
+        Boolean test = ((Application) getApplicationContext()).getTestState();
         Boolean state = true;
-        if(!bluetooth || !symptoms) {
+        if(!bluetooth || !symptoms || !test) {
             state = false;
         }
         changeColour(state);
@@ -75,9 +76,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-
-        //Check user bluetooth settings
         EventBus.getDefault().register(this);
     }
 
@@ -172,9 +170,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
             title.setTextColor(Color.WHITE);
             subtitle.setTextColor(Color.WHITE);
-            //Change colour of btn
-            saveBtn.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
-            saveBtn.setTextColor(darkRed);
             navBar.setBackgroundColor(darkRed);
         } else {
             background.setBackgroundColor(darkYellow);
@@ -182,9 +177,6 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             appLogo.setTextColor(Color.BLACK);
             appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
             title.setTextColor(textColour);
-
-            saveBtn.setBackgroundTintList(getResources().getColorStateList(R.color.colorDanger));
-            saveBtn.setTextColor(Color.WHITE);
 
             navBar.setBackgroundColor(darkYellow);
         }
@@ -201,5 +193,12 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
+
+    public void openContactTracing(View view) {
+        intent = new Intent(this, StopCovidContactTracing.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 }

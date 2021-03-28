@@ -54,12 +54,11 @@ public class StopCovidHome extends AppCompatActivity {
         //Check bluetooth state from application
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
         Boolean symptoms = ((Application) getApplicationContext()).getSymptomsState();
+        Boolean test = ((Application) getApplicationContext()).getTestState();
         //Change colour accordingly
         Boolean state = true;
-        if(!bluetooth || !symptoms) {
+        if(!bluetooth || !symptoms || !test) {
             state = false;
-            intent = new Intent(this, WarningMessage.class);
-            startActivity(intent);
         }
         changeColour(state);
         //Create a barchart

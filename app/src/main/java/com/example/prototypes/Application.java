@@ -47,7 +47,7 @@ public class Application extends android.app.Application {
     public Boolean bluetooth = true;
     public Boolean symptoms = true;
     public Boolean contact = true;
-    public Boolean test = true;
+    public Boolean testState = true;
     public String reason = null;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -57,13 +57,13 @@ public class Application extends android.app.Application {
         checkBluetooth();
         notificationManager = NotificationManagerCompat.from(this);
         createNotificationChannels();
-        fakeContactAlarm();
+        //fakeContactAlarm();
     }
     /** Getters **/
     public Boolean getBluetoothState() {return bluetooth;}
     public Boolean getSymptomsState() {return symptoms;}
     public Boolean getContactState() {return contact;}
-    public Boolean getTestState() {return test;}
+    public Boolean getTestState() {return testState;}
 
     public String getReason() {
         return this.reason;
@@ -88,6 +88,7 @@ public class Application extends android.app.Application {
             showNotification(TEST_WARNING);
 
             this.reason = TEST_WARNING;
+            testState = false;
             Warning post = new Warning(test, TEST_WARNING);
             EventBus.getDefault().post(post);
         }
@@ -261,7 +262,7 @@ public class Application extends android.app.Application {
 
     /**
      * Create a fake notification at a random time
-     */
+
     public void fakeContactAlarm() {
         Random random = new Random();
         int time = random.nextInt();
@@ -272,5 +273,5 @@ public class Application extends android.app.Application {
                 SystemClock.elapsedRealtime() +
                         time*1000, pendingIntent);
     }
-
+*/
 }

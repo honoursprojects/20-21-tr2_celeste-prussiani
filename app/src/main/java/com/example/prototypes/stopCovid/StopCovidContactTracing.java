@@ -27,10 +27,19 @@ import org.greenrobot.eventbus.Subscribe;
 
 public class StopCovidContactTracing extends AppCompatActivity {
     Intent intent;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stop_covid_report);
+        Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
+        Boolean symptoms = ((Application) getApplicationContext()).getSymptomsState();
+        Boolean test = ((Application) getApplicationContext()).getTestState();
+        Boolean state = true;
+        if(!bluetooth || !symptoms || !test) {
+            state = false;
+        }
+        changeColour(state);
     }
 
     @Override
@@ -44,7 +53,6 @@ public class StopCovidContactTracing extends AppCompatActivity {
     @Subscribe
     public void onMessageEvent(Warning warning) {
         boolean flag = warning.getWarning();
-        //Change colour when bluetooth changes
         if(!flag){
             intent = new Intent(this, WarningMessage.class);
             startActivity(intent);
@@ -75,9 +83,6 @@ public class StopCovidContactTracing extends AppCompatActivity {
             appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
             title.setTextColor(Color.WHITE);
             subtitle.setTextColor(Color.WHITE);
-            //Change colour of btn
-            reportBtn.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
-            reportBtn.setTextColor(darkRed);
         } else {
             background.setBackgroundColor(darkYellow);
             wrapperView.setBackgroundColor(lightYellow);
@@ -85,9 +90,6 @@ public class StopCovidContactTracing extends AppCompatActivity {
             appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
             title.setTextColor(textColor);
             subtitle.setTextColor(textColor);
-            //Change colour of btn
-            reportBtn.setBackgroundTintList(getResources().getColorStateList(R.color.colorDanger));
-            reportBtn.setTextColor(Color.WHITE);
         }
     }
 
@@ -104,9 +106,6 @@ public class StopCovidContactTracing extends AppCompatActivity {
         finish();
     }
 
-    public void goBack(View view) {
-        finish();
-    }
     /**
      * Handle activity close
      */
