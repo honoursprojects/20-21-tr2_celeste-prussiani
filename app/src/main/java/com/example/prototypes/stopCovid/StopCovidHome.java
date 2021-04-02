@@ -10,14 +10,12 @@ import android.app.AlarmManager;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.BlendMode;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -44,7 +42,6 @@ import java.util.ArrayList;
 public class StopCovidHome extends AppCompatActivity {
     Intent intent;
     BarChart barchart;
-    AlarmManager alarmManager;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -75,7 +72,6 @@ public class StopCovidHome extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Subscribe
     public void onMessageEvent(Warning warning) {
-
         boolean flag = warning.getWarning();
         String msg = warning.getMessage();
         //Change colour when bluetooth changes
@@ -117,10 +113,8 @@ public class StopCovidHome extends AppCompatActivity {
             contactTracingIcon.setBackgroundTintList(getResources().getColorStateList(R.color.lightBackground));
             navBar.setBackgroundColor(darkRed);
             if(reason.equals("bluetooth")) {
-            //    statusIcon.setBackgroundResource(android.R.drawable.ic_notification_overlay);
-                contactTracingMsg.setTextColor(Color.WHITE);
                 contactTracingMsg.setText("Contact Tracing: NOT ACTIVE");
-                contactTracingView.setBackgroundTintList(getResources().getColorStateList(R.color.colorDanger));
+                statusIcon.setColorFilter(ContextCompat.getColor(this, R.color.colorDanger), PorterDuff.Mode.SRC_IN);
                 contactTracingView.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -130,17 +124,16 @@ public class StopCovidHome extends AppCompatActivity {
                     }
                 });
 
-            }
+           }
         } else {
             background.setBackgroundColor(darkYellow);
             wrapperView.setBackgroundColor(lightYellow);
             title.setTextColor(textColour);
             appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
             contactTracingIcon.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
-           // statusIcon.setBackgroundResource(android.R.drawable.presence_online);
             contactTracingMsg.setTextColor(textColour);
             contactTracingMsg.setText("Contact tracing: active");
-            contactTracingView.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));
+            statusIcon.setBackgroundTintList(getResources().getColorStateList(R.color.green));
             navBar.setBackgroundColor(darkYellow);
         }
     }
