@@ -17,4 +17,7 @@
     <color name="btnColor">#009688</color>
     <color name="darkPinkHighlight">#D53068</color>
     <color name="pinkHighlight">#DCA4B7</color>
+
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
 </resources>

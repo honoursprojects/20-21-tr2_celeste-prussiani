@@ -3,12 +3,14 @@ package com.example.prototypes.stopCovid;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -80,14 +82,14 @@ public class StopCovidContactTracing extends AppCompatActivity {
             wrapperView.setBackgroundColor(darkRed);
             //Logo and text to white
             appLogo.setTextColor(Color.WHITE);
-            appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+            appIcon.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_IN);
             title.setTextColor(Color.WHITE);
             subtitle.setTextColor(Color.WHITE);
         } else {
             background.setBackgroundColor(darkYellow);
             wrapperView.setBackgroundColor(lightYellow);
             appLogo.setTextColor(Color.BLACK);
-            appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+            appIcon.setColorFilter(ContextCompat.getColor(this, R.color.black), PorterDuff.Mode.SRC_IN);
             title.setTextColor(textColor);
             subtitle.setTextColor(textColor);
         }

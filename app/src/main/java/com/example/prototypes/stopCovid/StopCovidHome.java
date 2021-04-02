@@ -109,8 +109,8 @@ public class StopCovidHome extends AppCompatActivity {
             wrapperView.setBackgroundColor(darkRed);
             //Change logo colour to white
             title.setTextColor(Color.WHITE);
-            appIcon.setBackgroundTintList(getResources().getColorStateList(R.color.lightBackground));
-            contactTracingIcon.setBackgroundTintList(getResources().getColorStateList(R.color.lightBackground));
+            appIcon.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_IN);
+            contactTracingIcon.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_IN);
             navBar.setBackgroundColor(darkRed);
             if(reason.equals("bluetooth")) {
                 contactTracingMsg.setText("Contact Tracing: NOT ACTIVE");
@@ -129,8 +129,8 @@ public class StopCovidHome extends AppCompatActivity {
             background.setBackgroundColor(darkYellow);
             wrapperView.setBackgroundColor(lightYellow);
             title.setTextColor(textColour);
-            appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
-            contactTracingIcon.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+            appIcon.setColorFilter(ContextCompat.getColor(this, R.color.black), PorterDuff.Mode.SRC_IN);
+            contactTracingIcon.setColorFilter(ContextCompat.getColor(this, R.color.black), PorterDuff.Mode.SRC_IN);
             contactTracingMsg.setTextColor(textColour);
             contactTracingMsg.setText("Contact tracing: active");
             statusIcon.setBackgroundTintList(getResources().getColorStateList(R.color.green));

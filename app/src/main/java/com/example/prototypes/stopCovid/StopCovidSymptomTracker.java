@@ -3,6 +3,7 @@ package com.example.prototypes.stopCovid;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.prototypes.Application;
@@ -17,6 +18,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -155,6 +157,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         TextView subtitle = findViewById(R.id.symptomSubtitle);
         Button saveBtn = findViewById(R.id.saveBtn);
         ImageView appIcon = findViewById(R.id.appIcon);
+        ImageView contactTracingIcon = findViewById(R.id.contactTracingIcon);
         BottomNavigationView navBar = findViewById(R.id.bottomNav);
         int darkRed = getResources().getColor(R.color.colorDangerDark);
         int darkYellow = getResources().getColor(R.color.backgroundColor);
@@ -167,7 +170,8 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             wrapperView.setBackgroundColor(darkRed);
             //Change logo colour to white
             appLogo.setTextColor(Color.WHITE);
-            appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+            appIcon.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_IN);
+            contactTracingIcon.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_IN);
             title.setTextColor(Color.WHITE);
             subtitle.setTextColor(Color.WHITE);
             navBar.setBackgroundColor(darkRed);
@@ -175,7 +179,8 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             background.setBackgroundColor(darkYellow);
             wrapperView.setBackgroundColor(lightYellow);
             appLogo.setTextColor(Color.BLACK);
-            appIcon.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+            appIcon.setColorFilter(ContextCompat.getColor(this, R.color.black), PorterDuff.Mode.SRC_IN);
+            contactTracingIcon.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_IN);
             title.setTextColor(textColour);
 
             navBar.setBackgroundColor(darkYellow);
