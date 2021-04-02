@@ -23,6 +23,7 @@
             app:layout_constraintBottom_toTopOf="@+id/wrapperView"
             app:layout_constraintStart_toEndOf="@+id/appLogo"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_covid" />
 
         <androidx.constraintlayout.widget.Barrier
@@ -42,7 +43,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/box_no_shadow"
-            android:backgroundTint="@color/lightBackgroundColor"
+            android:backgroundTint="#fff"
             android:backgroundTintMode="multiply"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

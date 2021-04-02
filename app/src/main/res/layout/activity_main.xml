@@ -40,6 +40,7 @@
                 android:id="@+id/badButton"
                 android:layout_width="248dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="32dp"
@@ -52,6 +53,7 @@
                 android:id="@+id/doctorButton"
                 android:layout_width="248dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="15dp"
@@ -62,8 +64,11 @@
 
             <Button
                 android:id="@+id/permissionsBtn"
-                android:layout_width="match_parent"
+                android:layout_width="248dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
                 android:onClick="requestPermission"
                 android:text="Accept permissions" />
 
