@@ -115,7 +115,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         }
 
         ((Application) getApplicationContext()).checkSymptoms(symptoms);
-      //  appendHistory();
+        appendHistory();
     }
 
     public void appendHistory() {
@@ -125,15 +125,14 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         StringBuilder stringBuilder = new StringBuilder();
-        //TextView box = findViewById(R.id.history);
 
         String text = "";
         for(String s : symptoms) {
             stringBuilder.append(text).append("\n").append(s);
         }
         editor.putString(date, text);
+        System.out.println(date);
         editor.commit();
-     //   box.setText(stringBuilder.toString());
     }
 
     public void clearHistory(View view) {

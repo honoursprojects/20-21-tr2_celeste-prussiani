@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.BlendMode;
 import android.graphics.Color;
@@ -37,6 +38,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class StopCovidHome extends AppCompatActivity {
@@ -58,15 +61,18 @@ public class StopCovidHome extends AppCompatActivity {
             state = false;
         }
         changeColour(state);
+
         //Create a barchart
         createChart();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onStart() {
         super.onStart();
         //Subscribe to bluetooth listener in Application class
         EventBus.getDefault().register(this);
+        checkSymptomsLogged();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -82,6 +88,23 @@ public class StopCovidHome extends AppCompatActivity {
         changeColour(flag);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void checkSymptomsLogged() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime dateTime = LocalDateTime.now();
+        String date = dateTimeFormatter.format(dateTime);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
+        TextView msg = findViewById(R.id.symptomsMsg);
+        ImageView icon = findViewById(R.id.symptomsStatusIcon);
+        if(pref.contains(date)) {
+            msg.setText("Logged symptoms for today");
+            icon.setColorFilter(ContextCompat.getColor(this, R.color.green), PorterDuff.Mode.SRC_IN);
+        } else {
+            msg.setText("Symptoms not logged. Tap here to open Symptom Tracker");
+            icon.setColorFilter(ContextCompat.getColor(this, R.color.colorDanger), PorterDuff.Mode.SRC_IN);
+        }
+
+    }
 
     //Handle view based on Bluetooth activation
     //Displays yellow view if bluetooth is active, red view if bluetooth is disabled
