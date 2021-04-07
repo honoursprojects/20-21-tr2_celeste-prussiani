@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize|adjustPan">
-        <activity android:name=".CovidTracker.CalendarActivity"></activity>
+        <activity android:name=".Home"></activity>
+        <activity android:name=".CovidTracker.CalendarActivity" />
         <activity android:name=".CovidTracker.CovidTrackerStore" />
 
         <receiver

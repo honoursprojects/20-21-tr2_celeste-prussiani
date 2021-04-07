@@ -1,4 +1,5 @@
 <resources>
+    <string name="intro_msg">Thank you for taking part in my project! \n \nTo continue to the application, please tap the button below to grant the app permission to detect your bluetooth status. \n \n Please note: \n \n - The app is NOT able to detect nearby devices: some features require bluetooth to be switched on or off to mock contact tracing functions \n \n - The app is NOT a real contact tracing app and does NOT track your contacts/position at any time \n \n - The app does NOT have access to an external database or the Internet: data you input will only be saved on your phone and can be deleted at any time</string>
     <string name="covidTracker_app_name">CovidTracker</string>
     <string name="stopCovid_app_name">StopCovid</string>
     <string name="prototypes_introduction">Please choose one of the app views</string>

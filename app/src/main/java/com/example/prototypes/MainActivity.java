@@ -25,16 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void openStopCovid(View view) {
-        intent = new Intent(this, StopCovid.class);
-        startActivity(intent);
-    }
-
-    public void openCovidTracker(View view) {
-        intent = new Intent(this, CovidTracker.class);
-        startActivity(intent);
-    }
-
     private Boolean hasBluetoothPermission() {
         boolean flag;
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) == PackageManager.PERMISSION_GRANTED) {
@@ -71,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             System.out.println("wella");
         }
+
+        openHomeActivity();
     }
 
     @Override
@@ -83,5 +75,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void openHomeActivity() {
+        intent = new Intent(this, Home.class);
+        startActivity(intent);
     }
 }

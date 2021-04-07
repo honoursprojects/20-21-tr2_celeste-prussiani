@@ -12,12 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:text="@string/prototypes_introduction"
-        android:textSize="18sp"
+        android:text="Welcome!"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,31 +38,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/badButton"
-                android:layout_width="248dp"
+            <TextView
+                android:id="@+id/welcomeMsg"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:onClick="openStopCovid"
-                android:text="@string/stopCovid_app_name" />
-
-            <Button
-                android:id="@+id/doctorButton"
-                android:layout_width="248dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:onClick="openCovidTracker"
-                android:text="@string/covidTracker_app_name" />
+                android:text="@string/intro_msg"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/permissionsBtn"
@@ -68,10 +51,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
+                android:background="@drawable/box_shadow"
+                android:backgroundTint="@color/colorAccent"
+                android:backgroundTintMode="multiply"
                 android:gravity="center"
                 android:onClick="requestPermission"
-                android:text="Accept permissions" />
+                android:text="Accept permissions"
+                android:textColor="@color/white" />
 
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
