@@ -21,6 +21,7 @@
         android:background="@drawable/box_no_shadow"
         android:backgroundTint="#fff"
         android:backgroundTintMode="multiply"
+        android:paddingBottom="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -82,8 +83,8 @@
                     android:layout_height="15dp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    app:tint="@color/green"
-                    app:srcCompat="@drawable/ic_dot" />
+                    app:srcCompat="@drawable/ic_dot"
+                    app:tint="@color/green" />
 
                 <TextView
                     android:id="@+id/contactTracingMsg"
@@ -116,8 +117,8 @@
                     android:layout_height="15dp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    app:tint="@color/green"
-                    app:srcCompat="@drawable/ic_dot" />
+                    app:srcCompat="@drawable/ic_dot"
+                    app:tint="@color/green" />
 
                 <TextView
                     android:id="@+id/symptomsMsg"
@@ -131,15 +132,33 @@
 
             </LinearLayout>
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/barChart_view"
+            <LinearLayout
+                android:id="@+id/chartContainer"
                 android:layout_width="340dp"
-                android:layout_height="300dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:background="@drawable/box_shadow"
-                android:padding="30dp" />
+                android:orientation="vertical">
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart_view"
+                    android:layout_width="340dp"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:padding="30dp">
+
+                </com.github.mikephil.charting.charts.BarChart>
+
+                <TextView
+                    android:id="@+id/graphDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Lorem ipsum dolor sit amet" />
+
+            </LinearLayout>
 
 
         </LinearLayout>
