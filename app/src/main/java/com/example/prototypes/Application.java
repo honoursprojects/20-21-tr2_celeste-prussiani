@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.prototypes.stopCovid.AlarmReceiver;
+import com.example.prototypes.stopCovid.StopCovidHome;
 import com.example.prototypes.stopCovid.WarningMessage;
 
 import org.greenrobot.eventbus.EventBus;
@@ -185,7 +186,7 @@ public class Application extends android.app.Application {
         String testMessage = "You have reported a positive test. We advice sel isolation";
 
         //Define which activity to open when tapping on notification
-        Intent activityIntent = new Intent(this, WarningMessage.class); //probably post a message to warning activity here
+        Intent activityIntent = new Intent(this, StopCovidHome.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this,
                 0, activityIntent, 0);
 
@@ -207,7 +208,7 @@ public class Application extends android.app.Application {
                 break;
             case CONTACT_WARNING:
                 Notification contact = new Builder(this, CONTACT_CHANNEL_NAME)
-                        .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
+                        .setSmallIcon(R.drawable.ic_covid)
                         .setContentTitle("Dangerous contact")
                         .setContentText(contactMessage)
                         .setPriority(PRIORITY_HIGH)
@@ -223,7 +224,7 @@ public class Application extends android.app.Application {
                 break;
             case TEST_WARNING:
                 Notification test = new Builder(this, SYMPTOM_CHANNEL_NAME)
-                        .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
+                        .setSmallIcon(R.drawable.ic_covid)
                         .setContentTitle("Positive test reported")
                         .setContentText(testMessage)
                         .setPriority(PRIORITY_HIGH)
@@ -237,7 +238,7 @@ public class Application extends android.app.Application {
                 break;
             case SYMPTOMS_WARNING:
                 Notification symptoms = new Builder(this, SYMPTOM_CHANNEL_NAME)
-                    .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
+                     .setSmallIcon(R.drawable.ic_covid)
                     .setContentTitle("Dangerous symptoms")
                     .setContentText(symptomMessage)
                     .setPriority(PRIORITY_HIGH)
