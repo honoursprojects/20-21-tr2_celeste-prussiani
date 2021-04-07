@@ -72,26 +72,32 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void appendHistory(View view) {
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime dateTime = LocalDateTime.now();
+        String date = dateTimeFormatter.format(dateTime);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("covidTracker_preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        StringBuilder stringBuilder = new StringBuilder();
+        String text = "";
+        String space = " ";
+        for(int s : symptoms) {
+            stringBuilder.append(text).append(space).append(s).toString();
+        }
+        editor.putString(date, text);
+        editor.commit();
+
+        revertBg();
+    }
+
+    public void revertBg() {
+
         LinearLayout s1 = findViewById(R.id.btn1);
         LinearLayout s2 = findViewById(R.id.btn2);
         LinearLayout s3 = findViewById(R.id.btn3);
         LinearLayout s4 = findViewById(R.id.btn4);
         LinearLayout s5 = findViewById(R.id.btn5);
         LinearLayout s6 = findViewById(R.id.btn6);
-
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime dateTime = LocalDateTime.now();
-        String date = dateTimeFormatter.format(dateTime);
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        StringBuilder stringBuilder = new StringBuilder();
-        String text = "";
-        for(int s : symptoms) {
-            stringBuilder.append(text).append(s).toString();
-        }
-        editor.putString(date, text);
-        editor.commit();
-       // box.setText(stringBuilder.toString());
 
         s1.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));
         s2.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));

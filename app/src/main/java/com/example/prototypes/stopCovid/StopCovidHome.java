@@ -93,7 +93,7 @@ public class StopCovidHome extends AppCompatActivity {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime dateTime = LocalDateTime.now();
         String date = dateTimeFormatter.format(dateTime);
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("stopCovid_preferences", MODE_PRIVATE);
         TextView msg = findViewById(R.id.symptomsMsg);
         ImageView icon = findViewById(R.id.symptomsStatusIcon);
         if(pref.contains(date)) {

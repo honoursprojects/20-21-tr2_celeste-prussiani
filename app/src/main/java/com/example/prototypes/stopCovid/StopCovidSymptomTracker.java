@@ -122,7 +122,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime dateTime = LocalDateTime.now();
         String date = dateTimeFormatter.format(dateTime);
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("stopCovid_preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         StringBuilder stringBuilder = new StringBuilder();
 
