@@ -124,7 +124,6 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
            flag = true;
         }
         return flag;
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

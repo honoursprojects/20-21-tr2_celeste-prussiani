@@ -71,6 +71,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
 
        symptomTracker = new SymptomTracker();
 
+
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
         Boolean symptoms = ((Application) getApplicationContext()).getSymptomsState();
         Boolean test = ((Application) getApplicationContext()).getTestState();
