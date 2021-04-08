@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.prototypes.R;
+import com.example.prototypes.SymptomTracker;
 
 import java.util.Map;
 import java.util.Set;
@@ -39,7 +40,12 @@ public class CalendarActivity<view> extends AppCompatActivity {
                 title.setTextSize(20);
                 title.setText(s);
                 TextView entry = new TextView(this);
-                entry.setText(pref.getString(s, "DEFAULT"));
+                String symptoms = pref.getString(s, "DEFAULT");
+                entry.setText(symptoms);
+                String[] symptomIndex = symptoms.split(" ");
+                if(symptomIndex.length > 3) {
+                    title.setTextColor(getResources().getColor(R.color.colorDanger));
+                }
                 container.addView(title);
                 container.addView(entry);
             }

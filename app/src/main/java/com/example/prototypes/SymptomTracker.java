@@ -47,21 +47,30 @@ public class SymptomTracker {
         LocalDateTime dateTime = LocalDateTime.now();
         String date = dateTimeFormatter.format(dateTime);
         SharedPreferences.Editor editor = pref.edit();
-        StringBuilder stringBuilder = new StringBuilder();
-        String text = "";
-        String space = " ";
-        for(int s : reportedSymptoms) {
-            stringBuilder.append(text).append(space).append(printSymptoms(s)).toString();
-        }
-        editor.putString(date, stringBuilder.toString());
+        editor.putString(date, composeString());
         editor.commit();
     }
 
-    public void clearHistory(SharedPreferences pref) {
-        SharedPreferences.Editor editor = pref.edit();
+    public void clearHistory() {
+      /*  SharedPreferences.Editor editor = pref.edit();
         reportedSymptoms.clear();
         editor.clear();
-        editor.commit();
+        editor.commit();*/
+        reportedSymptoms.clear();
+    }
+
+    public String composeString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        String text = "";
+        String space = " ";
+        String comma = ",";
+        String dot = ".";
+        for(int s : reportedSymptoms) {
+            stringBuilder.append(text).append(printSymptoms(s)).append(comma).append(space).toString();
+        }
+        stringBuilder.delete(stringBuilder.length()-2, stringBuilder.length());
+        stringBuilder.append(dot);
+        return stringBuilder.toString();
     }
 
     public Boolean checkSymptoms() {

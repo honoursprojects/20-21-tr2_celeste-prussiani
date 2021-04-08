@@ -35,22 +35,22 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
     public Integer printSymptom(String id) {
         int symptom = 1;
         switch(id) {
-            case "2131230820":
-                symptom = 2;
-                break;
-            case "2131230821":
+            case "2131230824":
                 symptom = 1;
                 break;
-            case "2131230822":
-                symptom = 5;
+            case "2131230825":
+                symptom = 2;
                 break;
-            case "2131230823":
+            case "2131230826":
                 symptom = 4;
                 break;
-            case "2131230824":
+            case "2131230827":
+                symptom = 5;
+                break;
+            case "2131230828":
                 symptom = 6;
                 break;
-            case "2131230825":
+            case "2131230829":
                 symptom = 3;
                 break;
         }
@@ -59,6 +59,7 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void saveSymptom(View view) {
+        System.out.println(view.getId());
         LinearLayout layout = findViewById(view.getId());
         layout.setBackgroundTintList(getResources().getColorStateList(R.color.darkPinkHighlight));
         layout.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
