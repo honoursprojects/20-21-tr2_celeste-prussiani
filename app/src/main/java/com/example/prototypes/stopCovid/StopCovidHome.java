@@ -100,9 +100,9 @@ public class StopCovidHome extends AppCompatActivity {
         if(pref.contains(date)) {
             msg.setText("Logged symptoms for today");
             icon.setColorFilter(ContextCompat.getColor(this, R.color.green), PorterDuff.Mode.SRC_IN);
-            //symptomsView.setClickable(false);
+            symptomsView.setClickable(false);
         } else {
-            msg.setText("Symptoms not logged. Tap here to open Symptom Tracker");
+            msg.setText("Tap here to log symptoms");
             icon.setMinimumWidth(20);
             icon.setColorFilter(ContextCompat.getColor(this, R.color.colorDanger), PorterDuff.Mode.SRC_IN);
         }
