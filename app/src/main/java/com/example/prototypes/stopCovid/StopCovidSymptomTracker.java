@@ -169,7 +169,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             wrapperView.setBackgroundColor(lightYellow);
             appLogo.setTextColor(Color.BLACK);
             appIcon.setColorFilter(ContextCompat.getColor(this, R.color.black), PorterDuff.Mode.SRC_IN);
-            contactTracingIcon.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_IN);
+            contactTracingIcon.setColorFilter(ContextCompat.getColor(this, R.color.black), PorterDuff.Mode.SRC_IN);
             title.setTextColor(textColour);
 
             navBar.setBackgroundColor(darkYellow);
