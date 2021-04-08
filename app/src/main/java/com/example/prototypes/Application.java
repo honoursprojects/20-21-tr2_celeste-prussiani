@@ -70,24 +70,18 @@ public class Application extends android.app.Application {
         return this.reason;
     }
     /** Checkers **/
-    public void checkSymptoms(ArrayList<Integer> newSymptoms) {
-        if(newSymptoms.contains(1) && newSymptoms.contains(2)
-                && newSymptoms.contains(3) && newSymptoms.contains(4)) {
-            symptoms = false;
-
+    public void checkSymptoms(Boolean symptoms) {
+        if(!symptoms) {
             showNotification(SYMPTOMS_WARNING);
-        } else {
-            symptoms = true;
+            this.reason = SYMPTOMS_WARNING;
+            Warning post = new Warning(symptoms, SYMPTOMS_WARNING);
+            EventBus.getDefault().post(post);
         }
-        this.reason = SYMPTOMS_WARNING;
-        Warning post = new Warning(symptoms, SYMPTOMS_WARNING);
-        EventBus.getDefault().post(post);
     }
 
     public void checkTest(Boolean test) {
         if(!test) {
             showNotification(TEST_WARNING);
-
             this.reason = TEST_WARNING;
             testState = false;
             Warning post = new Warning(test, TEST_WARNING);
@@ -105,9 +99,7 @@ public class Application extends android.app.Application {
             if (!btAdapter.isEnabled()) {
                 bluetooth = false;
             }
-
         }
-
         //Activate broadcast receiver; detect when bluetooth is switched off
         mReceiver = new BroadcastReceiver() {
             @Override
@@ -128,7 +120,6 @@ public class Application extends android.app.Application {
                         bluetooth = false;
                         System.out.println("BLUETOOTH OFF");
                         showNotification(BLUETOOTH_WARNING);
-
                         reason = BLUETOOTH_WARNING;
                         Warning post = new Warning(bluetooth, BLUETOOTH_WARNING);
                         EventBus.getDefault().post(post);

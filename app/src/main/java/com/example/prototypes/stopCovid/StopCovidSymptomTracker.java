@@ -119,7 +119,7 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
             symptomTracker.addSymptom(5);
         }
 
-        ((Application) getApplicationContext()).checkSymptoms(symptomTracker.getSymptoms());
+        ((Application) getApplicationContext()).checkSymptoms(symptomTracker.checkSymptoms());
         saveHistory();
     }
 

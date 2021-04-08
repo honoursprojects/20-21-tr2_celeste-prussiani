@@ -18,12 +18,14 @@ public class SymptomTracker {
    final String FILE_NAME = "history.txt";
 
     ArrayList<Integer> reportedSymptoms;
+    Boolean alert;
 
     String[] symptoms = {"Cough", "Fever", "Loss of appetite",
             "Loss of smell", "Loss of taste", "Difficulty breathing"};
 
     public SymptomTracker() {
         reportedSymptoms = new ArrayList<Integer>();
+        alert = true;
     }
 
     public void addSymptom(int s) {
@@ -62,6 +64,12 @@ public class SymptomTracker {
         editor.commit();
     }
 
-
+    public Boolean checkSymptoms() {
+        if (reportedSymptoms.contains(1) && reportedSymptoms.contains(2)
+                && reportedSymptoms.contains(3) && reportedSymptoms.contains(4)) {
+            this.alert = false;
+        }
+        return alert;
+    }
 
 }

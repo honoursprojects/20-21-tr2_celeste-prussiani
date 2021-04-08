@@ -36,11 +36,21 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/diarySubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="Here's a history of all the symptoms you've been reporting daily. The dates highlighted in red suggest a risk of Coronavirus." />
+
         <LinearLayout
             android:id="@+id/diaryContainer"
             android:layout_width="match_parent"
             android:layout_height="452dp"
-            android:orientation="vertical">
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            android:padding="5dp">
 
         </LinearLayout>
 
