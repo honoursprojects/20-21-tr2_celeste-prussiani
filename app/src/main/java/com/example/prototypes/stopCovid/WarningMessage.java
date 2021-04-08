@@ -23,9 +23,9 @@ public class WarningMessage extends AppCompatActivity {
     public final String TEST_WARNING = "test";
 
     public final String TEST_MESSAGE = "You have reported a positive test. You MUST self-isolate for at least 10 days. \n NOTE: All your contacts have been notified.";
-    public final String SYMPTOMS_MESSAGE = "The symptoms you have reported suggest you might have Coronavirus. You MUST book a test and self-isolate until the results come back negative. \n NOTE: The app will be tracking your location at all times. Authorities will be notified if you fail to self-isolate.";
+    public final String SYMPTOMS_MESSAGE = "The symptoms you have reported suggest you might have Coronavirus. You MUST book a test and self-isolate until the results come back negative.\n\nNOTE: The app will be tracking your location at all times. Authorities will be notified if you fail to self-isolate.";
     public final String BLUETOOTH_MESSAGE = "You have deactivated Contact Tracing. Leaving your home might be dangerous for you and others around you. Please re-activate the feature now.";
-    public final String CONTACT_MESSAGE = "You have come in contact with someone who tested postivie to Covid-19. You MUST book a test and self-isolate until the results come back negative. \n NOTE: The app will be tracking your location at all times. Authorities will be notified if you fail to self-isolate.";
+    public final String CONTACT_MESSAGE = "You have come in contact with someone who tested postive to Covid-19. You MUST book a test and self-isolate until the results come back negative.\n\nNOTE: The app will be tracking your location at all times. Authorities will be notified if you fail to self-isolate.";
 
     @Override
     public void onBackPressed() {
@@ -73,7 +73,7 @@ public class WarningMessage extends AppCompatActivity {
                 bluetoothButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        messageBox.setText("A test has successfully been booked for you. You'll receive details in your inbox within 48 hours. You MUST self isolate until the results come back negative. The app will be tracking your movements.");
+                        messageBox.setText("A test has successfully been booked for you. You'll receive details in your inbox within 48 hours. \n\nNOTE: The app will be tracking your location at all times. Authorities will be notified if you fail to self-isolate.");
                     }
                 });
                 break;
@@ -82,6 +82,7 @@ public class WarningMessage extends AppCompatActivity {
                 bluetoothButton.setVisibility(View.GONE);
                 break;
             case TEST_WARNING:
+                title.setText("You reported a positive result to a Covid-19 test. Your contacts might be in danger.");
                 messageBox.setText(TEST_MESSAGE);
                 bluetoothButton.setVisibility(View.GONE);
                 break;
