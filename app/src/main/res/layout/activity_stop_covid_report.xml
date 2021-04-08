@@ -34,8 +34,8 @@
 
         <ScrollView
             android:id="@+id/wrapperView"
-            android:layout_width="380dp"
-            android:layout_height="607dp"
+            android:layout_width="378dp"
+            android:layout_height="722dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="40dp"
