@@ -42,20 +42,6 @@
                 tools:layout_editor_absoluteY="156dp">
 
                 <TextView
-                    android:id="@+id/title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="10dp"
-                    android:text="@string/symptomTracker_intro"
-                    android:textColor="@color/darkPinkHighlight"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="45dp"
-                    tools:layout_editor_absoluteY="156dp" />
-
-                <TextView
                     android:id="@+id/subtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -78,8 +64,8 @@
 
                     <LinearLayout
                         android:id="@+id/btn1"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
+                        android:layout_width="115dp"
+                        android:layout_height="120dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/box_shadow"
@@ -105,6 +91,7 @@
                             android:id="@+id/title1"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:layout_margin="5dp"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Fever"
@@ -114,8 +101,8 @@
 
                     <LinearLayout
                         android:id="@+id/btn2"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
+                        android:layout_width="115dp"
+                        android:layout_height="120dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/box_shadow"
@@ -141,6 +128,7 @@
                             android:id="@+id/text2"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:layout_margin="5dp"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Cough"
@@ -150,8 +138,8 @@
 
                     <LinearLayout
                         android:id="@+id/btn3"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
+                        android:layout_width="115dp"
+                        android:layout_height="120dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/box_shadow"
@@ -177,6 +165,7 @@
                             android:id="@+id/title3"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:layout_margin="5dp"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Loss of taste"
@@ -197,8 +186,8 @@
 
                     <LinearLayout
                         android:id="@+id/btn4"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
+                        android:layout_width="115dp"
+                        android:layout_height="120dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/box_shadow"
@@ -224,6 +213,7 @@
                             android:id="@+id/title4"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:layout_margin="5dp"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Loss of smell"
@@ -233,8 +223,8 @@
 
                     <LinearLayout
                         android:id="@+id/btn5"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
+                        android:layout_width="115dp"
+                        android:layout_height="120dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/box_shadow"
@@ -260,6 +250,7 @@
                             android:id="@+id/title5"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:layout_margin="5dp"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Difficulty breathing"
@@ -269,8 +260,8 @@
 
                     <LinearLayout
                         android:id="@+id/btn6"
-                        android:layout_width="109dp"
-                        android:layout_height="109dp"
+                        android:layout_width="115dp"
+                        android:layout_height="120dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/box_shadow"
@@ -296,6 +287,7 @@
                             android:id="@+id/title6"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:layout_margin="5dp"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Loss of appetite"
@@ -392,4 +384,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/symptomTracker_intro"
+        android:textColor="@color/darkPinkHighlight"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appTitle4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
