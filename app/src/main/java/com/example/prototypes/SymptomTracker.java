@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_APPEND;
 
 public class SymptomTracker {
-   final String FILE_NAME = "history.txt";
-
     ArrayList<Integer> reportedSymptoms;
     Boolean alert;
 
@@ -51,12 +49,11 @@ public class SymptomTracker {
         editor.commit();
     }
 
-    public void clearHistory() {
-      /*  SharedPreferences.Editor editor = pref.edit();
+    public void clearHistory(SharedPreferences pref) {
+        SharedPreferences.Editor editor = pref.edit();
         reportedSymptoms.clear();
         editor.clear();
-        editor.commit();*/
-        reportedSymptoms.clear();
+        editor.commit();
     }
 
     public String composeString() {

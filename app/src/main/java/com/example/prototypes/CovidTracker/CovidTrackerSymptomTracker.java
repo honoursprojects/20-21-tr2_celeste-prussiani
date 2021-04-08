@@ -10,6 +10,7 @@ import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,12 +25,19 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
     Intent intent;
     ArrayList<Integer> symptoms;
     SymptomTracker symptomTracker;
+    Boolean saved;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         symptoms = new ArrayList<Integer>();
         symptomTracker = new SymptomTracker();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_covid_tracker_symptom_tracker);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if(getSavedStatus()) {
+                makeUnclickable();
+            }
+        }
     }
 
     public Integer printSymptom(String id) {
@@ -59,21 +67,29 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void saveSymptom(View view) {
-        System.out.println(view.getId());
-        LinearLayout layout = findViewById(view.getId());
-        layout.setBackgroundTintList(getResources().getColorStateList(R.color.darkPinkHighlight));
-        layout.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
-        String symptom = Integer.toString(view.getId());
-        symptomTracker.addSymptom(printSymptom(symptom));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if(!getSavedStatus()) {
+                System.out.println(view.getId());
+                LinearLayout layout = findViewById(view.getId());
+                layout.setBackgroundTintList(getResources().getColorStateList(R.color.darkPinkHighlight));
+                layout.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+                String symptom = Integer.toString(view.getId());
+                symptomTracker.addSymptom(printSymptom(symptom));
+            }
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void appendHistory(View view) {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("covidTracker_preferences", MODE_PRIVATE);
-        symptomTracker.saveToHistory(pref);
-        revertBg();
+        if(!getSavedStatus()) {
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("covidTracker_preferences", MODE_PRIVATE);
+            symptomTracker.saveToHistory(pref);
+            revertBg();
+            makeUnclickable();
+        }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void revertBg() {
         LinearLayout s1 = findViewById(R.id.btn1);
         LinearLayout s2 = findViewById(R.id.btn2);
@@ -82,12 +98,41 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
         LinearLayout s5 = findViewById(R.id.btn5);
         LinearLayout s6 = findViewById(R.id.btn6);
 
-        s1.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));
-        s2.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));
-        s3.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));
-        s4.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));
-        s5.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));
-        s6.setBackground(ContextCompat.getDrawable(this, R.drawable.box_shadow));
+        s1.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+        s1.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+        s2.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+        s2.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+        s3.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+        s3.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+        s4.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+        s4.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+        s5.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+        s5.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+        s6.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+        s6.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public Boolean getSavedStatus() {
+        Boolean flag = false;
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime dateTime = LocalDateTime.now();
+        String date = dateTimeFormatter.format(dateTime);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("covidTracker_preferences", MODE_PRIVATE);
+        if(pref.contains(date)) {
+           flag = true;
+        }
+        return flag;
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void makeUnclickable() {
+        Button saveBtn = findViewById(R.id.saveBtn);
+        saveBtn.setClickable(false);
+        saveBtn.setBackgroundTintList(getResources().getColorStateList(R.color.grey));
+        saveBtn.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
     }
 
     public void openChat(View view) {
