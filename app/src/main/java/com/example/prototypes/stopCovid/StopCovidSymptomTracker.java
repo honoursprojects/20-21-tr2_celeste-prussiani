@@ -121,12 +121,15 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         }
 
         ((Application) getApplicationContext()).checkSymptoms(symptomTracker.checkSymptoms());
+        Button logBtn = findViewById(R.id.logBtn);
+        logBtn.setClickable(false);
+        logBtn.setBackgroundTintList(getResources().getColorStateList(R.color.grey));
+        logBtn.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
         saveHistory();
     }
 
     public void saveHistory() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("stopCovid_preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
         symptomTracker.saveToHistory(pref);
     }
 

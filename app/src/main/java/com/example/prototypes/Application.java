@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.SystemClock;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.prototypes.stopCovid.AlarmReceiver;
@@ -49,7 +50,7 @@ public class Application extends android.app.Application {
     public Boolean symptoms = true;
     public Boolean contact = true;
     public Boolean testState = true;
-    public String reason = null;
+    public String reason = "";
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -74,6 +75,7 @@ public class Application extends android.app.Application {
         if(!symptoms) {
             showNotification(SYMPTOMS_WARNING);
             this.reason = SYMPTOMS_WARNING;
+            this.symptoms = false;
             Warning post = new Warning(symptoms, SYMPTOMS_WARNING);
             EventBus.getDefault().post(post);
         }
@@ -164,6 +166,14 @@ public class Application extends android.app.Application {
             );
             symptom.setDescription("Warning dangerous symptoms");
             manager.createNotificationChannel(symptom);
+
+            NotificationChannel test = new NotificationChannel(
+                    TEST_CHANNEL_NAME,
+                    "TestNotification",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            test.setDescription("Warning test");
+            manager.createNotificationChannel(test);
         }
     }
 
@@ -172,9 +182,9 @@ public class Application extends android.app.Application {
      */
     public void showNotification(String notificationType) {
         String bluetoothMessage = "Please activate bluetooth to activate contact tracing";
-        String contactMessage = "Dangerous contact.";
-        String symptomMessage = "You have reported dangerous symptoms. We advice self isolation";
-        String testMessage = "You have reported a positive test. We advice sel isolation";
+        String contactMessage = "Dangerous contact alert";
+        String symptomMessage = "You have reported dangerous symptoms. You must self isolate.";
+        String testMessage = "You have reported a positive test. You must self isolate.";
 
         //Define which activity to open when tapping on notification
         Intent activityIntent = new Intent(this, StopCovidHome.class);
@@ -183,7 +193,7 @@ public class Application extends android.app.Application {
 
         switch(notificationType) {
             case BLUETOOTH_WARNING:
-                Notification bluetooth = new Builder(this, BLUETOOTH_CHANNEL_NAME)
+                Notification bluetooth = new NotificationCompat.Builder(this, BLUETOOTH_CHANNEL_NAME)
                         .setSmallIcon(R.drawable.ic_baseline_bluetooth_disabled_24)
                         .setContentTitle("Contact tracing disabled")
                         .setContentText(bluetoothMessage)
@@ -194,11 +204,10 @@ public class Application extends android.app.Application {
                         .setOngoing(true)
                         .setContentIntent(contentIntent)
                         .build();
-
                 notificationManager.notify(BLUETOOTH_CHANNEL_ID, bluetooth);
                 break;
             case CONTACT_WARNING:
-                Notification contact = new Builder(this, CONTACT_CHANNEL_NAME)
+                Notification contact = new NotificationCompat.Builder(this, CONTACT_CHANNEL_NAME)
                         .setSmallIcon(R.drawable.ic_covid)
                         .setContentTitle("Dangerous contact")
                         .setContentText(contactMessage)
@@ -214,7 +223,7 @@ public class Application extends android.app.Application {
                 notificationManager.notify(CONTACT_CHANNEL_ID, contact);
                 break;
             case TEST_WARNING:
-                Notification test = new Builder(this, SYMPTOM_CHANNEL_NAME)
+                Notification test = new NotificationCompat.Builder(this, TEST_CHANNEL_NAME)
                         .setSmallIcon(R.drawable.ic_covid)
                         .setContentTitle("Positive test reported")
                         .setContentText(testMessage)
@@ -228,7 +237,7 @@ public class Application extends android.app.Application {
                 notificationManager.notify(TEST_CHANNEL_ID, test);
                 break;
             case SYMPTOMS_WARNING:
-                Notification symptoms = new Builder(this, SYMPTOM_CHANNEL_NAME)
+                Notification symptoms = new NotificationCompat.Builder(this, SYMPTOM_CHANNEL_NAME)
                      .setSmallIcon(R.drawable.ic_covid)
                     .setContentTitle("Dangerous symptoms")
                     .setContentText(symptomMessage)
