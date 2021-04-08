@@ -320,7 +320,7 @@
                     android:textColor="#fff" />
 
                 <Button
-                    android:id="@+id/clearBtn"
+                    android:id="@+id/diaryBtn"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -329,7 +329,8 @@
                     android:background="@drawable/box_shadow"
                     android:backgroundTint="@color/btnColor"
                     android:backgroundTintMode="multiply"
-                    android:text="Clear"
+                    android:onClick="openDiary"
+                    android:text="Your diary"
                     android:textAllCaps="false"
                     android:textColor="#fff" />
 

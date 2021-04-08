@@ -45,6 +45,12 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
         }
     }
 
+
+    public void openDiary(View view) {
+        intent = new Intent(this, CalendarActivity.class);
+        startActivity(intent);
+    }
+
     public Integer printSymptom(String id) {
         int symptom = 0;
         switch(id) {
@@ -72,7 +78,6 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void appendHistory(View view) {
-
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime dateTime = LocalDateTime.now();
         String date = dateTimeFormatter.format(dateTime);
@@ -84,7 +89,7 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
         for(int s : symptoms) {
             stringBuilder.append(text).append(space).append(s).toString();
         }
-        editor.putString(date, text);
+        editor.putString(date, stringBuilder.toString());
         editor.commit();
 
         revertBg();

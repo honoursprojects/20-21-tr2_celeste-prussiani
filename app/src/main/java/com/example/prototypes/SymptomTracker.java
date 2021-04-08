@@ -1,9 +1,15 @@
 package com.example.prototypes;
 
+import android.app.SharedElementCallback;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.view.View;
 
+import androidx.annotation.RequiresApi;
+
 import java.io.FileOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_APPEND;
@@ -11,58 +17,49 @@ import static android.content.Context.MODE_APPEND;
 public class SymptomTracker {
    final String FILE_NAME = "history.txt";
 
-    ArrayList<String> reportedSymptoms;
+    ArrayList<Integer> reportedSymptoms;
 
     String[] symptoms = {"Cough", "Fever", "Loss of appetite",
             "Loss of smell", "Loss of taste", "Difficulty breathing"};
 
     public SymptomTracker() {
-        reportedSymptoms = new ArrayList<String>();
+        reportedSymptoms = new ArrayList<Integer>();
     }
 
-    public ArrayList<String> getSymptoms() {
+    public void addSymptom(int s) {
+        reportedSymptoms.add(s);
+    }
+    public ArrayList<Integer> getSymptoms() {
         return this.reportedSymptoms;
     }
 
-    public void addSymptom(String[] ids, String symptom) {
-        if(!reportedSymptoms.contains(symptom)) {
-            reportedSymptoms.add(printSymptom(ids, symptom));
-        }
+    public String printSymptoms(int s) {
+        return symptoms[s-1];
     }
 
-    public void clearSymptoms() {
-        this.reportedSymptoms.clear();
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void saveToHistory(SharedPreferences pref) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime dateTime = LocalDateTime.now();
+        String date = dateTimeFormatter.format(dateTime);
+        SharedPreferences.Editor editor = pref.edit();
+        StringBuilder stringBuilder = new StringBuilder();
+        String text = "";
+        String space = " ";
+        for(int s : reportedSymptoms) {
+            stringBuilder.append(text).append(space).append(printSymptoms(s)).toString();
+        }
+        editor.putString(date, stringBuilder.toString());
+        editor.commit();
     }
 
-    public String printSymptom(String[] ids, String id) {
-        String symptom = "";
-        if(ids[0].equals(id)) {
-            symptom = symptoms[0];
-        } else if(ids[1].equals(id)) {
-            symptom = symptoms[1];
-        } else if(ids[2].equals(id)) {
-            symptom = symptoms[2];
-        } else if(ids[3].equals(id)) {
-            symptom = symptoms[3];
-        } else if(ids[4].equals(id)) {
-            symptom = symptoms[4];
-        } else if(ids[5].equals(id)) {
-            symptom = symptoms[5];
-        } else {
-            symptom = "undefined";
-        }
-        return symptom;
+    public void clearHistory(SharedPreferences pref) {
+        SharedPreferences.Editor editor = pref.edit();
+        reportedSymptoms.clear();
+        editor.clear();
+        editor.commit();
     }
 
-    public Boolean checkSymptoms(ArrayList<String> newSymptoms) {
-        Boolean warning = true;
-        if(newSymptoms.contains(symptoms[0]) && newSymptoms.contains(symptoms[1])
-                && newSymptoms.contains(symptoms[5])) {
-            warning = false;
-        } else {
-            warning = true;
-        }
-        return warning;
-    }
+
 
 }

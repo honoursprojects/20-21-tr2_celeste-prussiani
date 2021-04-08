@@ -33,7 +33,7 @@ public class Doctor {
                 "or FP2 masks. You can find them and other PPE here";
         String gloves = "Gloves are recommended, but did you know thorough hand washing is much better? If you need them, you can get some gloves from the store; for more information about PPE, go here:";
         String not_found = "Sorry, I'm afraid I' don't understand the question. Could you try and rephrase?";
-        String cases = "There are currently " + R.string.cases_no + " cases in the UK. The current R number is";
+        String cases = "There are currently " + R.string.cases_no + " cases in the UK.";
         String symptomTracker = "symptom";
         String store = "store";
 
