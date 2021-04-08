@@ -81,7 +81,7 @@ public class StopCovidHome extends AppCompatActivity {
         boolean flag = warning.getWarning();
         String msg = warning.getMessage();
         //Change colour when bluetooth changes
-        if(msg.equals("bluetooth")) {
+        if(msg.equals("bluetooth") && !flag) {
             intent = new Intent(this, WarningMessage.class);
             startActivity(intent);
         }
@@ -158,7 +158,7 @@ public class StopCovidHome extends AppCompatActivity {
             contactTracingIcon.setColorFilter(ContextCompat.getColor(this, R.color.black), PorterDuff.Mode.SRC_IN);
             contactTracingMsg.setTextColor(textColour);
             contactTracingMsg.setText("Contact tracing: active");
-            statusIcon.setBackgroundTintList(getResources().getColorStateList(R.color.green));
+            statusIcon.setColorFilter(ContextCompat.getColor(this, R.color.green), PorterDuff.Mode.SRC_IN);
             navBar.setBackgroundColor(darkYellow);
         }
     }
