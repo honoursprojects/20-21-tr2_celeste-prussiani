@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.prototypes.Application;
 import com.example.prototypes.R;
+import com.example.prototypes.SymptomTracker;
 import com.example.prototypes.Warning;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -52,6 +53,8 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     CheckBox breathingCheck;
     CheckBox appetiteCheck;
     CheckBox noCheck;
+    SymptomTracker symptomTracker;
+
     @SuppressLint("NewApi")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -65,6 +68,9 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
         appetiteCheck = findViewById(R.id.appetiteCheck);
         noCheck = findViewById(R.id.noCheck);
         symptoms = new ArrayList<String>();
+
+       symptomTracker = new SymptomTracker();
+
         Boolean bluetooth = ((Application) getApplicationContext()).getBluetoothState();
         Boolean symptoms = ((Application) getApplicationContext()).getSymptomsState();
         Boolean test = ((Application) getApplicationContext()).getTestState();
@@ -97,50 +103,30 @@ public class StopCovidSymptomTracker extends AppCompatActivity {
     }
 
     public void saveSymptoms(View view) {
-
         if(coughCheck.isChecked()) {
-            symptoms.add("Cough");
+            symptomTracker.addSymptom(1);
         }
         if(feverCheck.isChecked()) {
-            symptoms.add("Fever");
+            symptomTracker.addSymptom(2);
         }
         if(tasteCheck.isChecked()) {
-            symptoms.add("Taste");
+            symptomTracker.addSymptom(3);
         }
         if(breathingCheck.isChecked()) {
-            symptoms.add("Breathing");
+            symptomTracker.addSymptom(4);
         }
         if(appetiteCheck.isChecked()) {
-            symptoms.add("Appetite");
+            symptomTracker.addSymptom(5);
         }
 
-        ((Application) getApplicationContext()).checkSymptoms(symptoms);
-        appendHistory();
+        ((Application) getApplicationContext()).checkSymptoms(symptomTracker.getSymptoms());
+        saveHistory();
     }
 
-    public void appendHistory() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime dateTime = LocalDateTime.now();
-        String date = dateTimeFormatter.format(dateTime);
+    public void saveHistory() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("stopCovid_preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        StringBuilder stringBuilder = new StringBuilder();
-
-        String text = "";
-        for(String s : symptoms) {
-            stringBuilder.append(text).append("\n").append(s);
-        }
-        editor.putString(date, text);
-        System.out.println(date);
-        editor.commit();
-    }
-
-    public void clearHistory(View view) {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        symptoms.clear();
-        editor.clear();
-        editor.commit();
+        symptomTracker.saveToHistory(pref);
     }
 
     //Bluetooth

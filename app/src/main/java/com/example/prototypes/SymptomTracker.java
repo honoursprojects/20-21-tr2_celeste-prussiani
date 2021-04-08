@@ -27,7 +27,9 @@ public class SymptomTracker {
     }
 
     public void addSymptom(int s) {
-        reportedSymptoms.add(s);
+        if(!reportedSymptoms.contains(s)) {
+            reportedSymptoms.add(s);
+        }
     }
     public ArrayList<Integer> getSymptoms() {
         return this.reportedSymptoms;

@@ -70,9 +70,9 @@ public class Application extends android.app.Application {
         return this.reason;
     }
     /** Checkers **/
-    public void checkSymptoms(ArrayList<String> newSymptoms) {
-        if(newSymptoms.contains("Cough") && newSymptoms.contains("Fever")
-                && newSymptoms.contains("Breathing") && newSymptoms.contains("Taste")) {
+    public void checkSymptoms(ArrayList<Integer> newSymptoms) {
+        if(newSymptoms.contains(1) && newSymptoms.contains(2)
+                && newSymptoms.contains(3) && newSymptoms.contains(4)) {
             symptoms = false;
 
             showNotification(SYMPTOMS_WARNING);
