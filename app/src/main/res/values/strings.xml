@@ -23,4 +23,11 @@
     <string name="symptomTracker_intro">How are you feeling today?</string>
     <string name="symptomTracker_subtitle">Select all the symptoms you feel to keep track of your health.</string>
     <string name="symptomTracker_stopCovid_subtitle">Symptom Tracker is a tool to monitor your wellbeing and detect signs of Coronavirus prematurely. Use this every day for best results.</string>
+    <!-- Store -->
+    <string name="surgical"><b>Surgical mask</b>\n\nStandard disposable mask for day-to-day \n\n<b>10 x £10</b> </string>
+    <string name="ffp2"><b>FFP2 Mask</b>\n\nThe best compromise between protection and comfort. Aerosol filtration not less than 94%.\n\n <b>2 x £20</b></string>
+    <string name="ffp3"><b>FFP3 Mask/Respirator</b>\n\nAbsolute protection against any virus. Aerosol filtration percentage not less than 99%.\n\n <b>2 x £40</b></string>
+    <string name="visor"><b>Face shield</b>\n\nWear it to be extra safe. Adjustable length up to 14\'.\n\n<b>£15</b></string>
+    <string name="gloves1"><b>Disposable gloves</b>\n\nStandard latex disposable gloves for everyday use.\n\n<b>10 x £3</b></string>
+    <string name="sanitiser"><b>Hand sanitiser</b>\n\nPocket hand sanitiser (30ml), 80% alcohol content.\n\n<b>2 x £5</b></string>
 </resources>
