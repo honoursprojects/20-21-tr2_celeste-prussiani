@@ -118,27 +118,27 @@
 
         <ImageView
             android:id="@+id/symptomTrackerIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_width="38dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:onClick="openSymptomTracker"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+            app:srcCompat="@drawable/ic_symptom_tracker" />
 
         <ImageView
             android:id="@+id/storeIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:onClick="openStore"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+            app:srcCompat="@drawable/ic_store" />
 
         <ImageView
             android:id="@+id/reportIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_width="38dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:onClick="openReportTest"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+            app:srcCompat="@drawable/ic_covid_test" />
 
     </LinearLayout>
 

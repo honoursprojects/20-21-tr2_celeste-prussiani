@@ -52,13 +52,14 @@
 
                 <ImageView
                     android:id="@+id/icon1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.35"
-                    app:srcCompat="@android:drawable/btn_star_big_on"
+                    app:srcCompat="@drawable/ic_face_mask"
                     tools:layout_editor_absoluteX="61dp" />
 
                 <TextView
@@ -89,12 +90,13 @@
                 <ImageView
                     android:id="@+id/icon2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.35"
-                    app:srcCompat="@android:drawable/btn_star_big_on"
+                    app:srcCompat="@drawable/ic_gloves"
                     tools:layout_editor_absoluteX="175dp" />
 
                 <TextView
@@ -125,12 +127,13 @@
                 <ImageView
                     android:id="@+id/icon3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.35"
-                    app:srcCompat="@android:drawable/btn_star_big_on"
+                    app:srcCompat="@drawable/ic_hand_sanitizer"
                     tools:layout_editor_absoluteX="289dp" />
 
                 <TextView
@@ -150,7 +153,9 @@
             android:id="@+id/feelingLow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="Not finding what you're looking for?"
@@ -162,6 +167,8 @@
             android:id="@+id/advice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="Tap the chat icon to talk to your virtual doctor." />

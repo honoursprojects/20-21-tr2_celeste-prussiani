@@ -79,12 +79,13 @@
                         <ImageView
                             android:id="@+id/icon1"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
+                            app:srcCompat="@drawable/ic_thermometer"
                             tools:layout_editor_absoluteX="61dp" />
 
                         <TextView
@@ -116,12 +117,13 @@
                         <ImageView
                             android:id="@+id/icon2"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
+                            app:srcCompat="@drawable/ic_coughing"
                             tools:layout_editor_absoluteX="175dp" />
 
                         <TextView
@@ -153,12 +155,13 @@
                         <ImageView
                             android:id="@+id/icon3"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
+                            app:srcCompat="@drawable/ic_loss_of_sense_of_taste"
                             tools:layout_editor_absoluteX="289dp" />
 
                         <TextView
@@ -201,12 +204,13 @@
                         <ImageView
                             android:id="@+id/icon4"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
+                            app:srcCompat="@drawable/ic_loss_of_sense_of_smell"
                             tools:layout_editor_absoluteX="61dp" />
 
                         <TextView
@@ -238,12 +242,13 @@
                         <ImageView
                             android:id="@+id/icon5"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
+                            app:srcCompat="@drawable/ic_lungs"
                             tools:layout_editor_absoluteX="175dp" />
 
                         <TextView
@@ -275,12 +280,13 @@
                         <ImageView
                             android:id="@+id/icon6"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.35"
-                            app:srcCompat="@android:drawable/btn_star_big_on"
+                            app:srcCompat="@drawable/ic_lack_of_appetite"
                             tools:layout_editor_absoluteX="289dp" />
 
                         <TextView
