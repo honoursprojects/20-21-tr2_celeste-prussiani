@@ -42,11 +42,11 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="401dp"
-        android:layout_height="627dp"
+        android:layout_width="413dp"
+        android:layout_height="630dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -60,7 +60,7 @@
             android:layout_marginStart="1dp"
             android:layout_marginLeft="1dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="9dp"
+            android:layout_marginBottom="50dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -233,6 +233,25 @@
                     android:layout_weight="1"
                     android:text="@string/sanitiser" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/notFound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:text="Not finding what you're looking for?"
+                android:textColor="@color/darkPinkHighlight"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="20dp"
+                android:text="Tap the chat icon to talk to your virtual doctor." />
         </LinearLayout>
     </ScrollView>
 

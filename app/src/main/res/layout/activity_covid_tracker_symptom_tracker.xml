@@ -259,6 +259,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Difficulty breathing"
+                            android:textSize="12sp"
                             tools:layout_editor_absoluteX="175dp"
                             tools:layout_editor_absoluteY="303dp" />
                     </LinearLayout>
@@ -297,6 +298,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Loss of appetite"
+                            android:textSize="12sp"
                             tools:layout_editor_absoluteX="289dp"
                             tools:layout_editor_absoluteY="303dp" />
                     </LinearLayout>
