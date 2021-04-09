@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.prototypes.R;
 import com.example.prototypes.SymptomTracker;
@@ -86,6 +87,7 @@ public class CovidTrackerSymptomTracker extends AppCompatActivity {
             symptomTracker.saveToHistory(pref);
             revertBg();
             makeUnclickable();
+            Toast.makeText(this, "Symptoms saved!", Toast.LENGTH_SHORT);
         }
     }
 
