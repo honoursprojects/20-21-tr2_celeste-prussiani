@@ -1,16 +1,20 @@
 package com.example.prototypes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.prototypes.CovidTracker.CovidTrackerStore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +24,7 @@ public class ShoppingCart extends AppCompatActivity {
 
     Cart cart;
     LinearLayout msgBox;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,4 +109,11 @@ public class ShoppingCart extends AppCompatActivity {
                 .show();
         }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        intent = new Intent(this, CovidTrackerStore.class);
+        startActivity(intent);
+        finish();
+    }
 }
