@@ -11,24 +11,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
-import android.os.SystemClock;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.example.prototypes.stopCovid.AlarmReceiver;
 import com.example.prototypes.stopCovid.StopCovidHome;
-import com.example.prototypes.stopCovid.WarningMessage;
 
 import org.greenrobot.eventbus.EventBus;
-import java.util.ArrayList;
-import java.util.Random;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static androidx.core.app.NotificationCompat.*;
 
 public class Application extends android.app.Application {
+
 
     public static final String BLUETOOTH_CHANNEL_NAME = "warningChannel";
     public final int BLUETOOTH_CHANNEL_ID = 1;
@@ -51,7 +46,7 @@ public class Application extends android.app.Application {
     public Boolean contact = true;
     public Boolean testState = true;
     public String reason = "";
-
+    public Cart cart;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate() {

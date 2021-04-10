@@ -39,32 +39,21 @@
             android:layout_marginRight="15dp"
             android:onClick="openChat"
             app:srcCompat="@android:drawable/sym_action_chat" />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:cropToPadding="false"
-            android:onClick="openShoppingCart"
-            android:padding="10dp"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_shopping_cart" />
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="413dp"
-        android:layout_height="630dp"
+        android:layout_width="414dp"
+        android:layout_height="563dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitle6"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.525">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -78,6 +67,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
+                android:id="@+id/ffp2"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginLeft="15dp"
@@ -85,7 +75,8 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/box_shadow"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/imageView6"
@@ -105,7 +96,7 @@
                     android:text="@string/ffp2" />
 
                 <ImageButton
-                    android:id="@+id/ffp2"
+                    android:id="@+id/ffp2Remove"
                     android:layout_width="56dp"
                     android:layout_height="44dp"
                     android:layout_marginTop="2dp"
@@ -113,14 +104,15 @@
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:background="@drawable/box_no_shadow"
-                    android:onClick="addToCart"
+                    android:onClick="remove"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_add_to_cart"
+                    app:srcCompat="@drawable/ic_remove_from_cart"
                     app:tint="@color/darkPinkHighlight" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/surgical"
                 android:layout_width="match_parent"
                 android:layout_height="134dp"
                 android:layout_marginLeft="15dp"
@@ -128,7 +120,8 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/box_shadow"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/imageView7"
@@ -149,23 +142,24 @@
                     android:text="@string/surgical" />
 
                 <ImageButton
-                    android:id="@+id/surgical"
+                    android:id="@+id/surgicalRemove"
                     android:layout_width="40dp"
                     android:layout_height="44dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginRight="6dp"
 
+                    android:layout_marginRight="6dp"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:background="@drawable/box_no_shadow"
-                    android:onClick="addToCart"
+                    android:onClick="remove"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_add_to_cart"
+                    app:srcCompat="@drawable/ic_remove_from_cart"
                     app:tint="@color/darkPinkHighlight" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ffp3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
@@ -173,7 +167,8 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/box_shadow"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -194,30 +189,32 @@
                     android:text="@string/ffp3" />
 
                 <ImageButton
-                    android:id="@+id/ffp3"
+                    android:id="@+id/ffp3Remove"
                     android:layout_width="1dp"
                     android:layout_height="46dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginRight="6dp"
 
+                    android:layout_marginRight="6dp"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:background="@drawable/box_no_shadow"
-                    android:onClick="addToCart"
+                    android:onClick="remove"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_add_to_cart"
+                    app:srcCompat="@drawable/ic_remove_from_cart"
                     app:tint="@color/darkPinkHighlight" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/visor"
                 android:layout_width="match_parent"
                 android:layout_height="133dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/box_shadow"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -236,24 +233,25 @@
                     android:text="@string/visor" />
 
                 <ImageButton
-                    android:id="@+id/visor"
+                    android:id="@+id/visorRemove"
                     android:layout_width="4dp"
                     android:layout_height="44dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginRight="6dp"
 
+                    android:layout_marginRight="6dp"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:background="@drawable/box_no_shadow"
-                    android:onClick="addToCart"
+                    android:onClick="remove"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_add_to_cart"
+                    app:srcCompat="@drawable/ic_remove_from_cart"
                     app:tint="@color/darkPinkHighlight" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/gloves"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="15dp"
@@ -261,7 +259,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/box_shadow"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/imageView14"
@@ -282,23 +281,24 @@
                     android:text="@string/gloves1" />
 
                 <ImageButton
-                    android:id="@+id/gloves"
+                    android:id="@+id/glovesRemove"
                     android:layout_width="56dp"
                     android:layout_height="46dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginRight="6dp"
 
+                    android:layout_marginRight="6dp"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:background="@drawable/box_no_shadow"
-                    android:onClick="addToCart"
+                    android:onClick="remove"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_add_to_cart"
+                    app:srcCompat="@drawable/ic_remove_from_cart"
                     app:tint="@color/darkPinkHighlight" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/sanitiser"
                 android:layout_width="match_parent"
                 android:layout_height="146dp"
                 android:layout_margin="15dp"
@@ -306,7 +306,8 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/box_shadow"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/imageView15"
@@ -325,55 +326,67 @@
                     android:text="@string/sanitiser" />
 
                 <ImageButton
-                    android:id="@+id/sanitiser"
+                    android:id="@+id/sanitiserRemove"
                     android:layout_width="61dp"
                     android:layout_height="46dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginRight="6dp"
 
+                    android:layout_marginRight="6dp"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:background="@drawable/box_no_shadow"
-                    android:onClick="addToCart"
+                    android:onClick="remove"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_add_to_cart"
+                    app:srcCompat="@drawable/ic_remove_from_cart"
                     app:tint="@color/darkPinkHighlight" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/notFound"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:text="Not finding what you're looking for?"
-                android:textColor="@color/darkPinkHighlight"
-                android:textSize="20sp"
-                android:textStyle="italic" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="20dp"
-                android:text="Tap the chat icon to talk to your virtual doctor." />
         </LinearLayout>
     </ScrollView>
 
     <TextView
-        android:id="@+id/storeTitle"
+        android:id="@+id/shoppingCartTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="23dp"
-        android:text="PPE store"
+        android:text="Your shopping cart"
         android:textColor="@color/darkPinkHighlight"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitle6" />
+
+    <LinearLayout
+        android:layout_width="383dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2">
+
+        <Button
+            android:id="@+id/checkoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="clearAll"
+            android:text="Checkout" />
+
+        <Button
+            android:id="@+id/clearBasketBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="clearAll"
+            android:text="Clear shopping cart" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
