@@ -111,12 +111,12 @@
                     app:srcCompat="@drawable/ic_face_mask" />
 
                 <TextView
-                    android:id="@+id/mask1"
+                    android:id="@+id/ffp2Msg"
                     android:layout_width="228dp"
                     android:layout_height="128dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:text="@string/ffp2" />
+                    android:text="@string/ffp2Cart" />
 
                 <ImageButton
                     android:id="@+id/ffp2Remove"
@@ -156,13 +156,13 @@
                     app:srcCompat="@drawable/ic_surgical_mask" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/surgicalMsg"
                     android:layout_width="213dp"
                     android:layout_height="109dp"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:text="@string/surgical" />
+                    android:text="@string/surgicalCart" />
 
                 <ImageButton
                     android:id="@+id/surgicalRemove"
@@ -203,13 +203,13 @@
                     app:srcCompat="@drawable/ic_ffp3_mask" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/ffp3Msg"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:text="@string/ffp3" />
+                    android:text="@string/ffp3Cart" />
 
                 <ImageButton
                     android:id="@+id/ffp3Remove"
@@ -248,12 +248,12 @@
                     app:srcCompat="@drawable/ic_face_shield" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/visorMsg"
                     android:layout_width="174dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:text="@string/visor" />
+                    android:text="@string/visorCart" />
 
                 <ImageButton
                     android:id="@+id/visorRemove"
@@ -295,13 +295,13 @@
                     app:srcCompat="@drawable/ic_gloves" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/glovesMsg"
                     android:layout_width="208dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:text="@string/gloves1" />
+                    android:text="@string/gloves1Cart" />
 
                 <ImageButton
                     android:id="@+id/glovesRemove"
@@ -341,12 +341,12 @@
                     app:srcCompat="@drawable/ic_hand_sanitizer" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/sanitiserMsg"
                     android:layout_width="209dp"
                     android:layout_height="132dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:text="@string/sanitiser" />
+                    android:text="@string/sanitiserCart" />
 
                 <ImageButton
                     android:id="@+id/sanitiserRemove"

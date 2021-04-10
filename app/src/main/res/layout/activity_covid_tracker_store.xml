@@ -44,12 +44,15 @@
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:adjustViewBounds="true"
+            android:background="@color/colourAccentDark"
             android:cropToPadding="false"
             android:onClick="openShoppingCart"
-            android:padding="10dp"
+            android:padding="11dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_shopping_cart" />
+            app:srcCompat="@drawable/ic_shopping_cart"
+            app:tint="@color/white" />
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <ScrollView

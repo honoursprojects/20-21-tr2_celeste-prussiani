@@ -8,8 +8,11 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,11 +23,13 @@ public class ShoppingCart extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("covidTracker_store", MODE_PRIVATE);
         cart = new Cart(pref);
         msgBox = findViewById(R.id.msgContainer);
+
         display();
     }
 
@@ -32,21 +37,37 @@ public class ShoppingCart extends AppCompatActivity {
         Map<String, Integer> items = cart.retrieveItems();
         Set<String> itemNames = items.keySet();
         if(!itemNames.isEmpty()) {
+            msgBox.setVisibility(View.GONE);
             for(String s : itemNames) {
+                int quantity = items.get(s);
+                String price = "\n\nQuantity: " + quantity + " Price: £" + cart.getItemPrice(s, quantity);
                 int resID = getResources().getIdentifier(s, "id", getPackageName());
                 LinearLayout layout = findViewById(resID);
+                String msgId = s + "Msg";
+                int messageBoxId = getResources().getIdentifier(msgId, "id", getPackageName());
+                TextView messageBox = findViewById(messageBoxId);
                 layout.setVisibility(View.VISIBLE);
-                msgBox.setVisibility(View.GONE);
+                messageBox.append(price);
             }
+            displayTotalPrice();
         }
     }
 
+    public void displayTotalPrice() {
+        Button checkoutBtn = findViewById(R.id.checkoutBtn);
+        double total = cart.getTotalPrice();
+        checkoutBtn.setText("Checkout: £" + String.valueOf(total));
+    }
+
+
     public void remove(View view) {
-        String itemName = getResources().getResourceEntryName(view.getId());
-        cart.removeItem(itemName);
-        int resID = getResources().getIdentifier(itemName, "id", getPackageName());
+        String btnName = getResources().getResourceEntryName(view.getId());
+        String itemName[] = btnName.split("(?=\\p{Upper})");
+        cart.removeItem(itemName[0]);
+        int resID = getResources().getIdentifier(itemName[0], "id", getPackageName());
         LinearLayout layout = findViewById(resID);
         layout.setVisibility(View.GONE);
+        displayTotalPrice();
     }
 
     public void clearItems() {
